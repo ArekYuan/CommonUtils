@@ -19,7 +19,6 @@ import java.util.Map;
 import java.util.Set;
 
 import yaohl.cn.commonutils.util.CMLog;
-import yaohl.cn.commonutils.util.CommonConstants;
 
 
 /**
@@ -63,13 +62,13 @@ public class ConnectSersvice
      * @param callback          回调
      * @param obj               类
      * @param <T>               response
-     * @param methodName        服务器接口名
+     * @param serverUrl        服务器接口名
      * @param context           context 返 回 类 型：void
      */
     public <T> void connectService(yaohl.cn.commonutils.newtwork.volley.HttpRequestParams httpRequestParams, final yaohl.cn.commonutils.newtwork.volley.UICallBack callback, Class<T> obj,
-                                   final Context context, final String methodName)
+                                   final Context context, final String serverUrl)
     {
-        String serviceUrl = CommonConstants.SERVER + methodName;
+//        String serviceUrl = CommonConstants.SERVER + methodName;
         doJsonRequest(httpRequestParams, new INetCallBack()
         {
             @Override
@@ -81,13 +80,13 @@ public class ConnectSersvice
             @Override
             public void onFail(String errorMessage)
             {
-                callback.onFail(methodName);
+                callback.onFail(serverUrl);
             }
 
             @Override
             public void onSysFail(int sysCode)
             {
-                callback.onSysFail(sysCode, methodName);
+                callback.onSysFail(sysCode, serverUrl);
             }
 
             @Override
@@ -95,7 +94,7 @@ public class ConnectSersvice
             {
                 callback.onReqFailed(msg);
             }
-        }, obj, context, serviceUrl);
+        }, obj, context, serverUrl);
     }
 
     private <T> void doJsonRequest(yaohl.cn.commonutils.newtwork.volley.HttpRequestParams httpRequestParams, final INetCallBack netBack, final Class<T> obj,
@@ -128,7 +127,7 @@ public class ConnectSersvice
                 {
                     String codeStr = response.getString("code");
                     int code = Integer.parseInt(codeStr);
-                    if (code == CommonConstants.SERVER_SUCCESS_CODE)
+                    if (code == 2000)
                     {
                         CMLog.e("请求成功---->url:" + url + ":-->", response.toString(), context);
                         Gson gson = new Gson();
@@ -187,9 +186,9 @@ public class ConnectSersvice
      */
 
     public <T> void connectGetService(final String tag, final yaohl.cn.commonutils.newtwork.volley.UICallBack callback, final Class<T> obj,
-                                      final Map<String, String> reqParams, Context mContext, final String methodName)
+                                      final Map<String, String> reqParams, Context mContext, final String serverUrl)
     {
-        String serviceUrl = CommonConstants.SERVER + methodName;
+//        String serviceUrl = CommonConstants.SERVER + methodName;
         doJsonRequestGet(Request.Method.GET, new INetCallBack()
         {
             @Override
@@ -201,13 +200,13 @@ public class ConnectSersvice
             @Override
             public void onFail(String errorMessage)
             {
-                callback.onFail(methodName);
+                callback.onFail(serverUrl);
             }
 
             @Override
             public void onSysFail(int sysCode)
             {
-                callback.onSysFail(sysCode, methodName);
+                callback.onSysFail(sysCode, serverUrl);
             }
 
             @Override
@@ -215,7 +214,7 @@ public class ConnectSersvice
             {
                 callback.onReqFailed(msg);
             }
-        }, obj, reqParams, mContext, serviceUrl, tag);
+        }, obj, reqParams, mContext, serverUrl, tag);
     }
 
     /***
@@ -254,7 +253,7 @@ public class ConnectSersvice
                     String codeStr = response.getString("code");
 
                     int code = Integer.parseInt(codeStr);
-                    if (code == CommonConstants.SERVER_SUCCESS_CODE)
+                    if (code == 2000)
                     {
                         CMLog.e(tag + "请求成功---->url:" + url + ":-->", response.toString(), mContext);
                         Gson gson = new Gson();

@@ -22,4 +22,8 @@
     <color name="rll_layout_bg_color">#eeeeee</color>
     <color name="rll_text_color">#666666</color>
     <color name="referesh_commom_color">#f2f0f0</color>
+
+
+    <color name="gray">#aaaaaa</color>
+    <color name="light_blue">#6593cb</color>
 </resources>

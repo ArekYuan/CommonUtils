@@ -20,7 +20,6 @@ import java.net.SocketTimeoutException;
 import javax.net.ssl.SSLException;
 
 import cz.msebera.android.httpclient.Header;
-import yaohl.cn.commonutils.util.CommonConstants;
 
 /**
  * Created by asus on 2016/11/16.
@@ -90,9 +89,9 @@ public class ConnectService
      * @param obj
      * @param <T>
      */
-    public <T> void get(String TAG, Context mContext, String url, final UiCallBack callBacks, Class<T> obj)
+    public <T> void get(String TAG, Context mContext, String serverUrl, final UiCallBack callBacks, Class<T> obj)
     {
-        String serverUrl = CommonConstants.SERVER + url;
+//        String serverUrl = CommonConstants.SERVER + url;
         Log.i(TAG, "-->" + serverUrl);
         doJsonGetNoParamsRequest(TAG, mContext, serverUrl, new INetCallBack()
         {
@@ -162,15 +161,15 @@ public class ConnectService
      * GET 方法带参数
      *
      * @param mContext
-     * @param url
+     * @param serverUrl
      * @param params
      * @param uiCallBack
      * @param obj
      * @param <T>
      */
-    public <T> void get(String TAG, Context mContext, String url, RequestParams params, final UiCallBack uiCallBack, Class<T> obj)
+    public <T> void get(String TAG, Context mContext, String serverUrl, RequestParams params, final UiCallBack uiCallBack, Class<T> obj)
     {
-        String serverUrl = CommonConstants.SERVER + url;
+//        String serverUrl = CommonConstants.SERVER + url;
         Log.i(TAG, "-->" + client.getUrlWithQueryString(true, serverUrl, params));
 
         doJsonGetRequest(TAG, mContext, serverUrl, params, new INetCallBack()
@@ -241,15 +240,15 @@ public class ConnectService
     /**
      * POST  带参数
      *
-     * @param url
+     * @param serverUrl
      * @param params
      * @param uiCallBack
      *
      * @return
      */
-    public <T> void post(String TAG, Context mContext, String url, RequestParams params, final UiCallBack uiCallBack, Class<T> obj)
+    public <T> void post(String TAG, Context mContext, String serverUrl, RequestParams params, final UiCallBack uiCallBack, Class<T> obj)
     {
-        String serverUrl = CommonConstants.SERVER + url;
+//        String serverUrl = CommonConstants.SERVER + url;
         Log.i(TAG, "-->" + client.getUrlWithQueryString(true, serverUrl, params));
         doJsonPostRequest(TAG, mContext, serverUrl, params, new INetCallBack()
         {
