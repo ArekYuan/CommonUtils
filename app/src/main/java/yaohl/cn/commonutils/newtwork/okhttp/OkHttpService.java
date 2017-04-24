@@ -288,7 +288,7 @@ public class OkHttpService
      * @param fileDir
      * @param fileName
      */
-    public static <T> void downLoadFile(final String tag, String url, final String fileDir, final String fileName, final FileProgressCallBack callBack, Context mContext)
+    public static void downLoadFile(final String tag, String url, final String fileDir, final String fileName, final FileProgressCallBack callBack, Context mContext)
     {
         doDownloadFile(tag, url, fileDir, fileName, new DownLoadFileCallBack()
         {
@@ -317,7 +317,7 @@ public class OkHttpService
      * @param callBack
      * @param mContext
      */
-    private static <T> void doDownloadFile(final String tag, String url, String fileDir, String fileName, final DownLoadFileCallBack callBack, Context mContext)
+    private static void doDownloadFile(final String tag, String url, String fileDir, String fileName, final DownLoadFileCallBack callBack, Context mContext)
     {
         final File file = new File(fileDir, fileName);
         if (file.exists())
