@@ -1,6 +1,8 @@
 package yaohl.cn.commonutils.newtwork.okhttp;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -49,6 +51,63 @@ public class OkHttpService
     public static final int WRITE_TIME_OUT_DEFAULT = 60000;
 
     /**
+     * 获取成功
+     */
+    public static final int ON_SUCCESS_REQUIRED = 100001;
+
+    /**
+     * 获取 失败
+     */
+    public static final int ON_FAILED_REQUIRED = 100002;
+
+    /**
+     * 成功下载文件
+     */
+    public static final int ON_DOWNLOAD_FILE_SUCCESS = 100003;
+
+    /**
+     * 下载文件失败
+     */
+    public static final int ON_DOWNLOAD_FILE_FAILED = 100004;
+
+    public static UiCallBack callBack = null;
+
+    /**
+     * hanler  子线程
+     */
+    public static Handler handler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            switch (msg.what)
+            {
+                case ON_SUCCESS_REQUIRED://获取json成功
+                    if (callBack != null)
+                    {
+                        Object ob = msg.obj;
+                        callBack.onComplete(ob);
+                    }
+                    break;
+                case ON_FAILED_REQUIRED://获取json失败
+                    if (callBack != null)
+                    {
+                        String errorMessage = (String) msg.obj;
+                        callBack.onFail(errorMessage);
+                    }
+                    break;
+                case ON_DOWNLOAD_FILE_SUCCESS://下载文件成功
+                    break;
+                case ON_DOWNLOAD_FILE_FAILED://下载文件失败
+                    break;
+                default:
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
+    /**
      * 访问网络单子例对象
      */
     private static OkHttpClient client = null;
@@ -90,18 +149,24 @@ public class OkHttpService
      */
     public static <T> void doGet(String tag, String url, final UiCallBack callBacks, final Class<T> obj)
     {
+        callBack = callBacks;
+        final Message message = new Message();
         doJsonGetData(tag, url, new INetCallBack()
         {
             @Override
             public void onSuccess(Object ob)
             {
-                callBacks.onComplete(ob);
+                message.obj = ob;
+                message.what = ON_SUCCESS_REQUIRED;
+                handler.sendMessage(message);
             }
 
             @Override
             public void onFail(String errorMessage)
             {
-                callBacks.onFail(errorMessage);
+                message.obj = errorMessage;
+                message.what = ON_FAILED_REQUIRED;
+                handler.sendMessage(message);
             }
         }, obj);
 
