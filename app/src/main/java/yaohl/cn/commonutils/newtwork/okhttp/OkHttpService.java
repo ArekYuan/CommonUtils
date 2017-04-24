@@ -138,7 +138,43 @@ public class OkHttpService
      * @param mapParams
      * @param callback
      */
-    public static void doPost(String url, Map<String, String> mapParams, Callback callback)
+    /**
+     * Post请求发送键值对数据
+     *
+     * @param url
+     * @param mapParams
+     * @param callBacks
+     */
+    public static <T> void doPost(String tag, String url, Map<String, String> mapParams, final UiCallBack callBacks, final Class<T> obj)
+    {
+
+        doJsonPostData(tag, url, mapParams, new INetCallBack()
+        {
+            @Override
+            public void onSuccess(Object ob)
+            {
+                callBacks.onComplete(ob);
+            }
+
+            @Override
+            public void onFail(String errorMessage)
+            {
+                callBacks.onFail(errorMessage);
+            }
+        }, obj);
+    }
+
+    /**
+     * post  请求 获取json 格式的数据
+     *
+     * @param tag
+     * @param url
+     * @param mapParams
+     * @param iNetCallBack
+     * @param obj
+     * @param <T>
+     */
+    private static <T> void doJsonPostData(final String tag, final String url, Map<String, String> mapParams, final INetCallBack iNetCallBack, final Class<T> obj)
     {
         FormBody.Builder builder = new FormBody.Builder();
         for (String key : mapParams.keySet())
@@ -150,7 +186,33 @@ public class OkHttpService
                 .post(builder.build())
                 .build();
         Call call = getInstance().newCall(request);
-        call.enqueue(callback);
+        call.enqueue(new Callback()
+        {
+            @Override
+            public void onFailure(Call call, IOException e)
+            {
+                Log.e(tag, url + "<---->" + e.getMessage());
+                onFailMethod(e.getMessage(), iNetCallBack);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException
+            {
+                if (response.isSuccessful())
+                {
+                    Gson gson = new Gson();
+                    String responseBody = response.body().string();
+                    Object object = gson.fromJson(responseBody, obj);
+                    onSuccessMethod(object, iNetCallBack);
+                }
+
+                //关闭防止内存泄漏
+                if (response.body() != null)
+                {
+                    response.body().close();
+                }
+            }
+        });
     }
 
     /**
