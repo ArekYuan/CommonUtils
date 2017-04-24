@@ -352,7 +352,7 @@ public class OkHttpService
             @Override
             public void onFailure(Call call, IOException e)
             {
-
+                callBack.onFail(e.getMessage());
             }
 
             @Override
@@ -375,16 +375,13 @@ public class OkHttpService
                         fos.write(buf, 0, len);
                         Log.e(tag, "current------>" + current);
                         callBack.onSuccess(total, current);
-//                        progressCallBack(total, current);
                     }
                     fos.flush();
-//                    successCallBack((T) file, callBack);
                 }
                 catch (IOException e)
                 {
                     Log.e(tag, e.toString());
                     callBack.onFail("下载失败");
-//                    failedCallBack("下载失败", callBack);
                 } finally
                 {
                     try
