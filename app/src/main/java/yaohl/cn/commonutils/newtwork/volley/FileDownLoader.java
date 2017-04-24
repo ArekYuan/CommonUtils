@@ -7,7 +7,7 @@ import android.content.Context;
  * 版    权:
  * 描    述:  <下载文件操作功能接口>
  * 版    本： <版本号>
- * 创 建 人:  姜飞
+ * 创 建 人:
  * 创建时间:  2015年10月22日
  */
 public interface FileDownLoader

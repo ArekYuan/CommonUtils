@@ -10,7 +10,7 @@ import java.util.Map;
  * 版    权:
  * 描    述:  <HTTP请求参数封装类>
  * 版    本： <版本号>
- * 创 建 人:  姜飞
+ * 创 建 人:
  * 创建时间:  2015年10月20日
  */
 public class HttpRequestParams

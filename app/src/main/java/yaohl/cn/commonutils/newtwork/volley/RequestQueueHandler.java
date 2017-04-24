@@ -11,7 +11,7 @@ import com.android.volley.toolbox.Volley;
  * 版    权:
  * 描    述:  <发送网络请求类>
  * 版    本： <版本号>
- * 创 建 人:  姜飞
+ * 创 建 人:
  * 创建时间:  2015年10月19日
  */
 public class RequestQueueHandler

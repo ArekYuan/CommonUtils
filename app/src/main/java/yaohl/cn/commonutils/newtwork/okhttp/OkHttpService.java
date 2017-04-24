@@ -1,5 +1,6 @@
 package yaohl.cn.commonutils.newtwork.okhttp;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -279,15 +280,50 @@ public class OkHttpService
         return contentTypeFor;
     }
 
+
     /**
-     * 下载文件
+     * 下载文件 用户更新 文件时需要
      *
      * @param url
      * @param fileDir
      * @param fileName
      */
-    public static void downLoadFile(String url, final String fileDir, final String fileName)
+    public static <T> void downLoadFile(final String tag, String url, final String fileDir, final String fileName, final FileProgressCallBack callBack, Context mContext)
     {
+        doDownloadFile(tag, url, fileDir, fileName, new DownLoadFileCallBack()
+        {
+            @Override
+            public void onSuccess(long total, long current)
+            {
+                callBack.fileProgressChange(total, current);
+            }
+
+            @Override
+            public void onFail(String errorMessage)
+            {
+                callBack.fileProgressFailed(errorMessage);
+            }
+        }, mContext);
+
+    }
+
+    /**
+     * 下载 文件
+     *
+     * @param tag
+     * @param url
+     * @param fileDir
+     * @param fileName
+     * @param callBack
+     * @param mContext
+     */
+    private static <T> void doDownloadFile(final String tag, String url, String fileDir, String fileName, final DownLoadFileCallBack callBack, Context mContext)
+    {
+        final File file = new File(fileDir, fileName);
+        if (file.exists())
+        {
+            file.deleteOnExit();
+        }
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -309,22 +345,44 @@ public class OkHttpService
                 FileOutputStream fos = null;
                 try
                 {
+                    long total = response.body().contentLength();
+                    Log.e(tag, "total------>" + total);
+                    long current = 0;
                     is = response.body().byteStream();
-                    File file = new File(fileDir, fileName);
                     fos = new FileOutputStream(file);
                     while ((len = is.read(buf)) != -1)
                     {
+                        current += len;
                         fos.write(buf, 0, len);
+                        Log.e(tag, "current------>" + current);
+                        callBack.onSuccess(total, current);
+//                        progressCallBack(total, current);
                     }
                     fos.flush();
+//                    successCallBack((T) file, callBack);
                 }
                 catch (IOException e)
                 {
-                    e.printStackTrace();
+                    Log.e(tag, e.toString());
+                    callBack.onFail("下载失败");
+//                    failedCallBack("下载失败", callBack);
                 } finally
                 {
-                    if (is != null) is.close();
-                    if (fos != null) fos.close();
+                    try
+                    {
+                        if (is != null)
+                        {
+                            is.close();
+                        }
+                        if (fos != null)
+                        {
+                            fos.close();
+                        }
+                    }
+                    catch (IOException e)
+                    {
+                        Log.e(tag, e.toString());
+                    }
                 }
             }
         });

@@ -10,5 +10,5 @@ public class Constant
     /**
      * sharedPreferences中保存用户的信息文件名
      */
-    public static final String SZZC_HFT_INFO = "szzcHFT";
+    public static final String SZZC_HFT_INFO = "zsyingyue";
 }

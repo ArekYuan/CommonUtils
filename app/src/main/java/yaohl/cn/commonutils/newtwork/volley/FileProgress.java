@@ -5,7 +5,7 @@ package yaohl.cn.commonutils.newtwork.volley;
  * 版    权:
  * 描    述:  <下载文件进度接口>
  * 版    本： <版本号>
- * 创 建 人:  姜飞
+ * 创 建 人:
  * 创建时间:  2015年10月23日
  */
 public interface FileProgress

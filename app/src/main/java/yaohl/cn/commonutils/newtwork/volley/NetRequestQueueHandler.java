@@ -20,7 +20,7 @@ import org.apache.http.protocol.HTTP;
  * 版    权:
  * 描    述:  <下载大文件请求队列管理类>
  * 版    本： <版本号>
- * 创 建 人:  姜飞
+ * 创 建 人:
  * 创建时间:  2015年10月22日
  */
 public class NetRequestQueueHandler
