@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.net.FileNameMap;
 import java.net.URLConnection;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -31,6 +32,21 @@ import okhttp3.Response;
 
 public class OkHttpService
 {
+
+    /**
+     * 默认连接超时时间
+     */
+    public static final int CONNECTION_TIME_OUT_DEFAULT = 20000;
+
+    /**
+     * 默认读取超时时间
+     */
+    public static final int READ_TIME_OUT_DEFAULT = 60000;
+
+    /**
+     * 默认写超时时间
+     */
+    public static final int WRITE_TIME_OUT_DEFAULT = 60000;
 
     /**
      * 访问网络单子例对象
@@ -55,6 +71,9 @@ public class OkHttpService
                 if (client == null)
                 {
                     client = new OkHttpClient();
+                    client.newBuilder().connectTimeout(CONNECTION_TIME_OUT_DEFAULT, TimeUnit.MILLISECONDS)
+                            .readTimeout(READ_TIME_OUT_DEFAULT, TimeUnit.MILLISECONDS)
+                            .writeTimeout(WRITE_TIME_OUT_DEFAULT, TimeUnit.MICROSECONDS);
                 }
             }
         }
