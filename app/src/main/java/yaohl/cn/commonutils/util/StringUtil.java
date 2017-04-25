@@ -1,29 +1,38 @@
-package yaohl.cn.commonutils.util;
+package com.szzc.hft.util;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.IBinder;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import yaohl.cn.commonutils.util.CMLog;
+
 /**
  * 文 件 名: StringUtil.java 版 权: 描 述: <String工具类> 版 本： <版本号> 创 建 人: 创建时间: 2015年10月14日
  */
+@SuppressWarnings("ALL")
 public class StringUtil
 {
     /**
@@ -629,8 +638,14 @@ public class StringUtil
     }*/
     public static String saveTwoNumDouble(Double num)
     {
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("#0.00");
         return df.format((num / 100));
+    }
+
+    public static String saveTwoNumPrice(Double num)
+    {
+        DecimalFormat df = new DecimalFormat("#0.00");
+        return df.format((num));
     }
 
     /**
@@ -648,6 +663,13 @@ public class StringUtil
 
     }
 
+    public static String twoEnd(float num)
+    {
+        NumberFormat ddf1 = NumberFormat.getNumberInstance();
+        ddf1.setMaximumFractionDigits(2);
+
+        return ddf1.format(num);
+    }
 
     /**
      * 根据用户名的不同长度，来进行替换 ，达到保密效果
@@ -655,18 +677,23 @@ public class StringUtil
      * @param str 用户名
      * @return 替换后的用户名
      */
-    public static String userNameReplaceWithStar(String str, int index)
+    public static String userNameReplaceWithStar(String str, int index_one, int index)
     {
+        String subOne = "";
         String sub = "";
         try
         {
-            sub = str.substring(0, str.length() - index);
+            subOne = str.substring(0, index_one);
+            sub = str.substring(index_one, str.length() - index);
+            int firstLen = str.length() - index - index_one;
+            sub = str.substring(str.length() - index, str.length());
             StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < firstLen; i++)
             {
                 sb = sb.append("*");
             }
-            sub += sb.toString();
+//            sub += sb.toString();
+            sub = subOne + sb.append(sub).toString();
         }
         catch (Exception e)
         {
@@ -677,6 +704,50 @@ public class StringUtil
 
     }
 
+    /**
+     * 保留银行卡后4位数字
+     *
+     * @param str
+     * @param index
+     * @return
+     */
+    public static String bankIdNameSpaceWith(String str, int index)
+    {
+        String sub = "";
+        try
+        {
+//            sub = str.substring(0, str.length() - index);
+            int firstLen = str.length() - index;
+            sub = str.substring(firstLen, str.length());
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < firstLen; i++)
+            {
+                sb = sb.append("*");
+            }
+//            sub += sb.toString();
+            sub = sb.append(sub).toString();
+
+        }
+        catch (Exception e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return spaceForBankIdStr(sub);
+    }
+
+    /**
+     * 银行卡 每4位空格
+     *
+     * @param num
+     * @return
+     */
+    public static String spaceForBankIdStr(String num)
+    {
+        String regex = "(.{4})";
+        return num.replaceAll(regex, "$1 ");
+    }
+
 
     /**
      * 数量的操作
@@ -685,10 +756,23 @@ public class StringUtil
      * @param num
      * @return
      */
-    public static String numDeal(double num)
+    public static String numDeal(double num, int ratio)
     {
+        String a = "";
         String amout = "";
-        DecimalFormat df = new DecimalFormat("#0.000");
+        if (ratio == 2)
+        {
+            a = "#0.00";
+        }
+        else if (ratio == 3)
+        {
+            a = "#0.000";
+        }
+        else if (ratio == 6)
+        {
+            a = "#0.000000";
+        }
+        DecimalFormat df = new DecimalFormat(a);
         num = num / 1000;
         if (num < 100000)
         {
@@ -715,12 +799,119 @@ public class StringUtil
      * 密码强度判断
      *
      * @param password
+     *
      * @return
      */
-    public static boolean checkpassword(String password) {
-        Pattern p = Pattern.compile("^[a-zA-Z].*[0-9]|.*[0-9].*[a-zA-Z]");
-        Matcher m = p.matcher(password);
-        return m.matches();
+//    public static boolean checkpassword(String password)
+//    {
+//        Pattern p = Pattern.compile("^[a-zA-Z].*[0-9]|.*[0-9].*[a-zA-Z]");
+//        Matcher m = p.matcher(password);
+//        return m.matches();
+//    }
+
+    /**
+     * 密码判断长度判断
+     *
+     * @param password
+     * @return
+     */
+    public static boolean checkpassword(String password)
+    {
+        boolean b = false;
+        int len;
+        if (!StringUtil.isEmpty(password))
+        {
+            len = password.length();
+        }
+        else
+        {
+            len = 0;
+        }
+        if (len < 6)
+        {
+            b = false;
+        }
+        else if (len >= 6)
+        {
+            b = true;
+        }
+        return b;
     }
 
+    /**
+     * 判断 软键盘 是否隐藏
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    public static boolean isShouldHideInput(View v, MotionEvent event)
+    {
+        if (v != null && (v instanceof EditText))
+        {
+            int[] l = {0, 0};
+            v.getLocationInWindow(l);
+            int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left
+                    + v.getWidth();
+            if (event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom)
+            {
+                // 点击EditText的事件，忽略它。
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        // 如果焦点不是EditText则忽略，这个发生在视图刚绘制完，第一个焦点不在EditView上，和用户用轨迹球选择其他的焦点
+        return false;
+    }
+
+    /**
+     * 隐藏软键盘
+     *
+     * @param mContext
+     * @param token
+     */
+    public static void hideSoftInput(Context mContext, IBinder token)
+    {
+        if (token != null)
+        {
+            InputMethodManager im = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+            im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    /**
+     * 判断时间是否在24小时内
+     *
+     * @param date1
+     * @param date2
+     * @return
+     * @throws Exception
+     */
+    public static boolean judgmentDate(String date1, String date2) throws Exception
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d HH:mm:ss");
+        Date start = sdf.parse(date1);
+        Date end = sdf.parse(date2);
+        long cha = end.getTime() - start.getTime();
+
+        if (cha < 0)
+        {
+            return false;
+        }
+
+        double result = cha * 1.0 / (1000 * 60 * 60);
+
+        if (result <= 24)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
