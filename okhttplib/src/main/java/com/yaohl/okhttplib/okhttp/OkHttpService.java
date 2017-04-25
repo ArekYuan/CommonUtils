@@ -232,19 +232,26 @@ public class OkHttpService
      */
     public static <T> void doPost(String tag, String url, Map<String, String> mapParams, final OkUiCallBack callBacks, final Class<T> obj)
     {
-
+        callBack = callBacks;
+        final Message message = new Message();
         doJsonPostData(tag, url, mapParams, new INetCallBack()
         {
             @Override
             public void onSuccess(Object ob)
             {
-                callBacks.onComplete(ob);
+                message.obj = ob;
+                message.what = ON_SUCCESS_REQUIRED;
+                handler.sendMessage(message);
+//                callBacks.onComplete(ob);
             }
 
             @Override
             public void onFail(String errorMessage)
             {
-                callBacks.onFail(errorMessage);
+                message.obj = errorMessage;
+                message.what = ON_FAILED_REQUIRED;
+                handler.sendMessage(message);
+//                callBacks.onFail(errorMessage);
             }
         }, obj);
     }
