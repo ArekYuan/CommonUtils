@@ -1,4 +1,4 @@
-package com.szzc.hft.util;
+package yaohl.cn.commonutils.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,8 +26,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import yaohl.cn.commonutils.util.CMLog;
 
 /**
  * 文 件 名: StringUtil.java 版 权: 描 述: <String工具类> 版 本： <版本号> 创 建 人: 创建时间: 2015年10月14日
