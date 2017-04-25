@@ -1,15 +1,31 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    buildToolsVersion "25.0.2"
+
+
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    repositories {
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+
+    allprojects {
+        repositories {
+            mavenCentral()
+        }
+    }
     defaultConfig {
-        applicationId "yaohl.cn.commonutils"
         minSdkVersion 11
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -26,20 +42,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:23.2.0'
     testCompile 'junit:junit:4.12'
-
-    compile 'com.android.support:design:23.2.0'
-    compile "com.android.support:recyclerview-v7:23.0.1"
     compile 'com.google.code.gson:gson:2.2.1'
-    compile 'com.jakewharton:butterknife:5.1.1'
-    compile 'com.loopj.android:android-async-http:1.4.9'
-    compile files('libs/universal-image-loader-1.9.1.jar')
-    compile files('libs/netroid-1.2.1.jar')
-    compile files('libs/ormlite-android-4.48.jar')
-    compile files('libs/ormlite-core-4.48.jar')
-    compile files('libs/zxing.jar')
-    compile files('libs/bcprov-jdk16-146.jar')
-
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.okio:okio:1.6.0'
-    compile project(path: ':okhttplib')
 }

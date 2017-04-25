@@ -2,7 +2,8 @@ package yaohl.cn.commonutils.ui.mvp.presenter;
 
 import android.content.Context;
 
-import yaohl.cn.commonutils.newtwork.okhttp.OkHttpService;
+import com.yaohl.okhttplib.okhttp.OkHttpService;
+
 import yaohl.cn.commonutils.ui.BaseLogic;
 import yaohl.cn.commonutils.ui.mvp.model.MarketsResp;
 import yaohl.cn.commonutils.ui.mvp.view.HomCallView;

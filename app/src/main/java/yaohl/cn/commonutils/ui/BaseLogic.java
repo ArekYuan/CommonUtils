@@ -3,10 +3,11 @@ package yaohl.cn.commonutils.ui;
 import android.content.Context;
 import android.util.Log;
 
+import com.yaohl.okhttplib.okhttp.OkHttpRequestParams;
+import com.yaohl.okhttplib.okhttp.OkUiCallBack;
+
 import org.json.JSONException;
 
-import yaohl.cn.commonutils.newtwork.okhttp.OkHttpRequestParams;
-import yaohl.cn.commonutils.newtwork.okhttp.OkUiCallBack;
 
 /**
  * Created by Administrator on 2017/4/19.

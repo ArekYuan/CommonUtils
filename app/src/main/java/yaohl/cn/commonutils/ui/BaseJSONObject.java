@@ -2,10 +2,11 @@ package yaohl.cn.commonutils.ui;
 
 import android.content.Context;
 
+import com.yaohl.okhttplib.okhttp.GsonHelp;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import yaohl.cn.commonutils.newtwork.okhttp.GsonHelp;
 
 /**
  * Created by ygy on 2016/9/21.
