@@ -6,18 +6,18 @@ import java.util.Map;
 
 
 /**
- * 文 件 名:  HttpRequestParams.java
+ * 文 件 名:  OkHttpRequestParams.java
  * 版    权:
  * 描    述:  <HTTP请求参数封装类>
  * 版    本： <版本号>
  * 创 建 人:  ygy
  * 创建时间:  2015年10月20日
  */
-public class HttpRequestParams
+public class OkHttpRequestParams
 {
 
     /**
-     * 文 件 名:  HttpRequestParams.java
+     * 文 件 名:  OkHttpRequestParams.java
      * 版    权:
      * 描    述:  <HTTP 请求类型>
      * 版    本： <版本号>
@@ -90,9 +90,9 @@ public class HttpRequestParams
      *
      * @param params 请求参数
      *
-     * @return 返 回 类 型：HttpRequestParams
+     * @return 返 回 类 型：OkHttpRequestParams
      */
-    public HttpRequestParams setParams(Map<String, String> params)
+    public OkHttpRequestParams setParams(Map<String, String> params)
     {
         this.params = params;
         return this;
@@ -115,9 +115,9 @@ public class HttpRequestParams
      *
      * @param httpRequestMethod 请求方法名
      *
-     * @return 返 回 类 型：HttpRequestParams
+     * @return 返 回 类 型：OkHttpRequestParams
      */
-    public HttpRequestParams setHttpRequestMethod(HttpRequestMethod httpRequestMethod)
+    public OkHttpRequestParams setHttpRequestMethod(HttpRequestMethod httpRequestMethod)
     {
         this.httpRequestMethod = httpRequestMethod;
         return this;

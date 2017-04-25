@@ -4,7 +4,7 @@ package yaohl.cn.commonutils.newtwork.okhttp;
  * Created by asus on 2016/11/16.
  */
 
-public interface UiCallBack
+public interface OkUiCallBack
 {
     /**
      *

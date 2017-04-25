@@ -70,7 +70,7 @@ public class OkHttpService
      */
     public static final int ON_DOWNLOAD_FILE_FAILED = 100004;
 
-    public static UiCallBack callBack = null;
+    public static OkUiCallBack callBack = null;
 
     /**
      * hanler  子线程
@@ -147,7 +147,7 @@ public class OkHttpService
      * @param obj
      * @param <T>
      */
-    public static <T> void doGet(String tag, String url, final UiCallBack callBacks, final Class<T> obj)
+    public static <T> void doGet(String tag, String url, final OkUiCallBack callBacks, final Class<T> obj)
     {
         callBack = callBacks;
         final Message message = new Message();
@@ -230,7 +230,7 @@ public class OkHttpService
      * @param mapParams
      * @param callBacks
      */
-    public static <T> void doPost(String tag, String url, Map<String, String> mapParams, final UiCallBack callBacks, final Class<T> obj)
+    public static <T> void doPost(String tag, String url, Map<String, String> mapParams, final OkUiCallBack callBacks, final Class<T> obj)
     {
 
         doJsonPostData(tag, url, mapParams, new INetCallBack()
