@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements HomCallView
 
     private void initDataFromNet()
     {
-        String serverUrl = "api.szzc.com/api/web/index.php/markets";
+        String serverUrl = "http://api.szzc.com/api/web/index.php/markets";
         HomeLogic logic = new HomeLogic(mContext, this);
         logic.doGetMarket(TAG, serverUrl);
     }
