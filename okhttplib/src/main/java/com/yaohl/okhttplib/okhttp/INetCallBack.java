@@ -1,8 +1,7 @@
 package com.yaohl.okhttplib.okhttp;
 
 
-public interface INetCallBack
-{
+public interface INetCallBack {
     /**
      * <请求成功>
      * <功能详细描述>
@@ -19,5 +18,12 @@ public interface INetCallBack
      *                     返 回 类 型：void
      */
     void onFail(String errorMessage);
+
+    /**
+     * 获取cookie 成功
+     *
+     * @param cookie
+     */
+//    void onCookieSuccess(String cookie);
 
 }

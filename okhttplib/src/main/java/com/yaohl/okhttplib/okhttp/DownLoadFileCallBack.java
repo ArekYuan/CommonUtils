@@ -1,13 +1,14 @@
 package com.yaohl.okhttplib.okhttp;
 
+import java.io.File;
+
 /**
  * 文件下载回调
  * <p>
  * Created by Administrator on 2017/4/24.
  */
 
-public interface DownLoadFileCallBack
-{
+public interface DownLoadFileCallBack {
     /**
      * 请求成功
      *
@@ -15,6 +16,13 @@ public interface DownLoadFileCallBack
      * @param current
      */
     void onSuccess(long total, long current);
+
+    /**
+     * 文件下载结束
+     *
+     * @param file
+     */
+    void onDownLoadFinish(File file);
 
     /**
      * <请求失败>
