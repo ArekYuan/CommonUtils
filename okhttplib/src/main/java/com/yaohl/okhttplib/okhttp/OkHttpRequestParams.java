@@ -7,10 +7,8 @@ import java.util.Map;
 
 /**
  * 文 件 名:  OkHttpRequestParams.java
- * 版    权:
  * 描    述:  <HTTP请求参数封装类>
- * 版    本： <版本号>
- * 创 建 人:  ygy
+ * 创 建 人:  袁光跃
  * 创建时间:  2015年10月20日
  */
 public class OkHttpRequestParams

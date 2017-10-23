@@ -30,11 +30,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * okHttp service
- * <p>
- * Created by ygy on 2017/4/19.
+ * 作者： 袁光跃 on 2017/10/17 15:27
+ * 邮箱：813665242@qq.com
+ * 描述：对OKhttp做二次封装 请求
  */
-
 public class OkHttpService {
 
     /**

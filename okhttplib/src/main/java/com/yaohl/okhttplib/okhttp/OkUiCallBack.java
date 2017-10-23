@@ -1,7 +1,7 @@
 package com.yaohl.okhttplib.okhttp;
 
 /**
- * Created by asus on 2016/11/16.
+ * Created by 袁光跃 on 2016/11/16.
  */
 
 public interface OkUiCallBack {
