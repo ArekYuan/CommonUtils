@@ -24,9 +24,6 @@ public class OkHttpRequestParams
      */
     public enum HttpRequestMethod
     {
-        /**
-         * volley四种请求类型
-         */
         GET, POST, PUT, DELETE
     }
 
