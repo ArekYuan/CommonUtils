@@ -181,13 +181,13 @@ public final class YLog {
     /**
      * 将崩溃日志写入本地文件
      *
-     * @param content
+     * @param crashContent 崩溃日志内容
      */
-    private static void write(String content) {
+    private static void write(String crashContent) {
         FileWriter writer = null;
         try {
             writer = new FileWriter(getCrashPath(mContext), true);
-            writer.write(content);
+            writer.write(crashContent);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -262,7 +262,7 @@ public final class YLog {
      * @return
      */
     public static String getCrashPath(Context context) {
-        String crashpath = createNewFile(getCacheFilePath(context) + "pdmmobile" + File.separator + "crash" + ERROR_LOG_SUFFIX);
+        String crashpath = createNewFile(getCacheFilePath(context) + "YLog" + File.separator + "crash" + ERROR_LOG_SUFFIX);
         return crashpath;
     }
 
