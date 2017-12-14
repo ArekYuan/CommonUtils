@@ -2,8 +2,6 @@ package yaohl.cn.commonutils.ui.mvp.presenter;
 
 import android.content.Context;
 
-import com.yaohl.okhttplib.okhttp.OkHttpService;
-
 import yaohl.cn.commonutils.ui.BaseLogic;
 import yaohl.cn.commonutils.ui.mvp.model.MarketsResp;
 import yaohl.cn.commonutils.ui.mvp.view.HomCallView;
@@ -12,7 +10,7 @@ import yaohl.cn.commonutils.ui.mvp.view.HomCallView;
 /**
  * 持久层
  * <p>
- * Created by Administrator on 2017/4/19.
+ * Created by 袁光跃 on 2017/4/19.
  */
 
 public class HomeLogic extends BaseLogic
@@ -35,7 +33,7 @@ public class HomeLogic extends BaseLogic
      */
     public void doGetMarket(String tag, String url)
     {
-        OkHttpService.doGet(tag, url, this, MarketsResp.class);
+//        OkHttpService.doGet(tag, url, this, MarketsResp.class);
     }
 
     @Override

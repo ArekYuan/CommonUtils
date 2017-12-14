@@ -1,11 +1,18 @@
 package com.yaohl.okhttplib.okhttp;
 
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.yaohl.okhttplib.log.YLog;
+import com.yaohl.okhttplib.okhttp.DownLoadFileCallBack;
+import com.yaohl.okhttplib.okhttp.ErrorResponse;
+import com.yaohl.okhttplib.okhttp.FileProgressCallBack;
+import com.yaohl.okhttplib.okhttp.GsonHelp;
+import com.yaohl.okhttplib.okhttp.INetCallBack;
+import com.yaohl.okhttplib.okhttp.OkUiCallBack;
 import com.yaohl.okhttplib.utils.SeverConstants;
 
 import java.io.File;
@@ -19,6 +26,8 @@ import java.net.URLEncoder;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -30,26 +39,27 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * 作者： 袁光跃 on 2017/10/17 15:27
- * 邮箱：813665242@qq.com
- * 描述：对OKhttp做二次封装 请求
+ * okHttp service
+ * <p>
+ * Created by ygy on 2017/4/19.
  */
+
 public class OkHttpService {
 
     /**
      * 默认连接超时时间
      */
-    public static final int CONNECTION_TIME_OUT_DEFAULT = 20000;
+    public static final int CONNECTION_TIME_OUT_DEFAULT = 15000;
 
     /**
      * 默认读取超时时间
      */
-    public static final int READ_TIME_OUT_DEFAULT = 60000;
+    public static final int READ_TIME_OUT_DEFAULT = 10000;
 
     /**
      * 默认写超时时间
      */
-    public static final int WRITE_TIME_OUT_DEFAULT = 60000;
+    public static final int WRITE_TIME_OUT_DEFAULT = 10000;
 
     /**
      * 获取成功
@@ -91,6 +101,17 @@ public class OkHttpService {
     private static final int ON_GET_PARAMS_SUCCESS = 100011;
 
     private static final int ON_GET_PARAMS_FAILED = 100012;
+
+    /**
+     * 缓存文件最大限制大小20M
+     */
+    private static final long cacheSize = 1024 * 1024 * 20;
+
+    /**
+     * 设置缓存文件路径
+     */
+    private static String cacheDirectory = Environment.getExternalStorageDirectory() + "/lan_gold/caches";
+    private static Cache cache = new Cache(new File(cacheDirectory), cacheSize);
 
     /**
      * hanler  子线程
@@ -195,7 +216,9 @@ public class OkHttpService {
                     client = new OkHttpClient();
                     client.newBuilder().connectTimeout(CONNECTION_TIME_OUT_DEFAULT, TimeUnit.MILLISECONDS)
                             .readTimeout(READ_TIME_OUT_DEFAULT, TimeUnit.MILLISECONDS)
-                            .writeTimeout(WRITE_TIME_OUT_DEFAULT, TimeUnit.MICROSECONDS);
+                            .writeTimeout(WRITE_TIME_OUT_DEFAULT, TimeUnit.MICROSECONDS)
+                            .retryOnConnectionFailure(true)
+                            .cache(cache);
                 }
             }
         }
@@ -242,6 +265,7 @@ public class OkHttpService {
      */
     private static <T> void doJsonGetData(final String url, final INetCallBack iNetCallBack, final Class<T> obj) {
         final Request request = new Request.Builder()
+                .cacheControl(new CacheControl.Builder().maxAge(5, TimeUnit.MINUTES).build())
                 .url(url)
                 .build();
         Call call = getInstance().newCall(request);
@@ -254,12 +278,21 @@ public class OkHttpService {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                String responseBody;
+                Gson gson = new Gson();
                 if (response.isSuccessful()) {
-                    Gson gson = new Gson();
-                    String responseBody = response.body().string();
+                    responseBody = response.body().string();
                     YLog.d(url + "<--->" + responseBody);
                     Object object = gson.fromJson(responseBody, obj);
                     onSuccessMethod(object, iNetCallBack);
+                } else {
+                    if (response.cacheResponse() != null) {
+                        responseBody = response.cacheResponse().body().toString();
+                        Object object = gson.fromJson(responseBody, obj);
+                        onSuccessMethod(object, iNetCallBack);
+                    } else {
+                        doSetMessage(response.code(), obj, iNetCallBack);
+                    }
                 }
 
 
@@ -269,6 +302,40 @@ public class OkHttpService {
                 }
             }
         });
+    }
+
+    /**
+     * 服务器错误 则返回 提示
+     *
+     * @param code
+     * @param obj
+     * @param iNetCallBack
+     */
+    private static <T> void doSetMessage(int code, Class<T> obj, INetCallBack iNetCallBack) {
+        ErrorResponse resp = getErrorResponse(code);
+        Gson gson = new Gson();
+        String josnStr = GsonHelp.objectToJsonString(resp);
+        Object object = gson.fromJson(josnStr, obj);
+        iNetCallBack.onSuccess(object);
+
+    }
+
+    private static ErrorResponse getErrorResponse(int code) {
+        ErrorResponse resp = new ErrorResponse();
+        resp.setCode(String.valueOf(code));
+        switch (code) {
+            case 400:
+                resp.setMsg("请求无效");
+                break;
+            case 404:
+                resp.setMsg("资源无法访问");
+                break;
+            case 500:
+                resp.setMsg("服务器错误");
+                break;
+        }
+        resp.setData(new Object());
+        return resp;
     }
 
     /**
@@ -417,11 +484,15 @@ public class OkHttpService {
                     Object object = gson.fromJson(responseBody, obj);
                     onSuccessMethod(object, iNetCallBack);
                     YLog.d(url + "<---->" + responseBody);
-                    //关闭防止内存泄漏
-                    if (response.body() != null) {
-                        response.body().close();
-                    }
 
+
+                } else {
+                    doSetMessage(response.code(), obj, iNetCallBack);
+                }
+
+                //关闭防止内存泄漏
+                if (response.body() != null) {
+                    response.body().close();
                 }
             }
         });
@@ -566,11 +637,13 @@ public class OkHttpService {
                     YLog.d(url + "<---->" + responseBody);
                     Object object = gson.fromJson(responseBody, obj);
                     onSuccessMethod(object, iNetCallBack);
+                } else {
+                    doSetMessage(response.code(), obj, iNetCallBack);
+                }
 
-                    //关闭防止内存泄漏
-                    if (response.body() != null) {
-                        response.body().close();
-                    }
+                //关闭防止内存泄漏
+                if (response.body() != null) {
+                    response.body().close();
                 }
             }
         });
