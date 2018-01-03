@@ -17,7 +17,7 @@ public interface INetCallBack {
      * @param errorMessage 请求失败message
      *                     返 回 类 型：void
      */
-    void onFail(String errorMessage);
+    void onFail(String code,String errorMessage);
 
     /**
      * 获取cookie 成功
@@ -25,5 +25,13 @@ public interface INetCallBack {
      * @param cookie
      */
 //    void onCookieSuccess(String cookie);
+
+    /**
+     * 服务器 令牌失效
+     *
+     * @param code
+     * @param msg
+     */
+//    void onLoginInvalid(String code, String msg);
 
 }

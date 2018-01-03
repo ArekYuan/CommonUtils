@@ -1,4 +1,4 @@
-package yaohl.cn.commonutils.util;
+package com.yaohl.okhttplib.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.yaohl.okhttplib.log.YLog;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -31,8 +33,7 @@ import java.util.regex.Pattern;
  * 文 件 名: StringUtil.java 版 权: 描 述: <String工具类> 版 本： <版本号> 创 建 人: 创建时间: 2015年10月14日
  */
 @SuppressWarnings("ALL")
-public class StringUtil
-{
+public class StringUtil {
     /**
      * 预防点击两次
      */
@@ -60,8 +61,7 @@ public class StringUtil
      * @param str 字符
      * @return true 空 false 非空 返 回 类 型：boolean
      */
-    public static boolean isEmpty(String str)
-    {
+    public static boolean isEmpty(String str) {
         return str == null || str.trim().length() == 0 ? true : false;
     }
 
@@ -71,17 +71,13 @@ public class StringUtil
      * @param str 字符串
      * @return true 有，false 没有 返 回 类 型：boolean
      */
-    public static boolean isBlank(String str)
-    {
+    public static boolean isBlank(String str) {
         int strLen;
-        if (str == null || (strLen = str.length()) == 0)
-        {
+        if (str == null || (strLen = str.length()) == 0) {
             return false;
         }
-        for (int i = 0; i < strLen; i++)
-        {
-            if (!Character.isWhitespace(str.charAt(i)))
-            {
+        for (int i = 0; i < strLen; i++) {
+            if (!Character.isWhitespace(str.charAt(i))) {
                 return true;
             }
         }
@@ -95,18 +91,13 @@ public class StringUtil
      * @param str2 字符串2
      * @return true相等 false 不相等 返 回 类 型：boolean
      */
-    public static boolean isEquals(String str1, String str2)
-    {
-        if (str1 == str2)
-        {
+    public static boolean isEquals(String str1, String str2) {
+        if (str1 == str2) {
             return true;
         }
-        if (str1 != null)
-        {
+        if (str1 != null) {
             return str1.equals(str2);
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -116,13 +107,12 @@ public class StringUtil
      *
      * @return true相等 false 不相等 返 回 类 型：boolean
      */
-    public static String getHandSetInfo()
-    {
+    public static String getHandSetInfo() {
         String handSetInfo =
                 "手机型号:" + android.os.Build.MODEL + ",SDK版本:" + android.os.Build.VERSION.SDK_INT + ",系统RELEASE版本:"
                         + android.os.Build.VERSION.RELEASE;
         // handSetInfo: 手机型号:Redmi Note 2,SDK版本:21,系统版本:5.0.2
-        CMLog.d(TAG, "handSetInfo: " + handSetInfo);
+        YLog.d("handSetInfo: " + handSetInfo);
         return handSetInfo;
 
     }
@@ -133,16 +123,13 @@ public class StringUtil
      * @param str 字符串
      * @return true是 flase不是 返 回 类 型：boolean
      */
-    public static boolean isNumeric(String str)
-    {
-        if (str == null)
-        {
+    public static boolean isNumeric(String str) {
+        if (str == null) {
             return false;
         }
         Pattern pattern = Pattern.compile("[0-9]*");
         Matcher isNum = pattern.matcher(str);
-        if (!isNum.matches())
-        {
+        if (!isNum.matches()) {
             return false;
         }
         return true;
@@ -154,23 +141,17 @@ public class StringUtil
      * @param str 字符串
      * @return 字节长度 返 回 类 型：boolean
      */
-    public static int getLengthByByte(String str)
-    {
+    public static int getLengthByByte(String str) {
         int length = 0;
-        if (str == null || str.length() == 0)
-        {
+        if (str == null || str.length() == 0) {
             return length;
         }
 
-        for (int i = 0; i < str.length(); i++)
-        {
+        for (int i = 0; i < str.length(); i++) {
             int ascii = Character.codePointAt(str, i);
-            if (ascii >= 0 && ascii <= 255)
-            {
+            if (ascii >= 0 && ascii <= 255) {
                 length++;
-            }
-            else
-            {
+            } else {
                 length += 2;
             }
         }
@@ -183,10 +164,8 @@ public class StringUtil
      * @param strData strData
      * @return 返 回 类 型：String
      */
-    public static String decodeString(String strData)
-    {
-        if (strData == null)
-        {
+    public static String decodeString(String strData) {
+        if (strData == null) {
             return "";
         }
         return strData.replaceAll("&lt;", "<")
@@ -202,8 +181,7 @@ public class StringUtil
      * @param context context
      * @return 返 回 类 型：String
      */
-    public static String getPhoneImei(Context context)
-    {
+    public static String getPhoneImei(Context context) {
         TelephonyManager mTelephonyMgr;
 
         mTelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -217,17 +195,13 @@ public class StringUtil
      * @param context context
      * @return 返 回 类 型：String
      */
-    public static String getVersion(Context context)
-    {
+    public static String getVersion(Context context) {
         String version = "";
-        try
-        {
+        try {
             PackageManager manager = context.getPackageManager();
             PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
             version = info.versionName;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return version;
@@ -239,17 +213,13 @@ public class StringUtil
      * @param context context
      * @return 当前应用的版本号 ViersionCode 返 回 类 型：String
      */
-    public static int getVersionCode(Context context)
-    {
+    public static int getVersionCode(Context context) {
         int version = 0;
-        try
-        {
+        try {
             PackageManager manager = context.getPackageManager();
             PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
             version = info.versionCode;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return version;
@@ -260,8 +230,7 @@ public class StringUtil
      *
      * @return 当前应用的版本号 ViersionCode 返 回 类 型：String
      */
-    public static String getModel()
-    {
+    public static String getModel() {
         String version = "";
         version = Build.MODEL;
         return version;
@@ -272,8 +241,7 @@ public class StringUtil
      *
      * @return 操作系统版本 返 回 类 型：String
      */
-    public static String getRelease()
-    {
+    public static String getRelease() {
         String version = "";
         version = Build.VERSION.RELEASE;
         return version;
@@ -285,8 +253,7 @@ public class StringUtil
      * @param num num
      * @return 返 回 类 型：String
      */
-    public static String retained2SignFig(String num)
-    {
+    public static String retained2SignFig(String num) {
         return new BigDecimal(num).setScale(2, RoundingMode.HALF_UP).toString();
     }
 
@@ -297,8 +264,7 @@ public class StringUtil
      * @param subt2 subt2
      * @return 返 回 类 型：String
      */
-    public static String subtract(String subt1, String subt2)
-    {
+    public static String subtract(String subt1, String subt2) {
         BigDecimal sub1 = new BigDecimal(subt1);
         BigDecimal sub2 = new BigDecimal(subt2);
         BigDecimal result = sub1.subtract(sub2);
@@ -313,8 +279,7 @@ public class StringUtil
      * @param addend2 addend2
      * @return 返 回 类 型：String
      */
-    public static String add(String addend1, String addend2)
-    {
+    public static String add(String addend1, String addend2) {
         BigDecimal add1 = new BigDecimal(addend1);
         BigDecimal add2 = new BigDecimal(addend2);
         BigDecimal result = add1.add(add2);
@@ -329,8 +294,7 @@ public class StringUtil
      * @param addend2 addend2
      * @return 返 回 类 型：String
      */
-    public static String addInt(String addend1, String addend2)
-    {
+    public static String addInt(String addend1, String addend2) {
         BigDecimal add1 = new BigDecimal(addend1);
         BigDecimal add2 = new BigDecimal(addend2);
         BigDecimal result = add1.add(add2);
@@ -344,8 +308,7 @@ public class StringUtil
      * @param factor2 factor2
      * @return 返 回 类 型：String
      */
-    public static String multiply(String factor1, String factor2)
-    {
+    public static String multiply(String factor1, String factor2) {
         BigDecimal fac1 = new BigDecimal(factor1);
         BigDecimal fac2 = new BigDecimal(factor2);
         BigDecimal result = fac1.multiply(fac2);
@@ -360,8 +323,7 @@ public class StringUtil
      * @param divisor2 divisor2
      * @return 返 回 类 型：String
      */
-    public static String divide(String divisor1, String divisor2)
-    {
+    public static String divide(String divisor1, String divisor2) {
         BigDecimal div1 = new BigDecimal(divisor1);
         BigDecimal div2 = new BigDecimal(divisor2);
         BigDecimal result = div1.divide(div2, 2, RoundingMode.HALF_UP);
@@ -375,8 +337,7 @@ public class StringUtil
      * @param divisor2 divisor2
      * @return 返 回 类 型：String
      */
-    public static String dividePoint1(String divisor1, String divisor2)
-    {
+    public static String dividePoint1(String divisor1, String divisor2) {
         BigDecimal div1 = new BigDecimal(divisor1);
         BigDecimal div2 = new BigDecimal(divisor2);
         BigDecimal result = div1.divide(div2, 1, RoundingMode.HALF_UP);
@@ -389,14 +350,10 @@ public class StringUtil
      * @param m 米
      * @return 返 回 类 型：String
      */
-    public static String convertToKm(String m)
-    {
-        if (m.length() < 4)
-        {
+    public static String convertToKm(String m) {
+        if (m.length() < 4) {
             return m;
-        }
-        else
-        {
+        } else {
             return dividePoint1(m, "1000");
         }
     }
@@ -406,8 +363,7 @@ public class StringUtil
      *
      * @return 返 回 类 型：int
      */
-    public static String getRandomNum()
-    {
+    public static String getRandomNum() {
         Random rdm = new Random();
         return String.valueOf(rdm.nextInt(900000) + 100000);
     }
@@ -418,8 +374,7 @@ public class StringUtil
      * @param phoneNumber phoneNumber
      * @return 返回类型:boolean
      */
-    public static boolean isPhoneNumberValid(String phoneNumber)
-    {
+    public static boolean isPhoneNumberValid(String phoneNumber) {
         // 移动
         String mobile = "^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|70)\\d{8}$";
         // 联通
@@ -446,8 +401,7 @@ public class StringUtil
      * @param email
      * @return 返回类型:boolean
      */
-    public static boolean isEmail(String email)
-    {
+    public static boolean isEmail(String email) {
         String str = "^([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\\.][A-Za-z]{2,3}([\\.][A-Za-z]{2})?$";
         Pattern p = Pattern.compile(str);
         Matcher m = p.matcher(email);
@@ -463,21 +417,16 @@ public class StringUtil
      * @return 返回类型:boolean
      */
     @SuppressWarnings("WrongConstant")
-    public static boolean isPhoneNumber(String phoneNumber)
-    {
+    public static boolean isPhoneNumber(String phoneNumber) {
         String reg = "^1[34578]{1}\\d{9}$";
         boolean ignoreCase = true;
-        if (StringUtil.isEmpty(phoneNumber))
-        {
+        if (StringUtil.isEmpty(phoneNumber)) {
             return false;
         }
         Pattern pattern = null;
-        if (ignoreCase)
-        {
+        if (ignoreCase) {
             pattern = Pattern.compile(reg, 2);
-        }
-        else
-        {
+        } else {
             pattern = Pattern.compile(reg);
         }
         Matcher matcher = pattern.matcher(phoneNumber);
@@ -492,22 +441,17 @@ public class StringUtil
      * @param input
      * @return 返回类型:String
      */
-    public static String toDBC(String input)
-    {
-        if (isEmpty(input))
-        {
+    public static String toDBC(String input) {
+        if (isEmpty(input)) {
             return "";
         }
         char[] c = input.toCharArray();
-        for (int i = 0; i < c.length; i++)
-        {
-            if (c[i] == 12288)
-            {
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == 12288) {
                 c[i] = (char) 32;
                 continue;
             }
-            if (c[i] > 65280 && c[i] < 65375)
-            {
+            if (c[i] > 65280 && c[i] < 65375) {
                 c[i] = (char) (c[i] - 65248);
             }
         }
@@ -521,21 +465,17 @@ public class StringUtil
      * @param https
      * @return 返回类型:Map<String,Object>
      */
-    public static Map<String, String> getParams(String https)
-    {
+    public static Map<String, String> getParams(String https) {
         Map<String, String> map = new HashMap<String, String>();
-        if (StringUtil.isEmpty(https) || (!https.startsWith("http://") && !https.startsWith("https://")))
-        {
+        if (StringUtil.isEmpty(https) || (!https.startsWith("http://") && !https.startsWith("https://"))) {
             return map;
         }
 
         String params = https.substring(https.indexOf("?") + 1);
         String[] paramsKeys = params.split("&");
-        for (int i = 0; i < paramsKeys.length; i++)
-        {
+        for (int i = 0; i < paramsKeys.length; i++) {
             String[] keys = paramsKeys[i].split("=");
-            if (keys.length >= 2)
-            {
+            if (keys.length >= 2) {
                 map.put(keys[0], keys[1]);
             }
         }
@@ -548,19 +488,16 @@ public class StringUtil
      * @param context
      * @return dm DisplayMetrics
      */
-    public static DisplayMetrics getWindowXY(Context context)
-    {
+    public static DisplayMetrics getWindowXY(Context context) {
         WindowManager mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         mWindowManager.getDefaultDisplay().getMetrics(dm);
         return dm;
     }
 
-    public static void hideSoftInput(Context context)
-    {
+    public static void hideSoftInput(Context context) {
         Activity activity = (Activity) context;
-        if (activity.getCurrentFocus() != null && activity.getCurrentFocus().getWindowToken() != null)
-        {
+        if (activity.getCurrentFocus() != null && activity.getCurrentFocus().getWindowToken() != null) {
             ((InputMethodManager) activity.getSystemService(context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
                     activity.getCurrentFocus()
                             .getWindowToken(),
@@ -575,27 +512,19 @@ public class StringUtil
      * @param length
      * @return
      */
-    public static String convertFileSize(long length)
-    {
+    public static String convertFileSize(long length) {
         int sub_index = 0;
         String show = "";
-        if (length >= 1073741824)
-        {
+        if (length >= 1073741824) {
             sub_index = (String.valueOf((float) length / 1073741824)).indexOf(".");
             show = ((float) length / 1073741824 + "000").substring(0, sub_index + 3) + "GB";
-        }
-        else if (length >= 1048576)
-        {
+        } else if (length >= 1048576) {
             sub_index = (String.valueOf((float) length / 1048576)).indexOf(".");
             show = ((float) length / 1048576 + "000").substring(0, sub_index + 3) + "MB";
-        }
-        else if (length >= 1024)
-        {
+        } else if (length >= 1024) {
             sub_index = (String.valueOf((float) length / 1024)).indexOf(".");
             show = ((float) length / 1024 + "000").substring(0, sub_index + 3) + "KB";
-        }
-        else if (length < 1024)
-        {
+        } else if (length < 1024) {
             show = String.valueOf(length) + "B";
         }
 
@@ -607,16 +536,12 @@ public class StringUtil
      *
      * @return
      */
-    public static boolean isCheckedTwiceClick()
-    {
+    public static boolean isCheckedTwiceClick() {
         boolean b;
         long currentTimes = System.currentTimeMillis();
-        if (currentTimes - lastClickTime > MIN_CLICK_DELAY_TIME)
-        {
+        if (currentTimes - lastClickTime > MIN_CLICK_DELAY_TIME) {
             b = true;
-        }
-        else
-        {
+        } else {
             b = false;
         }
         lastClickTime = currentTimes;
@@ -634,14 +559,12 @@ public class StringUtil
         DecimalFormat df = new DecimalFormat("#.00");
         return df.format((num / 100));
     }*/
-    public static String saveTwoNumDouble(Double num)
-    {
+    public static String saveTwoNumDouble(Double num) {
         DecimalFormat df = new DecimalFormat("#0.00");
         return df.format((num / 100));
     }
 
-    public static String saveTwoNumPrice(Double num)
-    {
+    public static String saveTwoNumPrice(Double num) {
         DecimalFormat df = new DecimalFormat("#0.00");
         return df.format((num));
     }
@@ -652,8 +575,7 @@ public class StringUtil
      * @param num
      * @return
      */
-    public static String twoDeciamal(double num)
-    {
+    public static String twoDeciamal(double num) {
         NumberFormat ddf1 = NumberFormat.getNumberInstance();
         ddf1.setMaximumFractionDigits(2);
 
@@ -661,8 +583,7 @@ public class StringUtil
 
     }
 
-    public static String twoEnd(float num)
-    {
+    public static String twoEnd(float num) {
         NumberFormat ddf1 = NumberFormat.getNumberInstance();
         ddf1.setMaximumFractionDigits(2);
 
@@ -675,26 +596,21 @@ public class StringUtil
      * @param str 用户名
      * @return 替换后的用户名
      */
-    public static String userNameReplaceWithStar(String str, int index_one, int index)
-    {
+    public static String userNameReplaceWithStar(String str, int index_one, int index) {
         String subOne = "";
         String sub = "";
-        try
-        {
+        try {
             subOne = str.substring(0, index_one);
             sub = str.substring(index_one, str.length() - index);
             int firstLen = str.length() - index - index_one;
             sub = str.substring(str.length() - index, str.length());
             StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < firstLen; i++)
-            {
+            for (int i = 0; i < firstLen; i++) {
                 sb = sb.append("*");
             }
 //            sub += sb.toString();
             sub = subOne + sb.append(sub).toString();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -709,25 +625,20 @@ public class StringUtil
      * @param index
      * @return
      */
-    public static String bankIdNameSpaceWith(String str, int index)
-    {
+    public static String bankIdNameSpaceWith(String str, int index) {
         String sub = "";
-        try
-        {
+        try {
 //            sub = str.substring(0, str.length() - index);
             int firstLen = str.length() - index;
             sub = str.substring(firstLen, str.length());
             StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < firstLen; i++)
-            {
+            for (int i = 0; i < firstLen; i++) {
                 sb = sb.append("*");
             }
 //            sub += sb.toString();
             sub = sb.append(sub).toString();
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -740,8 +651,7 @@ public class StringUtil
      * @param num
      * @return
      */
-    public static String spaceForBankIdStr(String num)
-    {
+    public static String spaceForBankIdStr(String num) {
         String regex = "(.{4})";
         return num.replaceAll(regex, "$1 ");
     }
@@ -754,38 +664,25 @@ public class StringUtil
      * @param num
      * @return
      */
-    public static String numDeal(double num, int ratio)
-    {
+    public static String numDeal(double num, int ratio) {
         String a = "";
         String amout = "";
-        if (ratio == 2)
-        {
+        if (ratio == 2) {
             a = "#0.00";
-        }
-        else if (ratio == 3)
-        {
+        } else if (ratio == 3) {
             a = "#0.000";
-        }
-        else if (ratio == 6)
-        {
+        } else if (ratio == 6) {
             a = "#0.000000";
         }
         DecimalFormat df = new DecimalFormat(a);
         num = num / 1000;
-        if (num < 100000)
-        {
+        if (num < 100000) {
             amout = df.format(num);
-        }
-        else if (num < 1000000)
-        {
+        } else if (num < 1000000) {
             amout = df.format(num / 100000) + "十万";
-        }
-        else if (num < 100000000)
-        {
+        } else if (num < 100000000) {
             amout = df.format(num / 1000000) + "百万";
-        }
-        else if (num >= 100000000)
-        {
+        } else if (num >= 100000000) {
             amout = df.format(num / 100000000) + "亿";
         }
 
@@ -813,24 +710,17 @@ public class StringUtil
      * @param password
      * @return
      */
-    public static boolean checkpassword(String password)
-    {
+    public static boolean checkpassword(String password) {
         boolean b = false;
         int len;
-        if (!StringUtil.isEmpty(password))
-        {
+        if (!StringUtil.isEmpty(password)) {
             len = password.length();
-        }
-        else
-        {
+        } else {
             len = 0;
         }
-        if (len < 6)
-        {
+        if (len < 6) {
             b = false;
-        }
-        else if (len >= 6)
-        {
+        } else if (len >= 6) {
             b = true;
         }
         return b;
@@ -843,22 +733,17 @@ public class StringUtil
      * @param event
      * @return
      */
-    public static boolean isShouldHideInput(View v, MotionEvent event)
-    {
-        if (v != null && (v instanceof EditText))
-        {
+    public static boolean isShouldHideInput(View v, MotionEvent event) {
+        if (v != null && (v instanceof EditText)) {
             int[] l = {0, 0};
             v.getLocationInWindow(l);
             int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left
                     + v.getWidth();
             if (event.getX() > left && event.getX() < right
-                    && event.getY() > top && event.getY() < bottom)
-            {
+                    && event.getY() > top && event.getY() < bottom) {
                 // 点击EditText的事件，忽略它。
                 return false;
-            }
-            else
-            {
+            } else {
                 return true;
             }
         }
@@ -872,10 +757,8 @@ public class StringUtil
      * @param mContext
      * @param token
      */
-    public static void hideSoftInput(Context mContext, IBinder token)
-    {
-        if (token != null)
-        {
+    public static void hideSoftInput(Context mContext, IBinder token) {
+        if (token != null) {
             InputMethodManager im = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
@@ -889,26 +772,21 @@ public class StringUtil
      * @return
      * @throws Exception
      */
-    public static boolean judgmentDate(String date1, String date2) throws Exception
-    {
+    public static boolean judgmentDate(String date1, String date2) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d HH:mm:ss");
         Date start = sdf.parse(date1);
         Date end = sdf.parse(date2);
         long cha = end.getTime() - start.getTime();
 
-        if (cha < 0)
-        {
+        if (cha < 0) {
             return false;
         }
 
         double result = cha * 1.0 / (1000 * 60 * 60);
 
-        if (result <= 24)
-        {
+        if (result <= 24) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }

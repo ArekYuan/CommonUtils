@@ -19,15 +19,15 @@ public interface OkUiCallBack {
      *
      * @param errorMessage 返 回 类 型：void
      */
-    void onFail(String errorMessage);
+    void onFail(String code, String errorMessage);
 
     /**
      * <系统处理异常回调>
      * <功能详细描述>
      *
-     * @param sysErrorCode 返回类型:void
+     * @param code 返回类型:void
      */
-    void onSysFail(int sysErrorCode, String methodName);
+//    void onSysFail(String code, String methodName);
 
     /**
      * 获取Cookie
