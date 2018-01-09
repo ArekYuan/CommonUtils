@@ -1,17 +1,24 @@
 package com.yaohl.okhttplib.log;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * 作者： 袁光跃 on 2017/9/12 13:51
@@ -21,13 +28,23 @@ import java.util.Date;
  * 或者将崩溃日志文件上传给服务器，由服务器反馈给客户端处理
  */
 
-public final class YLog {
+public final class YLog implements Thread.UncaughtExceptionHandler {
     private static Context mContext;
-    private static String customTagPrefix = "Y_";
+    private static String customTagPrefix = "";
     private static final String ERROR_LOG_SUFFIX = ".log";
+    private static YLog mInstance = new YLog();
+    private static final String SDCARD_ROOT = Environment.getExternalStorageDirectory().toString() + File.separator + "ylog" + File.separator;
 
     private YLog() {
+    }
 
+    /**
+     * 单例模式，保证只有一个CustomCrashHandler实例存在
+     *
+     * @return
+     */
+    public static YLog getInstance() {
+        return mInstance;
     }
 
     /**
@@ -45,9 +62,10 @@ public final class YLog {
      *
      * @param ISDEBUG 是否处于开发模式
      */
-    public static void setISDEBUG(boolean ISDEBUG, Context context) {
+    public void setISDEBUG(boolean ISDEBUG, Context context) {
         IS_DEBUG = ISDEBUG;
         mContext = context;
+        Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
 
@@ -163,31 +181,31 @@ public final class YLog {
      * @param crashMsg
      */
     private static void printInSystemLog(final int priority, final String tag, final String msg, final String crashMsg) {
-
         if (ISDEBUG()) {
             Log.println(priority, tag, msg + "\n" + crashMsg);
-        } else {
-            if (!crashMsg.equals("") || null != crashMsg) {
-                new Thread() {
-                    @Override
-                    public void run() {
-                        write(time() + "--->" + tag + " [DEBUG] --> " + crashMsg);
-                    }
-                }.start();
-            }
         }
+// else {
+//            if (!crashMsg.equals("") || null != crashMsg) {
+//                new Thread() {
+//                    @Override
+//                    public void run() {
+//                        write(time() + "--->" + tag + " [DEBUG] --> " + crashMsg);
+//                    }
+//                }.start();
+//            }
+//        }
     }
 
     /**
      * 将崩溃日志写入本地文件
      *
-     * @param crashContent 崩溃日志内容
+     * @param content
      */
-    private static void write(String crashContent) {
+    private static void write(String content) {
         FileWriter writer = null;
         try {
             writer = new FileWriter(getCrashPath(mContext), true);
-            writer.write(crashContent);
+            writer.write(content);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -262,7 +280,7 @@ public final class YLog {
      * @return
      */
     public static String getCrashPath(Context context) {
-        String crashpath = createNewFile(getCacheFilePath(context) + "YLog" + File.separator + "crash" + ERROR_LOG_SUFFIX);
+        String crashpath = createNewFile(getCacheFilePath(context) + "ylog" + File.separator + "crash" + ERROR_LOG_SUFFIX);
         return crashpath;
     }
 
@@ -307,4 +325,118 @@ public final class YLog {
         }
         return path;
     }
+
+    @Override
+    public void uncaughtException(Thread thread, final Throwable ex) {
+        //将一些信息保存到SDcard中
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                savaInfoToSD(mContext, ex);
+            }
+        });
+
+    }
+
+    /**
+     * 获取一些简单的信息,软件版本，手机版本，型号等信息存放在HashMap中
+     *
+     * @param context
+     * @return
+     */
+    private HashMap<String, String> obtainSimpleInfo(Context context) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        PackageManager mPackageManager = context.getPackageManager();
+        PackageInfo mPackageInfo = null;
+        try {
+            mPackageInfo = mPackageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_ACTIVITIES);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        map.put("versionName", mPackageInfo.versionName);
+        map.put("versionCode", "" + mPackageInfo.versionCode);
+
+        map.put("MODEL", "" + Build.MODEL);
+        map.put("SDK_INT", "" + Build.VERSION.SDK_INT);
+        map.put("PRODUCT", "" + Build.PRODUCT);
+
+        return map;
+    }
+
+
+    /**
+     * 获取系统未捕捉的错误信息
+     *
+     * @param throwable
+     * @return
+     */
+    private String obtainExceptionInfo(Throwable throwable) {
+        StringWriter mStringWriter = new StringWriter();
+        PrintWriter mPrintWriter = new PrintWriter(mStringWriter);
+        throwable.printStackTrace(mPrintWriter);
+        mPrintWriter.close();
+
+//        Log.e(TAG, mStringWriter.toString());
+        return mStringWriter.toString();
+    }
+
+    /**
+     * 保存获取的 软件信息，设备信息和出错信息保存在SDcard中
+     *
+     * @param context
+     * @param ex
+     * @return
+     */
+    private String savaInfoToSD(Context context, Throwable ex) {
+        String fileName = null;
+        StringBuffer sb = new StringBuffer();
+
+        for (Map.Entry<String, String> entry : obtainSimpleInfo(context).entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            sb.append(key).append(" = ").append(value).append("\n");
+        }
+
+        sb.append(obtainExceptionInfo(ex));
+
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File dir = new File(SDCARD_ROOT + File.separator + "crash" + File.separator);
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+
+            try {
+                fileName = dir.toString() + File.separator + paserTime(System.currentTimeMillis()) + ".log";
+                FileOutputStream fos = new FileOutputStream(fileName);
+                fos.write(sb.toString().getBytes());
+                fos.flush();
+                fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return fileName;
+
+    }
+
+
+    /**
+     * 将毫秒数转换成yyyy-MM-dd-HH-mm-ss的格式
+     *
+     * @param milliseconds
+     * @return
+     */
+    private String paserTime(long milliseconds) {
+        System.setProperty("user.timezone", "Asia/Shanghai");
+        TimeZone tz = TimeZone.getTimeZone("Asia/Shanghai");
+        TimeZone.setDefault(tz);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String times = format.format(new Date(milliseconds));
+
+        return times;
+    }
 }
+

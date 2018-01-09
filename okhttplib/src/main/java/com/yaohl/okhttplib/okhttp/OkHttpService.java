@@ -472,7 +472,7 @@ public class OkHttpService {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     onFailMethod("-1", "网络连接错误", iNetCallBack);
-                    YLog.e(url + "<---->" + e.getLocalizedMessage());
+                    YLog.d(url + "<---->" + e.getLocalizedMessage());
                 }
 
                 @Override
