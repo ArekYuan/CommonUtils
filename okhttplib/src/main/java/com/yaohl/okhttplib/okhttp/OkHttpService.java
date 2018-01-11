@@ -259,7 +259,7 @@ public class OkHttpService {
         callBack = callBacks;
         final Message message = new Message();
         String url = SeverConstants.SERVER_URL + method;
-        doJsonGetData(mContext, url, new INetCallBack() {
+        doJsonGetData(url, new INetCallBack() {
             @Override
             public void onSuccess(Object ob) {
                 message.obj = ob;
@@ -291,7 +291,7 @@ public class OkHttpService {
      * @param obj
      * @param <T>
      */
-    private static <T> void doJsonGetData(Context mContext, final String url, final INetCallBack iNetCallBack, final Class<T> obj) {
+    private static <T> void doJsonGetData(final String url, final INetCallBack iNetCallBack, final Class<T> obj) {
         final Request request = new Request.Builder()
                 .cacheControl(new CacheControl.Builder().maxAge(5, TimeUnit.MINUTES).build())
                 .url(url)
@@ -418,7 +418,7 @@ public class OkHttpService {
         callBack = callBacks;
         final Message message = new Message();
         String url = SeverConstants.SERVER_URL + method;
-        doGetParamsData(mContext, url, params, new INetCallBack() {
+        doGetParamsData(url, params, new INetCallBack() {
             @Override
             public void onSuccess(Object ob) {
                 message.what = ON_GET_PARAMS_SUCCESS;
@@ -448,7 +448,7 @@ public class OkHttpService {
      * @param iNetCallBack
      * @param obj
      */
-    private static <T> void doGetParamsData(Context mContext, final String url, Map<String, String> params, final INetCallBack iNetCallBack, final Class<T> obj) {
+    private static <T> void doGetParamsData(final String url, Map<String, String> params, final INetCallBack iNetCallBack, final Class<T> obj) {
         StringBuilder tempParams = new StringBuilder();
         try {
             //处理参数
@@ -523,7 +523,7 @@ public class OkHttpService {
         callBack = callBacks;
         final Message message = new Message();
         final String url = SeverConstants.SERVER_URL + method;
-        doJsonPostData(mContext, url, mapParams, new INetCallBack() {
+        doJsonPostData(url, mapParams, new INetCallBack() {
             @Override
             public void onSuccess(Object ob) {
                 message.obj = ob;
@@ -558,7 +558,7 @@ public class OkHttpService {
      * @param obj
      * @param <T>
      */
-    private static <T> void doJsonPostData(final Context mContext, final String url, Map<String, String> mapParams, final INetCallBack iNetCallBack, final Class<T> obj) {
+    private static <T> void doJsonPostData(final String url, Map<String, String> mapParams, final INetCallBack iNetCallBack, final Class<T> obj) {
         FormBody.Builder builder = new FormBody.Builder();
         for (String key : mapParams.keySet()) {
             builder.add(key, mapParams.get(key));
@@ -613,7 +613,7 @@ public class OkHttpService {
         callBack = callBacks;
         final Message message = new Message();
         final String url = SeverConstants.SERVER_URL + mthod;
-        doPostData(mContext, url, jsonParams, new INetCallBack() {
+        doPostData(url, jsonParams, new INetCallBack() {
             @Override
             public void onSuccess(Object ob) {
                 message.obj = ob;
@@ -644,7 +644,7 @@ public class OkHttpService {
      * @param obj
      * @param <T>
      */
-    private static <T> void doPostData(final Context mContext, final String url, String jsonParams, final INetCallBack iNetCallBack, final Class<T> obj) {
+    private static <T> void doPostData(final String url, String jsonParams, final INetCallBack iNetCallBack, final Class<T> obj) {
         RequestBody body = new FormBody.Builder()
                 .add("data", jsonParams)
                 .build();
@@ -698,7 +698,7 @@ public class OkHttpService {
         callBack = uiCallBack;
         final Message message = new Message();
         final String url = SeverConstants.SERVER_URL + method;
-        doUpLoadFileStream(mContext, url, pathName, fileName, new INetCallBack() {
+        doUpLoadFileStream(url, pathName, fileName, new INetCallBack() {
             @Override
             public void onSuccess(Object ob) {
                 message.obj = ob;
@@ -725,7 +725,7 @@ public class OkHttpService {
      * @param fileName
      * @param iNetCallBack
      */
-    private static void doUpLoadFileStream(final Context mContext, final String url, String pathName, String fileName, final INetCallBack iNetCallBack) {
+    private static void doUpLoadFileStream(final String url, String pathName, String fileName, final INetCallBack iNetCallBack) {
         //判断文件类型
         MediaType MEDIA_TYPE = MediaType.parse(judgeType(pathName));
         //创建文件参数
