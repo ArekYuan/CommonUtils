@@ -2,7 +2,8 @@ package yaohl.cn.commonutils.util;
 
 import android.content.Context;
 
-import com.yaohl.okhttplib.utils.StringUtil;
+
+import com.yaohl.retrofitlib.utils.StringUtil;
 
 import yaohl.cn.commonutils.alert.MToast;
 import yaohl.cn.commonutils.sharepref.SharePref;

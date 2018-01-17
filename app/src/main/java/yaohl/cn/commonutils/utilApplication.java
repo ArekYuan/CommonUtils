@@ -2,7 +2,8 @@ package yaohl.cn.commonutils;
 
 import android.app.Application;
 
-import com.yaohl.okhttplib.log.YLog;
+import com.yaohl.retrofitlib.log.YLog;
+
 
 /**
  * 作者：袁光跃

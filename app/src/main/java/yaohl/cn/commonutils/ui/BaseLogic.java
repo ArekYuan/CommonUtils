@@ -3,8 +3,8 @@ package yaohl.cn.commonutils.ui;
 import android.content.Context;
 import android.util.Log;
 
-import com.yaohl.okhttplib.okhttp.OkHttpRequestParams;
-import com.yaohl.okhttplib.okhttp.OkUiCallBack;
+
+import com.yaohl.retrofitlib.retrofit.OkUiCallBack;
 
 import org.json.JSONException;
 
@@ -15,33 +15,8 @@ import org.json.JSONException;
 
 public abstract class BaseLogic implements OkUiCallBack
 {
-    public <T> OkHttpRequestParams getBaseParam(String tag, Context mContext, T baseRequest)
-    {
-        OkHttpRequestParams requestParams = new OkHttpRequestParams();
-        try
-        {
-            requestParams.setJsonObj(new BaseJSONObject(mContext, baseRequest));
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-            Log.e("getBaseParam", "error:" + e.getLocalizedMessage());
-        }
-        return requestParams;
-    }
-
     @Override
-    public void onFail(String errorMessage)
-    {
-        Context context = getContext();
-
-    }
-
-    @Override
-    public void onSysFail(int sysErrorCode, String methodName)
-    {
-        Context context = getContext();
-
+    public void onFail(String code, String errorMessage) {
 
     }
 
