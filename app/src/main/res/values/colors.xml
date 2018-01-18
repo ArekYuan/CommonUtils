@@ -26,4 +26,14 @@
 
     <color name="gray">#aaaaaa</color>
     <color name="light_blue">#6593cb</color>
+
+    <color name="bg_task_fragment">#EAEAEA</color>
+    <color name="divider_line_color">#e5e5e5</color>
+    <color name="background_color">#f6f6f6</color>
+    <color name="text_balak">#222222</color>
+    <color name="statusbar_color">#ccd1d9</color>
+    <color name="personcenter_line_color">#e6e9ed</color>
+    <color name="banner_text_color">#656d78</color>
+    <color name="black">#000000</color>
+    <color name="tab_sel_color">#ff9600</color>
 </resources>

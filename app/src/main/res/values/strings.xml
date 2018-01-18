@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CommonUtils</string>
+    <string name="app_name">原型</string>
 
     <string name="rll_header_hint_normal">下拉更新</string>
     <string name="rll_header_hint_ready">松开更新</string>
@@ -25,4 +25,11 @@
     <string name="loading">正在加载...</string>
     <string name="load_succeed">加载成功</string>
     <string name="load_fail">加载失败</string>
+
+
+    <string name="home_menu_main_string">首页</string>
+    <string name="home_menu_my_string">个人中心</string>
+    <string name="home_menu_workbench_string">信息</string>
+    <string name="home_back">请再按一次退出</string>
+
 </resources>
