@@ -29,7 +29,7 @@
 
     <string name="home_menu_main_string">首页</string>
     <string name="home_menu_my_string">个人中心</string>
-    <string name="home_menu_workbench_string">信息</string>
+    <string name="home_menu_workbench_string">信息资讯</string>
     <string name="home_back">请再按一次退出</string>
 
 </resources>

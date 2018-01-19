@@ -117,7 +117,7 @@ public class HomeFragmentActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitleTxt("首页");
+        setSearchVisi(View.VISIBLE);
         initView();
         setOnClick();
         init();
@@ -163,12 +163,18 @@ public class HomeFragmentActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.homeMenuMainRelative:
+                setSearchVisi(View.VISIBLE);
+                setTitleTxt("");
                 setTabSelection(getString(R.string.home_menu_main_string));
                 break;
             case R.id.homeMenuWorkbenchRelative:
+                setSearchVisi(View.GONE);
+                setTitleTxt(getString(R.string.home_menu_workbench_string));
                 setTabSelection(getString(R.string.home_menu_workbench_string));
                 break;
             case R.id.homeMenuMyRelative:
+                setSearchVisi(View.GONE);
+                setTitleTxt(getString(R.string.home_menu_my_string));
                 setTabSelection(getString(R.string.home_menu_my_string));
                 break;
             default:
