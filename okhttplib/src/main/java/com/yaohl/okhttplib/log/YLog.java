@@ -110,7 +110,7 @@ public final class YLog implements Thread.UncaughtExceptionHandler {
     }
 
     /**
-     * 打印级别为 info 的日志
+     * 打印级别为 service 的日志
      *
      * @param msg
      */
