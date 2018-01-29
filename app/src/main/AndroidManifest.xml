@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.yaohl.commonutils">
+    package="cn.yaohl.MayorOnline">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".utilApplication"
+        android:name=".MayorApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,6 +28,21 @@
                 <action android:name="yaohl.cn.commonutils" />
             </intent-filter>
         </receiver>
+
+
+        <!-- 开机自启动广播接受 -->
+        <receiver android:name=".broadcast.StartBroadcast">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 进程保活 start -->
+        <service
+            android:name=".service.CoreService"
+            android:exported="true"
+            android:process=":remote" />
 
     </application>
 

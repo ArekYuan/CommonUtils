@@ -36,4 +36,5 @@
     <color name="banner_text_color">#656d78</color>
     <color name="black">#000000</color>
     <color name="tab_sel_color">#ff9600</color>
+    <color name="general_gray">#8292ac</color>
 </resources>
