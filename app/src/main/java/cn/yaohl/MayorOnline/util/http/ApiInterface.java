@@ -1,4 +1,4 @@
-package com.yaohl.retrofitlib.retrofit.service;
+package cn.yaohl.MayorOnline.util.http;
 
 
 import com.google.gson.JsonObject;
@@ -6,9 +6,12 @@ import com.yaohl.retrofitlib.utils.URLUtils;
 
 import java.util.HashMap;
 
+import cn.yaohl.MayorOnline.ui.login.beans.LoginResp;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -28,6 +31,9 @@ public interface ApiInterface {
      */
     @POST(URLUtils.POST_LOGIN_METHOD)
     @FormUrlEncoded
-    Observable<JsonObject> login(@FieldMap HashMap<String, String> reqParams);
+    Observable<LoginResp> login(@FieldMap HashMap<String, String> reqParams);
+
+    @GET(URLUtils.GET_DUOJING_METHOD)
+    Observable<JsonObject> GetDJingData(@QueryMap HashMap<String, String> reqParams);
 
 }

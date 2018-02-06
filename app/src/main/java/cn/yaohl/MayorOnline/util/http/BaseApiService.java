@@ -1,7 +1,5 @@
-package com.yaohl.retrofitlib.retrofit.service;
+package cn.yaohl.MayorOnline.util.http;
 
-
-import com.yaohl.retrofitlib.retrofit.RetrofitManager;
 
 /**
  * 作者：袁光跃

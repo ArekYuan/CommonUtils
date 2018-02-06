@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loginRootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ly_title_bar"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="市长在线"
+                android:textColor="@color/text_balak"
+                android:textSize="23sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="69dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/mobileETxt"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:drawableLeft="@mipmap/icon_phone_image"
+                android:drawablePadding="15dp"
+                android:hint="请输入用户名"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/text_hint"
+                android:textColorHint="@color/text_hint"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/line_color" />
+
+            <EditText
+                android:id="@+id/passWordETxt"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:drawableLeft="@mipmap/icon_pwd"
+                android:drawablePadding="15dp"
+                android:hint="请输入密码"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/text_hint"
+                android:textColorHint="@color/text_hint"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/line_color" />
+
+            <Button
+                android:id="@+id/loginBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/bg_exit_sure"
+                android:text="登录"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkCBox"
+                style="@style/CustomCheckboxTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="10dp"
+                android:text="记住用户名" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

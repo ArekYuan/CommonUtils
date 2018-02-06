@@ -1,4 +1,4 @@
-package com.yaohl.retrofitlib.retrofit;
+package com.yaohl.retrofitlib.utils;
 
 /**
  * Created by 袁光跃 on 2016/11/16.

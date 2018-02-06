@@ -37,4 +37,9 @@
     <color name="black">#000000</color>
     <color name="tab_sel_color">#ff9600</color>
     <color name="general_gray">#8292ac</color>
+    <color name="general_blue">#00b4ff</color>
+    <color name="text_hint">#acb3be</color>
+    <color name="line_color">#e4e4e4</color>
+    <color name="general_blue1">#AA3594d1</color>
+    <color name="general_red">#e64e4d</color>
 </resources>

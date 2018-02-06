@@ -1,10 +1,9 @@
-package cn.yaohl.MayorOnline.util.http.util;
+package cn.yaohl.MayorOnline.util.http;
 
 
 import com.yaohl.retrofitlib.log.YLog;
 
 import cn.yaohl.MayorOnline.ui.BaseResp;
-import cn.yaohl.MayorOnline.util.http.ApiException;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -41,9 +40,7 @@ public class RxUtil {
                         switch (responseResult.code) {
                             case "0"://成功
                                 return createData(responseResult);
-                            case "101":
-//                ToastUtils.showToast("登录超时，请重新登录", Toast.LENGTH_SHORT);
-                                //Token超时
+                            case "101"://会话 过期 弹出异常dialog
 //                ExitPresenter exitPresenter = new ExitPresenter(CyyApplication.getContext());
 //                exitPresenter.startToExit();
                                 break;

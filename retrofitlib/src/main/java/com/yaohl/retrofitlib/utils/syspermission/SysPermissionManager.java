@@ -17,7 +17,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 
-import com.yueworld.okhttplib.utils.PdmLog;
+
+import com.yaohl.retrofitlib.log.YLog;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
@@ -77,7 +78,7 @@ public class SysPermissionManager {
     /**
      * 检查消息通知栏显示是否开启，该检测支队4.3已经以上系统有效
      */
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public static boolean isNotificationEnabled(Context context) {
         AppOpsManager mAppOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
         ApplicationInfo appInfo = context.getApplicationInfo();
@@ -108,7 +109,7 @@ public class SysPermissionManager {
             try {
                 name = (String) field.get("");
             } catch (IllegalAccessException e) {
-                PdmLog.d("Could not access field" + e.getMessage());
+                YLog.d("Could not access field" + e.getMessage());
             }
             mPermissions.add(name);
         }
@@ -122,17 +123,17 @@ public class SysPermissionManager {
         PackageInfo packageInfo = null;
         List<String> list = new ArrayList<>(1);
         try {
-            PdmLog.d(activity.getPackageName());
+            YLog.d(activity.getPackageName());
             packageInfo = activity.getPackageManager()
                     .getPackageInfo(activity.getPackageName(), PackageManager.GET_PERMISSIONS);
         } catch (PackageManager.NameNotFoundException e) {
-            PdmLog.d("=========检索权限时出现的问题========" + e.getMessage());
+            YLog.d("=========检索权限时出现的问题========" + e.getMessage());
         }
         if (packageInfo != null) {
             String[] permissions = packageInfo.requestedPermissions;
             if (permissions != null) {
                 for (String perm : permissions) {
-                    PdmLog.d("Manifest 包含 permission: " + perm);
+                    YLog.d("Manifest 包含 permission: " + perm);
                     list.add(perm);
                 }
             }
