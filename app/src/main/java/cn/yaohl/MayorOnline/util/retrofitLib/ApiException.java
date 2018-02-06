@@ -1,4 +1,4 @@
-package cn.yaohl.MayorOnline.util.http;
+package cn.yaohl.MayorOnline.util.retrofitLib;
 
 
 public class ApiException extends Exception {

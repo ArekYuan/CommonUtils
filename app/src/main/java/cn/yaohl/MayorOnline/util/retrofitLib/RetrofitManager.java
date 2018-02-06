@@ -1,4 +1,4 @@
-package cn.yaohl.MayorOnline.util.http;
+package cn.yaohl.MayorOnline.util.retrofitLib;
 
 
 import com.yaohl.retrofitlib.utils.SeverConstants;
