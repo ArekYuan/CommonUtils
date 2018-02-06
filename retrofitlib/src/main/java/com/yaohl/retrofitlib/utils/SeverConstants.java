@@ -15,5 +15,5 @@ public class SeverConstants {
 
     public static final String SERVER_SUCCESS_CODE = "0";
 
-    public static final String PACKAGE_NAME_SUNING = "yaohl.cn.commonutils";
+    public static final String PACKAGE_NAME_SUNING = "yaohl.cn.MayorOnline";
 }
