@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
@@ -11,7 +12,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.squareup.leakcanary.LeakCanary;
 import com.yaohl.retrofitlib.log.YLog;
+import com.yaohl.retrofitlib.utils.CommonConfig;
 
 import java.io.File;
 import java.util.Stack;
@@ -65,6 +68,15 @@ public class MayorApplication extends Application {
         ImageLoader.getInstance().init(getImageLoaderConfiguration(getApplication()));
 //        JPushInterface.setDebugMode(true);    // 设置开启日志,发布时请关闭日志
 //        JPushInterface.init(this);
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        if (CommonConfig.DEBUG) {
+            LeakCanary.install(this);
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this);
     }
 
     /**

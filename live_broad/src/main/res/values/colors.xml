@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="live_colorPrimary">#000</color>
+    <color name="live_colorPrimaryDark">#000</color>
+    <color name="live_colorAccent">#f03f33</color>
+    <color name="live_color_orange_red">#f03f33</color>
+    <color name="live_lineColor">#11333333</color>
+    <color name="live_black_font">#bb000000</color>
+    <color name="live_black_bg">#66333333</color>
+</resources>

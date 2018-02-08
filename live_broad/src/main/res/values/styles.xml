@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="live_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/live_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/live_colorPrimaryDark</item>
+        <item name="colorAccent">@color/live_colorAccent</item>
+        <!-- 设置activity切换动画 -->
+
+    </style>
+
+
+    <!--switch theme-->
+    <style name="live_BrandedSwitch.control" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">#e6e600</item>
+        <!--<item name="colorSwitchThumbNormal">#cc0000</item>-->
+    </style>
+    <!--switch text theme-->
+    <style name="live_BrandedSwitch.text" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">8dp</item>
+    </style>
+
+</resources>

@@ -9,9 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/asynchttplib" />
-            <option value="$PROJECT_DIR$/okhttplib" />
-            <option value="$PROJECT_DIR$/volleylib" />
+            <option value="$PROJECT_DIR$/live_broad" />
+            <option value="$PROJECT_DIR$/retrofitlib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

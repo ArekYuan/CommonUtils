@@ -12,11 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+
+import cn.yaohl.MayorOnline.MayorApplication;
 import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.ui.home.HomeFragment;
 import cn.yaohl.MayorOnline.ui.personal.PersonalFragment;
 import cn.yaohl.MayorOnline.ui.service.ServiceFragment;
-import cn.yaohl.MayorOnline.MayorApplication;
 
 public class HomeFragmentActivity extends BaseActivity implements View.OnClickListener {
     /**
@@ -135,6 +137,12 @@ public class HomeFragmentActivity extends BaseActivity implements View.OnClickLi
         homeMyTxt = (TextView) findViewById(R.id.homeMyTxt);
     }
 
+    @Override
+    protected void onSearchClick() {
+        super.onSearchClick();
+        showShortToast("搜索");
+        ARouter.getInstance().build("/live_broad/live").navigation();
+    }
 
     private void init() {
         tags = new String[]{getString(R.string.home_menu_main_string), getString(R.string.home_menu_workbench_string),

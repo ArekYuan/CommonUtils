@@ -9,9 +9,9 @@ import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.ui.BasePresenter;
 import cn.yaohl.MayorOnline.ui.login.LoginActivity;
 import cn.yaohl.MayorOnline.ui.login.beans.LoginResp;
-import cn.yaohl.MayorOnline.util.http.ApiException;
-import cn.yaohl.MayorOnline.util.http.ApiService;
-import cn.yaohl.MayorOnline.util.http.RxUtil;
+import cn.yaohl.MayorOnline.util.retrofitLib.ApiException;
+import cn.yaohl.MayorOnline.util.retrofitLib.ApiService;
+import cn.yaohl.MayorOnline.util.retrofitLib.RxUtil;
 import rx.functions.Action1;
 
 /**
