@@ -8,4 +8,5 @@ package com.yaohl.retrofitlib.utils;
 
 public class CommonConfig {
     public static final boolean DEBUG = true;
+    public static boolean LOGIN = true;
 }

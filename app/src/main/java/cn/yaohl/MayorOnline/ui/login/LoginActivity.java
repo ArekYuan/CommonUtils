@@ -11,6 +11,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.yaohl.retrofitlib.utils.MyRouter;
 import com.yaohl.retrofitlib.utils.StringUtil;
 
 import java.util.HashSet;
@@ -25,6 +27,7 @@ import cn.yaohl.MayorOnline.ui.login.presenter.LoginPresenter;
 import cn.yaohl.MayorOnline.util.CommonUtils;
 import cn.yaohl.MayorOnline.util.Constant;
 
+@Route(path = MyRouter.ROUTER_LOGIN)
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private EditText mobileETxt;//手机号输入
@@ -107,7 +110,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.loginBtn:
                 if (checked(userName, pwdStr)) {
-                    pressenter.doLoginReq(userName,pwdStr);
+                    pressenter.doLoginReq(userName, pwdStr);
                 }
                 break;
 

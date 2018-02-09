@@ -5,12 +5,12 @@ if (isBuildModule.toBoolean()) {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -40,19 +40,22 @@ android {
     resourcePrefix "live_"
 }
 
+android {
+    lintOptions {
+        checkReleaseBuilds false
+    }
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(path: ':retrofitlib')
-
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-
+    compile "com.android.support:appcompat-v7:$rootProject.supportVersion"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
+    testCompile "junit:junit:$rootProject.junitVersion"
     // router
-//    compile "com.alibaba:arouter-api:$rootProject.arouterVersion"
+    //    compile "com.alibaba:arouter-api:$rootProject.arouterVersion"
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
-
 }
