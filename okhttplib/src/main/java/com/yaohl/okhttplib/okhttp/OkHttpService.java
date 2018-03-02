@@ -240,7 +240,7 @@ public class OkHttpService {
                             .readTimeout(READ_TIME_OUT_DEFAULT, TimeUnit.SECONDS)
                             .writeTimeout(WRITE_TIME_OUT_DEFAULT, TimeUnit.SECONDS)
                             .retryOnConnectionFailure(true)
-                            .cache(cache)
+//                            .cache(cache)
                             .build();
                 }
             }
