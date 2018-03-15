@@ -47,7 +47,7 @@ dependencies {
     } else {
         compile project(path: ':retrofitlib')
     }
-    compile "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
+//    compile "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
     compile "com.android.support:appcompat-v7:$rootProject.supportVersion"
     compile "com.android.support:design:$rootProject.designVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.recyclerviewVersion"
@@ -56,5 +56,5 @@ dependencies {
     testCompile "junit:junit:$rootProject.junitVersion"
     // router
     //    compile "com.alibaba:arouter-api:$rootProject.arouterVersion"
-    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
+//    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
 }
