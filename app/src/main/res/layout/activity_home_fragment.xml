@@ -1,122 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/statusbar_color"
-    android:clipToPadding="true"
-    android:fitsSystemWindows="true" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/statusbar_color"
+              android:clipToPadding="true"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
 
-    <FrameLayout
+    <include layout="@layout/search_layout"/>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="visible" >
+            android:layout_height="45dp"
+            android:background="@color/white"/>
 
-            <FrameLayout
-                android:id="@+id/content"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.0" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/mainTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabBackground="@null"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="#e8454b"
+            app:tabSelectedTextColor="@null"
+            app:tabTextAppearance="@android:style/TextAppearance.Holo.Small"
+            app:tabTextColor="#1d1c29">
+        </android.support.design.widget.TabLayout>
+    </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/personcenter_line_color" />
 
-            <LinearLayout
-                android:id="@+id/home_activity_bottom_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="7dp" >
+    <android.support.v4.view.ViewPager
+        android:id="@+id/mainViewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-                <RelativeLayout
-                    android:id="@+id/homeMenuMainRelative"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
-                    <ImageView
-                        android:id="@+id/homeMainImg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:src="@mipmap/navi_home2" />
-
-                    <TextView
-                        android:id="@+id/homeMainTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/homeMainImg"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
-                        android:text="@string/home_menu_main_string"
-                        android:textColor="@color/banner_text_color"
-                        android:textSize="12sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/homeMenuWorkbenchRelative"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
-                    <ImageView
-                        android:id="@+id/homeWorkbenchImg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:src="@mipmap/navi_service1" />
-
-                    <TextView
-                        android:id="@+id/homeWorkbenchTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/homeWorkbenchImg"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
-                        android:text="@string/home_menu_workbench_string"
-                        android:textColor="@color/banner_text_color"
-                        android:textSize="12sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/homeMenuMyRelative"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical" >
-
-                    <ImageView
-                        android:id="@+id/homeMyImg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:src="@mipmap/navi_my1" />
-
-                    <TextView
-                        android:id="@+id/homeMyTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/homeMyImg"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
-                        android:text="@string/home_menu_my_string"
-                        android:textColor="@color/banner_text_color"
-                        android:textSize="12sp" />
-                </RelativeLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </FrameLayout>
-
-</RelativeLayout>
+</LinearLayout>

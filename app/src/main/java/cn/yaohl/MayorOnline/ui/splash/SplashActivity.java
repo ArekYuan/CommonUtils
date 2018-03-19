@@ -15,7 +15,7 @@ import com.yaohl.retrofitlib.utils.syspermission.SysPermissionResultCallback;
 import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.sharepref.SharePref;
 import cn.yaohl.MayorOnline.ui.BaseActivity;
-import cn.yaohl.MayorOnline.ui.HomeFragmentActivity;
+import cn.yaohl.MayorOnline.ui.HomeActivity;
 import cn.yaohl.MayorOnline.ui.login.LoginActivity;
 import cn.yaohl.MayorOnline.util.Constant;
 
@@ -79,7 +79,7 @@ public class SplashActivity extends BaseActivity {
         boolean isFirstLogin = new SharePref(mContext).getBooleanValue(Constant.IS_FIRST_LOGIN, false);
         if (!isFirstLogin) {
             //第一次登录，进入导航页
-            jumpToLogin();
+            jumpToHome();
         } else {
             //不是第一次登录，则检查是否需要登录...
             jumpToHome();
@@ -88,7 +88,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void jumpToHome() {
-        Intent intent = new Intent(mContext, HomeFragmentActivity.class);
+        Intent intent = new Intent(mContext, HomeActivity.class);
         mContext.startActivity(intent);
         finish();
     }

@@ -6,6 +6,7 @@
     <color name="white">#ffffff</color>
     <color name="transparent_black">#40000000</color>
     <color name="transparent_black2">#80000000</color>
+    <color name="title_bar_color">#1c1b21</color>
 
     <color name="grey_b2b2b2">#B2B2B2</color>
     <color name="blue_78d2f6">#78D2F6</color>

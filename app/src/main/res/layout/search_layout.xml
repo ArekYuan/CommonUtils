@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="45dp"
+              android:background="#F73A41"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:paddingBottom="6dp"
+              android:paddingLeft="16dp"
+              android:paddingTop="6dp">
+
+    <ImageView
+        android:id="@+id/loginHeadImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:src="@mipmap/icon_head"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/searchEdit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_shape"
+            android:hint="环保监管"
+            android:paddingLeft="15dp"
+            android:textColorHint="#666666"
+            android:textSize="13sp"
+            />
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/round_shape_btn"
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/locationTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="10dp"
+        android:text="南京"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        />
+
+</LinearLayout>

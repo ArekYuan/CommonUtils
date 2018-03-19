@@ -40,7 +40,7 @@
 
         <!-- 袁光跃 首页 -->
         <activity
-            android:name=".ui.HomeFragmentActivity"
+            android:name=".ui.HomeActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

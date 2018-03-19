@@ -21,7 +21,7 @@ import java.util.Set;
 import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.sharepref.SharePref;
 import cn.yaohl.MayorOnline.ui.BaseActivity;
-import cn.yaohl.MayorOnline.ui.HomeFragmentActivity;
+import cn.yaohl.MayorOnline.ui.HomeActivity;
 import cn.yaohl.MayorOnline.ui.login.beans.LoginResp;
 import cn.yaohl.MayorOnline.ui.login.presenter.LoginPresenter;
 import cn.yaohl.MayorOnline.util.CommonUtils;
@@ -181,7 +181,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //        JPushUtil.jpushRegisteredTags(mContext, tags);
         new SharePref(mContext).setStringValue(Constant.SECURITY_TGC, resp.getData().getTGC());
 
-        Intent intent = new Intent(mContext, HomeFragmentActivity.class);
+        Intent intent = new Intent(mContext, HomeActivity.class);
         mContext.startActivity(intent);
         finish();
     }

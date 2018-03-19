@@ -91,8 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mContext = this;
         MayorApplication.getApplication().addActivity(this);
         mImmersionBar = ImmersionBar.with(this)
-                .statusBarDarkFont(true)
-                .statusBarColor(R.color.white);
+                .statusBarColor(R.color.title_bar_color);
         mImmersionBar.init();   //所有子类都将继承这些相同的属性
         initToolBar();
         initCotentView();

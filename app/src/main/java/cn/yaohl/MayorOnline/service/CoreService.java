@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import cn.yaohl.MayorOnline.MayorApplication;
-import cn.yaohl.MayorOnline.ui.HomeFragmentActivity;
+import cn.yaohl.MayorOnline.ui.HomeActivity;
 import cn.yaohl.MayorOnline.util.CommonUtils;
 
 /**
@@ -42,7 +42,7 @@ public class CoreService extends Service {
             if (!isRunningForeground) {
                 YLog.d("CoreService----跳转到首页");
                 // 启动相应的业务服务
-                Intent intent = new Intent(this, HomeFragmentActivity.class);
+                Intent intent = new Intent(this, HomeActivity.class);
                 intent.putExtra("isRunningForeground", true);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
