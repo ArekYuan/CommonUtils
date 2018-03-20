@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="170dp"
+              android:background="@drawable/gray_line"
+              android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/videoImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/pic2"/>
+
+    <TextView
+        android:id="@+id/nameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ico1"
+        android:drawablePadding="3dp"
+        android:paddingLeft="6dp"
+        android:paddingTop="8dp"
+        android:text="蓝绍敏"
+        android:textColor="@color/txt_dark_color"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:id="@+id/contentTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxEms="10"
+        android:maxLines="2"
+        android:paddingLeft="6dp"
+        android:paddingTop="10dp"
+        android:text="南京市长蓝绍敏做客市长在线!"
+        android:textColor="@color/txt_black_color"
+        android:textSize="11sp"/>
+
+    <TextView
+        android:id="@+id/praiseNumTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:drawableLeft="@mipmap/zan2"
+        android:drawablePadding="3dp"
+        android:paddingLeft="6dp"
+        android:text="26,320"
+        android:textColor="@color/txt_dark_color"
+        android:textSize="10sp"/>
+</LinearLayout>

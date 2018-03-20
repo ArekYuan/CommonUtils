@@ -13,6 +13,7 @@
     <color name="blue_01aaee">#01AAEE</color>
     <color name="blue_00aaee">#00AAEE</color>
     <color name="red_f3323b">#F3323B</color>
+    <color name="red_round">#ff0e5b</color>
 
     <color name="grey_f6f6f6">#f6f6f6</color>
     <color name="grey_a5a5a5">#A5A5A5</color>
@@ -32,7 +33,7 @@
     <color name="divider_line_color">#e5e5e5</color>
     <color name="background_color">#f6f6f6</color>
     <color name="text_balak">#222222</color>
-    <color name="statusbar_color">#ccd1d9</color>
+    <color name="statusbar_color">#eeeeee</color>
     <color name="personcenter_line_color">#e6e9ed</color>
     <color name="banner_text_color">#656d78</color>
     <color name="black">#000000</color>
@@ -40,7 +41,12 @@
     <color name="general_gray">#8292ac</color>
     <color name="general_blue">#00b4ff</color>
     <color name="text_hint">#acb3be</color>
-    <color name="line_color">#e4e4e4</color>
+    <color name="line_color">#e6e6e6</color>
     <color name="general_blue1">#AA3594d1</color>
     <color name="general_red">#e64e4d</color>
+
+    <color name="txt_gray_color">#d2d2d2</color>
+    <color name="txt_dark_color">#676568</color>
+    <color name="txt_black_color">#1e1b2c</color>
+    <color name="txt_pink_color">#f0686c</color>
 </resources>
