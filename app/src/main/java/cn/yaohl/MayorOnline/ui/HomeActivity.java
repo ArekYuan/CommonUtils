@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -43,6 +46,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private List<Fragment> fragmentList = new ArrayList<>();
     private MyAdapter adapter;
 
+    //搜索
+    private LinearLayout searchLayout;
+
+    //登錄頭像
+    private ImageView loginHeadImg;
+
+    //位置
+    private TextView locationTxt;
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_home_fragment;
@@ -63,8 +75,32 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mainTabLayout = (TabLayout) findViewById(R.id.mainTabLayout);
         mainViewpager = (ViewPager) findViewById(R.id.mainViewpager);
 
+        searchLayout = (LinearLayout) findViewById(R.id.searchLayout);
+        loginHeadImg = (ImageView) findViewById(R.id.loginHeadImg);
+        locationTxt = (TextView) findViewById(R.id.locationTxt);
+        searchLayout.setOnClickListener(onClickListener);
+        loginHeadImg.setOnClickListener(onClickListener);
+        locationTxt.setOnClickListener(onClickListener);
     }
 
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+
+                case R.id.searchLayout:
+                    showShortToast("搜索页面");
+                    break;
+                case R.id.loginHeadImg:
+                    showShortToast("登录");
+                    break;
+                case R.id.locationTxt:
+                    showShortToast("南京");
+                    break;
+            }
+        }
+    };
 
     private void initData() {
         fragmentList.add(new HomeFragment());

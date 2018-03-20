@@ -17,19 +17,21 @@
         android:src="@mipmap/icon_head"/>
 
     <LinearLayout
+        android:id="@+id/searchLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.8"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <EditText
+        <TextView
             android:id="@+id/searchEdit"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:background="@drawable/round_shape"
+            android:gravity="center|left"
             android:hint="环保监管"
             android:paddingLeft="15dp"
             android:textColorHint="#666666"
