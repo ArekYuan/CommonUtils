@@ -1,6 +1,9 @@
 package cn.yaohl.MayorOnline.ui.home;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,9 +14,10 @@ import java.util.List;
 
 import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.ui.BaseFragment;
+import cn.yaohl.MayorOnline.ui.home.adapter.CommentAdapter;
 import cn.yaohl.MayorOnline.ui.home.adapter.HistoryAdapter;
+import cn.yaohl.MayorOnline.ui.home.beans.CommentResp;
 import cn.yaohl.MayorOnline.ui.home.beans.HistoryVideoResp;
-import cn.yaohl.MayorOnline.util.view.HorizontalListView;
 
 /**
  * 作者：袁光跃
@@ -42,8 +46,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     //更多往期内容
     private TextView moreVideoTxt;
 
-    private HorizontalListView historyViewListView;
+    private RecyclerView historyViewListView;
     private HistoryAdapter histroyAdapter;
+
+    int spanCount = 1; // 只显示一行
+
+
+    //评论区
+    private TextView moreVCommentTxt;
+    private RecyclerView commentRclView;
+    private CommentAdapter commentAdapter;
 
     @Override
     protected int getContentViewId() {
@@ -55,8 +67,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         initView(view);
         initListener();
         initHisData();
+        initCommentData();
     }
-
 
     private void initView(View v) {
         praiseRLayout = (RelativeLayout) v.findViewById(R.id.praiseRLayout);
@@ -71,7 +83,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         forwardRLayout = (RelativeLayout) v.findViewById(R.id.forwardRLayout);
 
         moreVideoTxt = (TextView) v.findViewById(R.id.moreVideoTxt);
-        historyViewListView = (HorizontalListView) v.findViewById(R.id.historyViewListView);
+        historyViewListView = (RecyclerView) v.findViewById(R.id.historyViewListView);
+
+        commentRclView = (RecyclerView) v.findViewById(R.id.commentRclView);
+        moreVCommentTxt = (TextView) v.findViewById(R.id.moreVCommentTxt);
 
     }
 
@@ -85,6 +100,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private void initHisData() {
         histroyAdapter = new HistoryAdapter(mContext);
+        StaggeredGridLayoutManager layoutManager =
+                new StaggeredGridLayoutManager(spanCount,
+                                               StaggeredGridLayoutManager.HORIZONTAL);
+        historyViewListView.setLayoutManager(layoutManager);
         historyViewListView.setAdapter(histroyAdapter);
         List<HistoryVideoResp> mData = new ArrayList<>();
         mData.add(new HistoryVideoResp(R.mipmap.pic2, "藍紹敏", "南京市長藍紹敏做客市長在線", "12,360"));
@@ -92,6 +111,30 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mData.add(new HistoryVideoResp(R.mipmap.pic2, "藍紹敏", "武漢市長藍紹敏做客市長在線", "12,362"));
 
         histroyAdapter.setmData(mData);
+        histroyAdapter.setOnItemClickListener(new HistoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(mContext, position + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void initCommentData() {
+        commentRclView.setLayoutManager(
+                new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+        commentAdapter = new CommentAdapter(mContext);
+//        commentRclView.addItemDecoration(
+//                new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+        commentRclView.setAdapter(commentAdapter);
+        List<CommentResp> mDataList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            mDataList.add(new CommentResp(R.mipmap.tx2, "南京用户xxxx6" + i, "2017-9-1" + i,
+                                          getResources().getString(R.string.comment_content_txt),
+                                          getResources().getString(R.string.mayor_content_txt)));
+        }
+
+        commentAdapter.setmData(mDataList);
     }
 
 

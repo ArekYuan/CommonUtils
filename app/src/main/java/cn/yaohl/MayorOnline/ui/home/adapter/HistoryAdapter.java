@@ -1,10 +1,10 @@
 package cn.yaohl.MayorOnline.ui.home.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,11 +19,23 @@ import cn.yaohl.MayorOnline.ui.home.beans.HistoryVideoResp;
  * 历史 直播记录
  */
 
-public class HistoryAdapter extends BaseAdapter {
+public class HistoryAdapter extends
+        RecyclerView.Adapter<HistoryAdapter.ViewHolder>
+        implements View.OnClickListener {
 
     private List<HistoryVideoResp> mData = new ArrayList<>();
     private Context mContext;
     private LayoutInflater mInflater;
+
+    private OnItemClickListener mClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
 
     public HistoryAdapter(Context mContext) {
         this.mContext = mContext;
@@ -37,14 +49,23 @@ public class HistoryAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+
     @Override
-    public int getCount() {
-        return mData == null ? 0 : mData.size();
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = mInflater.inflate(R.layout.history_video_item_layout, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        holder.itemView.setOnClickListener(this);
+        return holder;
     }
 
     @Override
-    public Object getItem(int position) {
-        return mData.get(position);
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        HistoryVideoResp resp = mData.get(position);
+        holder.videoImg.setImageResource(resp.getResourceId());
+        holder.nameTxt.setText(resp.getName());
+        holder.contentTxt.setText(resp.getContent());
+        holder.praiseNumTxt.setText(resp.getNumStr());
+        holder.itemView.setTag(position);
     }
 
     @Override
@@ -53,34 +74,30 @@ public class HistoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.history_video_item_layout, null);
-            holder = new ViewHolder(convertView);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-        HistoryVideoResp resp = mData.get(position);
-        holder.videoImg.setImageResource(resp.getResourceId());
-        holder.nameTxt.setText(resp.getName());
-        holder.contentTxt.setText(resp.getContent());
-        holder.praiseNumTxt.setText(resp.getNumStr());
-        return convertView;
+    public int getItemCount() {
+        return mData == null ? 0 : mData.size();
     }
 
-    static class ViewHolder {
+
+    @Override
+    public void onClick(View v) {
+        if (mClickListener != null) {
+            mClickListener.onItemClick((Integer) v.getTag());
+        }
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView videoImg;
         TextView nameTxt;
         TextView contentTxt;
         TextView praiseNumTxt;
 
         ViewHolder(View v) {
+            super(v);
             videoImg = (ImageView) v.findViewById(R.id.videoImg);
             nameTxt = (TextView) v.findViewById(R.id.nameTxt);
             contentTxt = (TextView) v.findViewById(R.id.contentTxt);
             praiseNumTxt = (TextView) v.findViewById(R.id.praiseNumTxt);
-            v.setTag(this);
         }
     }
 }

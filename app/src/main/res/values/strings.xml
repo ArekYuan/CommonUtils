@@ -38,5 +38,8 @@
     <string name="common_load_fail">%1$s失败，无法连接到服务器，请检查网络连接是否正常</string>
     <string name="common_load_timeout">%1$s超时，连接服务器异常，请检查网络连接是否正常</string>
 
+    <string name="comment_content_txt">改革已经进入了深水期，媒体也好，网络平台，包括现在很多的自媒体，如何能更好，更良心的推动政府的决策？</string>
+
+    <string name="mayor_content_txt">市长回复：今天我们所将软实力， 其实在我看来，对于中国的社会发展来说，两个东西最重要，一个是经济，一个是人心。首先经济不能出问题， 应该保持健康，稳步的成长，这是我们屁股能够坐实，坐稳的一个很重要的东西。</string>
 
 </resources>

@@ -239,7 +239,11 @@
                     android:layout_height="1px"
                     android:background="@color/line_color"/>
 
+                <!--历史记录-->
                 <include layout="@layout/history_video_layout"/>
+
+                <!--评论区-->
+                <include layout="@layout/comment_layout"/>
 
             </LinearLayout>
         </LinearLayout>
