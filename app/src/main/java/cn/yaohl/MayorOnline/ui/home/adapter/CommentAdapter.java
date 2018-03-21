@@ -8,7 +8,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import java.util.List;
 
 import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.ui.home.beans.CommentResp;
+import cn.yaohl.MayorOnline.util.view.RoundImageView;
 
 import static android.graphics.Color.parseColor;
 
@@ -79,7 +79,7 @@ public class CommentAdapter extends
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView commentImg;
+        RoundImageView commentImg;
         TextView commentNameTxt;
         TextView commentDateTxt;
         TextView commentContentTxt;
@@ -87,7 +87,7 @@ public class CommentAdapter extends
 
         ViewHolder(View v) {
             super(v);
-            commentImg = (ImageView) v.findViewById(R.id.commentImg);
+            commentImg = (RoundImageView) v.findViewById(R.id.commentImg);
             commentNameTxt = (TextView) v.findViewById(R.id.commentNameTxt);
             commentDateTxt = (TextView) v.findViewById(R.id.commentDateTxt);
             commentContentTxt = (TextView) v.findViewById(R.id.commentContentTxt);
