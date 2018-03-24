@@ -18,9 +18,11 @@ import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
 
+import cn.yaohl.MayorOnline.MayorApplication;
 import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.alert.MToast;
-import cn.yaohl.MayorOnline.MayorApplication;
+import cn.yaohl.MayorOnline.ui.home.beans.CityBeans;
+import cn.yaohl.MayorOnline.ui.home.beans.CityUtils;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -198,6 +200,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected CityBeans cityList() {
+        return CityUtils.getCitys();
+    }
+
+    
     /**
      * 设置 标题 资源
      *
@@ -378,11 +385,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void requestPermission(String[] permission) {
         String[] p = null;
         if (ContextCompat.checkSelfPermission(BaseActivity.this,
-                permission[0]) != PackageManager.PERMISSION_GRANTED) {
+                                              permission[0]) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(BaseActivity.this, permission, 0);
         }
     }
-
 
 
     /**
@@ -394,17 +400,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                MToast.showMsg(mContext,text);
+                MToast.showMsg(mContext, text);
             }
         });
     }
-
-
-
-
-
-
-
 
 
     /**
@@ -438,7 +437,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
     }
-
 
 
 }

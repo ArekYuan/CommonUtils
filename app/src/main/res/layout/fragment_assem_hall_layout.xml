@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--头部标签-->
+            <include layout="@layout/head_layout"/>
+
+            <!--施政理念-->
+            <include layout="@layout/idea_layout"/>
+
+            <!--治市举措-->
+            <include layout="@layout/measure_layout"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

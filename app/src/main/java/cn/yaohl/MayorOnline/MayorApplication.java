@@ -16,10 +16,15 @@ import com.squareup.leakcanary.LeakCanary;
 import com.yaohl.retrofitlib.log.YLog;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 import cn.yaohl.MayorOnline.sharepref.SharePref;
 import cn.yaohl.MayorOnline.ui.BaseActivity;
+import cn.yaohl.MayorOnline.ui.home.beans.CityBeans;
+import cn.yaohl.MayorOnline.ui.home.beans.CityUtils;
 
 
 /**
@@ -43,6 +48,7 @@ public class MayorApplication extends Application {
 
     public static Context applicationContext;
 
+    public static Map<String, List<CityBeans.ProvincesBean.CitysBean>> params = new HashMap<>();
 
     public synchronized static MayorApplication getInstance() {
         if (null == PDM_APPLICATION) {
@@ -60,8 +66,10 @@ public class MayorApplication extends Application {
         if (activitys == null) {
             activitys = new Stack<>();
         }
+
         YLog yLog = YLog.getInstance();
         yLog.setISDEBUG(true, this);//初始化log
+        initCitys();
 //        initApp();
         // 初始化ImageLoader
         ImageLoader.getInstance().init(getImageLoaderConfiguration(getApplication()));
@@ -76,6 +84,11 @@ public class MayorApplication extends Application {
             ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
         ARouter.init(this);
+    }
+
+    private void initCitys() {
+        CityBeans beans = CityUtils.getCitys();
+        params = CityUtils.getCityData(beans);
     }
 
     /**
@@ -161,7 +174,8 @@ public class MayorApplication extends Application {
     public static ImageLoaderConfiguration getImageLoaderConfiguration(Context context) {
         File cacheDir = StorageUtils.getOwnCacheDirectory(context, "cache/suning");
         ImageLoaderConfiguration imageLoaderConfiguration =
-                new ImageLoaderConfiguration.Builder(context).memoryCacheExtraOptions(480, 800) // maxwidth, max
+                new ImageLoaderConfiguration.Builder(context).memoryCacheExtraOptions(480,
+                                                                                      800) // maxwidth, max
                         // height，即保存的每个缓存文件的最大长宽
                         .threadPoolSize(3)
                         // 线程池内加载的数量

@@ -104,6 +104,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 new StaggeredGridLayoutManager(spanCount,
                                                StaggeredGridLayoutManager.HORIZONTAL);
         historyViewListView.setLayoutManager(layoutManager);
+        historyViewListView.setFocusable(false);
         historyViewListView.setAdapter(histroyAdapter);
         List<HistoryVideoResp> mData = new ArrayList<>();
         mData.add(new HistoryVideoResp(R.mipmap.pic2, "藍紹敏", "南京市長藍紹敏做客市長在線", "12,360"));
@@ -122,7 +123,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private void initCommentData() {
         commentRclView.setLayoutManager(
-                new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+                new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false) {
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                });
         commentAdapter = new CommentAdapter(mContext);
 //        commentRclView.addItemDecoration(
 //                new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));

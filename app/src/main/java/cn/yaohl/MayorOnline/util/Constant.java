@@ -41,4 +41,12 @@ public class Constant {
      * tgc 验证
      */
     public static final String SECURITY_TGC = "security_tgc";
+
+    public static final String PROVINCE_CITY = "province_city";
+
+    public static final String CITY_DATA = "city_data";
+
+    public static final String LOCATION_BROAD_CAST = "location_broad_cast_receiver";
+
+    public static String LOCATION = "";
 }

@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:widget="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/white"
               android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingLeft="10dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="往期市长在线"
+            android:text="治市举措"
             android:textColor="@color/txt_black_color"
             android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/moreVideoTxt"
+            android:id="@+id/moreMeasureTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
+            android:padding="10dp"
             android:text="更多"
             android:textColor="@color/txt_pink_color"
             android:textSize="12sp"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/historyViewListView"
+        android:id="@+id/measureRLView"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:fadingEdgeLength="2dp"
-        android:requiresFadingEdge="horizontal"
-        widget:dividerWidth="10dp"/>
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

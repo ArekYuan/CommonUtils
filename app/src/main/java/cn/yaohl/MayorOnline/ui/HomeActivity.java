@@ -1,5 +1,6 @@
 package cn.yaohl.MayorOnline.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,9 +21,11 @@ import java.util.List;
 
 import cn.yaohl.MayorOnline.MayorApplication;
 import cn.yaohl.MayorOnline.R;
-import cn.yaohl.MayorOnline.ui.chart.ChartFragment;
+import cn.yaohl.MayorOnline.ui.chart.AssemHallFragment;
 import cn.yaohl.MayorOnline.ui.home.HomeFragment;
+import cn.yaohl.MayorOnline.ui.home.activity.ProListActivity;
 import cn.yaohl.MayorOnline.ui.lmessage.LMessageFragment;
+import cn.yaohl.MayorOnline.util.Constant;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -60,6 +63,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         return R.layout.activity_home_fragment;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +73,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         initView();
         initData();
     }
-
 
     private void initView() {
         mainTabLayout = (TabLayout) findViewById(R.id.mainTabLayout);
@@ -96,15 +99,33 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     showShortToast("登录");
                     break;
                 case R.id.locationTxt:
-                    showShortToast("南京");
+//                    showShortToast("南京");
+                    doCitySelect();
                     break;
             }
         }
     };
 
+    private int requestCode = 0x11;
+
+    private void doCitySelect() {
+        Intent intent = new Intent(mContext, ProListActivity.class);
+//        startActivityForResult(intent, requestCode);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!Constant.LOCATION.equals("")) {
+            locationTxt.setText(Constant.LOCATION);
+        }
+    }
+
+
     private void initData() {
         fragmentList.add(new HomeFragment());
-        fragmentList.add(new ChartFragment());
+        fragmentList.add(new AssemHallFragment());
         fragmentList.add(new LMessageFragment());
 
         for (int i = 0; i < titleStr.length; i++) {
