@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * 作者：袁光跃
@@ -45,6 +46,10 @@ public abstract class BaseFragment extends Fragment {
      * @return int
      */
     protected abstract int getContentViewId();
+
+    protected void showShortToast(String text) {
+        Toast.makeText(mContext, text, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onDestroy() {

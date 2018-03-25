@@ -1,4 +1,4 @@
-package cn.yaohl.MayorOnline.ui.chart;
+package cn.yaohl.MayorOnline.ui.hall;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +12,10 @@ import java.util.List;
 
 import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.ui.BaseFragment;
-import cn.yaohl.MayorOnline.ui.chart.adapter.IdeaAdapter;
-import cn.yaohl.MayorOnline.ui.chart.adapter.MeasureAdapter;
-import cn.yaohl.MayorOnline.ui.chart.beans.IdeasResp;
-import cn.yaohl.MayorOnline.ui.chart.beans.MeasureResp;
+import cn.yaohl.MayorOnline.ui.hall.adapter.IdeaAdapter;
+import cn.yaohl.MayorOnline.ui.hall.adapter.MeasureAdapter;
+import cn.yaohl.MayorOnline.ui.hall.beans.IdeasResp;
+import cn.yaohl.MayorOnline.ui.hall.beans.MeasureResp;
 
 /**
  * Created by 袁光跃 on 2018/3/19 0019.
@@ -89,6 +89,7 @@ public class AssemHallFragment extends BaseFragment implements View.OnClickListe
             }
         };
         ideaRLView.setLayoutManager(linearLayoutManager);
+        ideaRLView.setFocusable(false);
         ideaRLView.setAdapter(ideaAdapter);
         List<IdeasResp> respList = new ArrayList<>();
         respList.add(new IdeasResp("强化城市治理，为民众谋福祉！", "1,290", "390"));

@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:layout_marginTop="5dp"
               android:background="@color/white"
-              android:orientation="vertical">
-
+              android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,12 +16,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="治市举措"
+            android:text="留言精选"
             android:textColor="@color/txt_black_color"
             android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/moreMeasureTxt"
+            android:id="@+id/moreMessageTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -31,8 +31,11 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/measureRLView"
+        android:id="@+id/messageListRLView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="10dp"/>
+
 
 </LinearLayout>

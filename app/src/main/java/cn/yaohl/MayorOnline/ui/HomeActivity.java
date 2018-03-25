@@ -21,7 +21,7 @@ import java.util.List;
 
 import cn.yaohl.MayorOnline.MayorApplication;
 import cn.yaohl.MayorOnline.R;
-import cn.yaohl.MayorOnline.ui.chart.AssemHallFragment;
+import cn.yaohl.MayorOnline.ui.hall.AssemHallFragment;
 import cn.yaohl.MayorOnline.ui.home.HomeFragment;
 import cn.yaohl.MayorOnline.ui.home.activity.ProListActivity;
 import cn.yaohl.MayorOnline.ui.lmessage.LMessageFragment;

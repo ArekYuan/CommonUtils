@@ -1,4 +1,4 @@
-package cn.yaohl.MayorOnline.ui.chart.beans;
+package cn.yaohl.MayorOnline.ui.hall.beans;
 
 import cn.yaohl.MayorOnline.ui.BaseResp;
 

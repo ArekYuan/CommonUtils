@@ -1,4 +1,4 @@
-package cn.yaohl.MayorOnline.ui.chart.adapter;
+package cn.yaohl.MayorOnline.ui.hall.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -14,28 +14,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.yaohl.MayorOnline.R;
-import cn.yaohl.MayorOnline.ui.chart.beans.MeasureResp;
+import cn.yaohl.MayorOnline.ui.hall.beans.IdeasResp;
 
 /**
- * Created by 袁光跃 on 2018/3/24 0024.
- * 施政举措 适配器
+ * Created by ygy on 2018/3/24 0024.
+ * 施政理念 适配器
  */
 
-public class MeasureAdapter extends RecyclerView.Adapter<MeasureAdapter.ViewHolder> {
+public class IdeaAdapter extends RecyclerView.Adapter<IdeaAdapter.ViewHolder> {
 
 
-    private List<MeasureResp> mData = new ArrayList<>();
+    private List<IdeasResp> mData = new ArrayList<>();
     private Context mContext;
     private LayoutInflater mInflater;
 
 
-    public void setmData(List<MeasureResp> mData) {
+    public void setmData(List<IdeasResp> mData) {
         this.mData.clear();
         this.mData.addAll(mData);
         notifyDataSetChanged();
     }
 
-    public MeasureAdapter(Context mContext) {
+    public IdeaAdapter(Context mContext) {
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
     }
@@ -49,7 +49,7 @@ public class MeasureAdapter extends RecyclerView.Adapter<MeasureAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        MeasureResp resp = mData.get(position);
+        IdeasResp resp = mData.get(position);
         holder.itemContentTxt.setText(resp.getContent());
         holder.praiseNumTxt.setText(resp.getCommentNum());
         holder.messageNumTxt.setText(resp.getMessageNum());
