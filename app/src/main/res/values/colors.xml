@@ -52,4 +52,6 @@
 
     <color name="txt_gback_color">#4c4b51</color>
     <color name="txt_gred_color">#d41f26</color>
+
+    <color name="txt_black_gray_color">#1d1b26</color>
 </resources>

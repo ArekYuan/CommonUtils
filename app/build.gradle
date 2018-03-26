@@ -54,7 +54,9 @@ dependencies {
     compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     compile "com.gyf.barlibrary:barlibrary:$rootProject.barlibraryVersion"
     testCompile "junit:junit:$rootProject.junitVersion"
+
     // router
     //    compile "com.alibaba:arouter-api:$rootProject.arouterVersion"
 //    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

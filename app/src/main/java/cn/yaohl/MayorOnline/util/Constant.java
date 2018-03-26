@@ -48,5 +48,13 @@ public class Constant {
 
     public static final String LOCATION_BROAD_CAST = "location_broad_cast_receiver";
 
+    public static final String USER_INFO_NAME = "user_info_name";
+
+    public static final String USER_INFO_BIRTHDAY = "user_info_birthday";
+    public static final String USER_INFO_ID_CARD = "user_info_idCard";
+    public static final String USER_INFO_IPHONE = "user_info_iphone";
+    public static final String USER_INFO_PTC = "user_info_PTC";
+    public static final String USER_INFO_ADDRESS = "user_info_address";
+
     public static String LOCATION = "";
 }

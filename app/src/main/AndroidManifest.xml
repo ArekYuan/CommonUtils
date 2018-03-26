@@ -83,16 +83,29 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
-        <!--省份列表-->
+        <!-- 省份列表 -->
         <activity
             android:name=".ui.home.activity.ProListActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>
 
-        <!--城市列表-->
+        <!-- 城市列表 -->
         <activity
             android:name=".ui.home.activity.CitysListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- 个人信息页面 -->
+        <activity
+            android:name=".ui.personal.PersonalInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
+        <!--个人信息详细页面-->
+        <activity
+            android:name=".ui.personal.activity.InfoDetailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>

@@ -25,6 +25,7 @@ import cn.yaohl.MayorOnline.ui.hall.AssemHallFragment;
 import cn.yaohl.MayorOnline.ui.home.HomeFragment;
 import cn.yaohl.MayorOnline.ui.home.activity.ProListActivity;
 import cn.yaohl.MayorOnline.ui.lmessage.LMessageFragment;
+import cn.yaohl.MayorOnline.ui.personal.PersonalInfoActivity;
 import cn.yaohl.MayorOnline.util.Constant;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
@@ -90,13 +91,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Intent intent;
             switch (v.getId()) {
 
                 case R.id.searchLayout:
                     showShortToast("搜索页面");
                     break;
                 case R.id.loginHeadImg:
-                    showShortToast("登录");
+                    intent = new Intent(mContext, PersonalInfoActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.locationTxt:
 //                    showShortToast("南京");
@@ -106,11 +109,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         }
     };
 
-    private int requestCode = 0x11;
 
     private void doCitySelect() {
         Intent intent = new Intent(mContext, ProListActivity.class);
-//        startActivityForResult(intent, requestCode);
         startActivity(intent);
     }
 
