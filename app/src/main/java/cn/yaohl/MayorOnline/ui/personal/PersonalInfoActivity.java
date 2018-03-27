@@ -10,6 +10,8 @@ import cn.yaohl.MayorOnline.MayorApplication;
 import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.ui.BaseActivity;
 import cn.yaohl.MayorOnline.ui.personal.activity.InfoDetailActivity;
+import cn.yaohl.MayorOnline.ui.personal.activity.MyAnswerActivity;
+import cn.yaohl.MayorOnline.util.Constant;
 import cn.yaohl.MayorOnline.util.view.RoundImageView;
 
 public class PersonalInfoActivity extends BaseActivity implements View.OnClickListener {
@@ -73,8 +75,14 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
             case R.id.headIV:
                 break;
             case R.id.myAnswerTxt:
+                intent = new Intent(mContext, MyAnswerActivity.class)
+                        .putExtra(Constant.MINE_ANSWER_FLAG, 1001);
+                startActivity(intent);
                 break;
             case R.id.myHistoryTxt:
+                intent = new Intent(mContext, MyAnswerActivity.class)
+                        .putExtra(Constant.MINE_ANSWER_FLAG, 1002);
+                startActivity(intent);
                 break;
         }
     }

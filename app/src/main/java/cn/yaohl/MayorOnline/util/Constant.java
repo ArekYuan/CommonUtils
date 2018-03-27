@@ -55,6 +55,8 @@ public class Constant {
     public static final String USER_INFO_IPHONE = "user_info_iphone";
     public static final String USER_INFO_PTC = "user_info_PTC";
     public static final String USER_INFO_ADDRESS = "user_info_address";
+    public static final String MINE_ANSWER_FLAG = "mine_answer";
+    public static final String MINE_HISTORY = "mine_history";
 
     public static String LOCATION = "";
 }

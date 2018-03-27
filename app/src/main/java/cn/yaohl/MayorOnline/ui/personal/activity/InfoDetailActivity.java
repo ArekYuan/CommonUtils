@@ -115,6 +115,6 @@ public class InfoDetailActivity extends BaseActivity implements View.OnClickList
         new SharePref(mContext).setStringValue(Constant.USER_INFO_PTC, ptc);
         new SharePref(mContext).setStringValue(Constant.USER_INFO_ADDRESS, address);
 
-
+        finish();
     }
 }
