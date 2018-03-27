@@ -20,7 +20,7 @@ android {
 
     signingConfigs {
 
-        //平安签名配置
+        //市长在线签名配置
         release {
             storeFile file("E:\\work_space\\mayoline\\CommonUtils\\mayor.jks")         //签名文件位置
             storePassword "mayoline"                 //签名文件密码
