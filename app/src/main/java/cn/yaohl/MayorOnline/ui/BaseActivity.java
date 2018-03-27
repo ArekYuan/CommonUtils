@@ -146,7 +146,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.rightIv:
-                    onRightClick();
+                    onRightClick(v);
                     break;
                 case R.id.titleLeftIV:
                     onLeftClick();
@@ -281,7 +281,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 右部点击事件
      */
-    protected void onRightClick() {
+    protected void onRightClick(View v) {
     }
 
     /**

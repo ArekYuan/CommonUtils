@@ -23,10 +23,12 @@ import cn.yaohl.MayorOnline.MayorApplication;
 import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.ui.hall.AssemHallFragment;
 import cn.yaohl.MayorOnline.ui.home.HomeFragment;
+import cn.yaohl.MayorOnline.ui.home.activity.AboutUsActivity;
 import cn.yaohl.MayorOnline.ui.home.activity.ProListActivity;
 import cn.yaohl.MayorOnline.ui.lmessage.LMessageFragment;
 import cn.yaohl.MayorOnline.ui.personal.PersonalInfoActivity;
 import cn.yaohl.MayorOnline.util.Constant;
+import cn.yaohl.MayorOnline.util.PopWindow;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -115,6 +117,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         startActivity(intent);
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -182,8 +185,18 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
 
     @Override
-    protected void onRightClick() {
-        super.onRightClick();
+    protected void onRightClick(View v) {
+        super.onRightClick(v);
+        final PopWindow popWindow = new PopWindow(mContext, v);
+        popWindow.setOnItemClickListener(new PopWindow.OnItemClickListener() {
+            @Override
+            public void onItemClick() {
+                Intent intent = new Intent(mContext, AboutUsActivity.class);
+                startActivity(intent);
+                popWindow.dismiss();
+            }
+        });
+        popWindow.showPop(v);
     }
 
     @Override
