@@ -42,18 +42,18 @@ public class XAxis extends AxisBase {
     protected float mLabelRotationAngle = 0f;
 
     /**
-     * if set to true, the chart will avoid that the first and last label entry
-     * in the chart "clip" off the edge of the chart
+     * if set to true, the hall will avoid that the first and last label entry
+     * in the hall "clip" off the edge of the hall
      */
     private boolean mAvoidFirstLastClipping = false;
 
     /**
-     * the position of the x-labels relative to the chart
+     * the position of the x-labels relative to the hall
      */
     private XAxisPosition mPosition = XAxisPosition.TOP;
 
     /**
-     * enum for the position of the x-labels relative to the chart
+     * enum for the position of the x-labels relative to the hall
      */
     public enum XAxisPosition {
         TOP, BOTTOM, BOTH_SIDED, TOP_INSIDE, BOTTOM_INSIDE
@@ -98,8 +98,8 @@ public class XAxis extends AxisBase {
     }
 
     /**
-     * if set to true, the chart will avoid that the first and last label entry
-     * in the chart "clip" off the edge of the chart or the screen
+     * if set to true, the hall will avoid that the first and last label entry
+     * in the hall "clip" off the edge of the hall or the screen
      *
      * @param enabled
      */

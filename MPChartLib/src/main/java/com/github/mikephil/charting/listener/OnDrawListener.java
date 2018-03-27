@@ -4,7 +4,7 @@ import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 
 /**
- * Listener for callbacks when drawing on the chart.
+ * Listener for callbacks when drawing on the hall.
  * 
  * @author Philipp
  * 

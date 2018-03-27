@@ -20,8 +20,8 @@ import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.renderer.CombinedChartRenderer;
 
 /**
- * This chart class allows the combination of lines, bars, scatter and candle
- * data all displayed in one chart area.
+ * This hall class allows the combination of lines, bars, scatter and candle
+ * data all displayed in one hall area.
  *
  * @author Philipp Jahoda
  */
@@ -49,7 +49,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
 
     /**
      * enum that allows to specify the order in which the different data objects
-     * for the combined-chart are drawn
+     * for the combined-hall are drawn
      */
     public enum DrawOrder {
         BAR, BUBBLE, LINE, CANDLE, SCATTER

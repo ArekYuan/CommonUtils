@@ -26,7 +26,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 public abstract class DataRenderer extends Renderer {
 
     /**
-     * the animator object used to perform animations on the chart data
+     * the animator object used to perform animations on the hall data
      */
     protected ChartAnimator mAnimator;
 
@@ -43,7 +43,7 @@ public abstract class DataRenderer extends Renderer {
     protected Paint mDrawPaint;
 
     /**
-     * paint object for drawing values (text representing values of chart
+     * paint object for drawing values (text representing values of hall
      * entries)
      */
     protected Paint mValuePaint;

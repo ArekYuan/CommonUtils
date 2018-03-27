@@ -10,7 +10,7 @@ import com.github.mikephil.charting.utils.Utils;
 
 /**
  * The limit line is an additional feature for all Line-, Bar- and
- * ScatterCharts. It allows the displaying of an additional line in the chart
+ * ScatterCharts. It allows the displaying of an additional line in the hall
  * that marks a certain maximum / limit on the specified axis (x- or y-axis).
  * 
  * @author Philipp Jahoda
@@ -75,7 +75,7 @@ public class LimitLine extends ComponentBase {
     }
 
     /**
-     * set the line width of the chart (min = 0.2f, max = 12f); default 2f NOTE:
+     * set the line width of the hall (min = 0.2f, max = 12f); default 2f NOTE:
      * thinner line == better performance, thicker line == worse performance
      * 
      * @param width
@@ -177,7 +177,7 @@ public class LimitLine extends ComponentBase {
 
     /**
      * Sets the position of the LimitLine value label (either on the right or on
-     * the left edge of the chart). Not supported for RadarChart.
+     * the left edge of the hall). Not supported for RadarChart.
      * 
      * @param pos
      */

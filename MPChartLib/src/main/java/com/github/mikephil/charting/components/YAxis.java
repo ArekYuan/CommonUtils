@@ -12,7 +12,7 @@ import com.github.mikephil.charting.utils.Utils;
  * are suitable for the
  * RadarChart. Customizations that affect the value range of the axis need to be applied before
  * setting data for the
- * chart.
+ * hall.
  *
  * @author Philipp Jahoda
  */
@@ -59,12 +59,12 @@ public class YAxis extends AxisBase {
     protected float mSpacePercentBottom = 10f;
 
     /**
-     * the position of the y-labels relative to the chart
+     * the position of the y-labels relative to the hall
      */
     private YAxisLabelPosition mPosition = YAxisLabelPosition.OUTSIDE_CHART;
 
     /**
-     * enum for the position of the y-labels relative to the chart
+     * enum for the position of the y-labels relative to the hall
      */
     public enum YAxisLabelPosition {
         OUTSIDE_CHART, INSIDE_CHART
@@ -195,7 +195,7 @@ public class YAxis extends AxisBase {
 
     /**
      * If this is set to true, the y-axis is inverted which means that low values are on top of
-     * the chart, high values
+     * the hall, high values
      * on bottom.
      *
      * @param enabled

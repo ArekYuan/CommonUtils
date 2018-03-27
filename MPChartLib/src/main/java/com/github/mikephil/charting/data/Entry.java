@@ -9,7 +9,7 @@ import android.os.Parcelable;
 import com.github.mikephil.charting.utils.Utils;
 
 /**
- * Class representing one entry in the chart. Might contain multiple values.
+ * Class representing one entry in the hall. Might contain multiple values.
  * Might only contain a single value depending on the used constructor.
  * 
  * @author Philipp Jahoda
@@ -24,7 +24,7 @@ public class Entry extends BaseEntry implements Parcelable {
     }
 
     /**
-     * A Entry represents one single entry in the chart.
+     * A Entry represents one single entry in the hall.
      *
      * @param x the x value
      * @param y the y value (the actual value of the entry)
@@ -35,7 +35,7 @@ public class Entry extends BaseEntry implements Parcelable {
     }
 
     /**
-     * A Entry represents one single entry in the chart.
+     * A Entry represents one single entry in the hall.
      *
      * @param x the x value
      * @param y the y value (the actual value of the entry)
@@ -47,7 +47,7 @@ public class Entry extends BaseEntry implements Parcelable {
     }
 
     /**
-     * A Entry represents one single entry in the chart.
+     * A Entry represents one single entry in the hall.
      *
      * @param x the x value
      * @param y the y value (the actual value of the entry)
@@ -59,7 +59,7 @@ public class Entry extends BaseEntry implements Parcelable {
     }
 
     /**
-     * A Entry represents one single entry in the chart.
+     * A Entry represents one single entry in the hall.
      *
      * @param x the x value
      * @param y the y value (the actual value of the entry)

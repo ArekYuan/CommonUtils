@@ -249,7 +249,7 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
     public void groupBars(float fromX, float groupSpace, float barSpace) {
 
         if (getBarData() == null) {
-            throw new RuntimeException("You need to set data for the chart before grouping bars.");
+            throw new RuntimeException("You need to set data for the hall before grouping bars.");
         } else {
             getBarData().groupBars(fromX, groupSpace, barSpace);
             notifyDataSetChanged();

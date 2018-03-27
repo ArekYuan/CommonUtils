@@ -20,7 +20,7 @@ import com.github.mikephil.charting.utils.Utils;
 import java.util.List;
 
 /**
- * View that represents a pie chart. Draws cake like slices.
+ * View that represents a pie hall. Draws cake like slices.
  *
  * @author Philipp Jahoda
  */
@@ -48,7 +48,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     private float[] mAbsoluteAngles = new float[1];
 
     /**
-     * if true, the white hole inside the chart will be drawn
+     * if true, the white hole inside the hall will be drawn
      */
     private boolean mDrawHole = true;
 
@@ -68,7 +68,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     private boolean mDrawRoundedSlices = false;
 
     /**
-     * variable for the text that is drawn in the center of the pie-chart
+     * variable for the text that is drawn in the center of the pie-hall
      */
     private CharSequence mCenterText = "";
 
@@ -81,7 +81,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     private float mHoleRadiusPercent = 50f;
 
     /**
-     * the radius of the transparent circle next to the chart-hole in the center
+     * the radius of the transparent circle next to the hall-hole in the center
      */
     protected float mTransparentCircleRadiusPercent = 55f;
 
@@ -154,8 +154,8 @@ public class PieChart extends PieRadarChartBase<PieData> {
 
         float shift = mData.getDataSet().getSelectionShift();
 
-        // create the circle box that will contain the pie-chart (the bounds of
-        // the pie-chart)
+        // create the circle box that will contain the pie-hall (the bounds of
+        // the pie-hall)
         mCircleBox.set(c.x - radius + shift,
                 c.y - radius + shift,
                 c.x + radius - shift,
@@ -181,7 +181,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
             off = (r - (r / 100f * getHoleRadius())) / 2f;
         }
 
-        r -= off; // offset to keep things inside the chart
+        r -= off; // offset to keep things inside the hall
 
         float rotationAngle = getRotationAngle();
 
@@ -203,7 +203,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * calculates the needed angles for the chart slices
+     * calculates the needed angles for the hall slices
      */
     private void calcAngles() {
 
@@ -306,7 +306,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     @Override
     public int getIndexForAngle(float angle) {
 
-        // take the current angle of the chart into consideration
+        // take the current angle of the hall into consideration
         float a = Utils.getNormalizedAngle(angle - getRotationAngle());
 
         for (int i = 0; i < mAbsoluteAngles.length; i++) {
@@ -336,7 +336,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * returns an integer array of all the different angles the chart slices
+     * returns an integer array of all the different angles the hall slices
      * have the angles in the returned array determine how much space (of 360°)
      * each slice takes
      *
@@ -347,7 +347,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * returns the absolute angles of the different chart slices (where the
+     * returns the absolute angles of the different hall slices (where the
      * slices end)
      *
      * @return
@@ -393,7 +393,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * returns true if the hole in the center of the pie-chart is set to be
+     * returns true if the hole in the center of the pie-hall is set to be
      * visible, false if not
      *
      * @return
@@ -415,7 +415,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * returns the text that is drawn in the center of the pie-chart
+     * returns the text that is drawn in the center of the pie-hall
      *
      * @return
      */
@@ -425,7 +425,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
 
     /**
      * set this to true to draw the text that is displayed in the center of the
-     * pie chart
+     * pie hall
      *
      * @param enabled
      */
@@ -461,7 +461,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * returns the circlebox, the boundingbox of the pie-chart slices
+     * returns the circlebox, the boundingbox of the pie-hall slices
      *
      * @return
      */
@@ -537,7 +537,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
 
     /**
      * sets the radius of the hole in the center of the piechart in percent of
-     * the maximum radius (max = the radius of the whole chart), default 50%
+     * the maximum radius (max = the radius of the whole hall), default 50%
      *
      * @param percent
      */
@@ -570,7 +570,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     /**
      * sets the radius of the transparent circle that is drawn next to the hole
      * in the piechart in percent of the maximum radius (max = the radius of the
-     * whole chart), default 55% -> means 5% larger than the center-hole by
+     * whole hall), default 55% -> means 5% larger than the center-hole by
      * default
      *
      * @param percent
@@ -651,7 +651,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * Returns true if the chart is set to draw each end of a pie-slice
+     * Returns true if the hall is set to draw each end of a pie-slice
      * "rounded".
      *
      * @return
@@ -672,7 +672,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * Returns true if using percentage values is enabled for the chart.
+     * Returns true if using percentage values is enabled for the hall.
      *
      * @return
      */
@@ -704,7 +704,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
 
     /**
      * Sets the max angle that is used for calculating the pie-circle. 360f means
-     * it's a full PieChart, 180f results in a half-pie-chart. Default: 360f
+     * it's a full PieChart, 180f results in a half-pie-hall. Default: 360f
      *
      * @param maxangle min 90, max 360
      */

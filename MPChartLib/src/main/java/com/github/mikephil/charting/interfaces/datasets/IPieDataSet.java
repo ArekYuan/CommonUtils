@@ -27,7 +27,7 @@ public interface IPieDataSet extends IDataSet<PieEntry> {
 
     /**
      * Returns the distance a highlighted piechart slice is "shifted" away from
-     * the chart-center in dp.
+     * the hall-center in dp.
      *
      * @return
      */

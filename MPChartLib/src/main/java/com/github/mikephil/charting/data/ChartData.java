@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class that holds all relevant data that represents the chart. That involves
+ * Class that holds all relevant data that represents the hall. That involves
  * at least one (or more) DataSets, and an array of x-values.
  *
  * @author Philipp Jahoda
@@ -89,7 +89,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
     }
 
     /**
-     * constructor for chart data
+     * constructor for hall data
      *
      * @param sets the dataset array
      */
@@ -756,7 +756,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
 
     /**
      * Clears this data object from all DataSets and removes all Entries. Don't
-     * forget to invalidate the chart after this.
+     * forget to invalidate the hall after this.
      */
     public void clearValues() {
         if (mDataSets != null) {

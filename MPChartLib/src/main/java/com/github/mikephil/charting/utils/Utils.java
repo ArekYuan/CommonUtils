@@ -234,7 +234,7 @@ public abstract class Utils {
         return formatter;
     }
 
-    /// - returns: The default value formatter used for all chart components that needs a default
+    /// - returns: The default value formatter used for all hall components that needs a default
     public static IValueFormatter getDefaultValueFormatter()
     {
         return mDefaultValueFormatter;

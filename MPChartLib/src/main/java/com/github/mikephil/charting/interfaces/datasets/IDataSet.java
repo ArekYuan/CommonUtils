@@ -310,18 +310,18 @@ public interface IDataSet<T extends Entry> {
     void setHighlightEnabled(boolean enabled);
 
     /**
-     * Sets the formatter to be used for drawing the values inside the chart. If
-     * no formatter is set, the chart will automatically determine a reasonable
+     * Sets the formatter to be used for drawing the values inside the hall. If
+     * no formatter is set, the hall will automatically determine a reasonable
      * formatting (concerning decimals) for all the values that are drawn inside
-     * the chart. Use chart.getDefaultValueFormatter() to use the formatter
-     * calculated by the chart.
+     * the hall. Use hall.getDefaultValueFormatter() to use the formatter
+     * calculated by the hall.
      *
      * @param f
      */
     void setValueFormatter(IValueFormatter f);
 
     /**
-     * Returns the formatter used for drawing the values inside the chart.
+     * Returns the formatter used for drawing the values inside the hall.
      *
      * @return
      */
@@ -370,7 +370,7 @@ public interface IDataSet<T extends Entry> {
     int getValueTextColor();
 
     /**
-     * Returns the color at the specified index that is used for drawing the values inside the chart.
+     * Returns the color at the specified index that is used for drawing the values inside the hall.
      * Uses modulus internally.
      *
      * @param index
@@ -379,14 +379,14 @@ public interface IDataSet<T extends Entry> {
     int getValueTextColor(int index);
 
     /**
-     * Returns the typeface that is used for drawing the values inside the chart
+     * Returns the typeface that is used for drawing the values inside the hall
      *
      * @return
      */
     Typeface getValueTypeface();
 
     /**
-     * Returns the text size that is used for drawing the values inside the chart
+     * Returns the text size that is used for drawing the values inside the hall
      *
      * @return
      */
@@ -421,7 +421,7 @@ public interface IDataSet<T extends Entry> {
     DashPathEffect getFormLineDashEffect();
 
     /**
-     * set this to true to draw y-values on the chart.
+     * set this to true to draw y-values on the hall.
      *
      * NOTE (for bar and line charts): if `maxVisibleCount` is reached, no values will be drawn even
      * if this is enabled
@@ -437,7 +437,7 @@ public interface IDataSet<T extends Entry> {
     boolean isDrawValuesEnabled();
 
     /**
-     * Set this to true to draw y-icons on the chart.
+     * Set this to true to draw y-icons on the hall.
      *
      * NOTE (for bar and line charts): if `maxVisibleCount` is reached, no icons will be drawn even
      * if this is enabled
@@ -454,11 +454,11 @@ public interface IDataSet<T extends Entry> {
     boolean isDrawIconsEnabled();
 
     /**
-     * Offset of icons drawn on the chart.
+     * Offset of icons drawn on the hall.
      *
      * For all charts except Pie and Radar it will be ordinary (x offset,y offset).
      *
-     * For Pie and Radar chart it will be (y offset, distance from center offset); so if you want icon to be rendered under value, you should increase X component of CGPoint, and if you want icon to be rendered closet to center, you should decrease height component of CGPoint.
+     * For Pie and Radar hall it will be (y offset, distance from center offset); so if you want icon to be rendered under value, you should increase X component of CGPoint, and if you want icon to be rendered closet to center, you should decrease height component of CGPoint.
      * @param offset
      */
     void setIconsOffset(MPPointF offset);
@@ -470,14 +470,14 @@ public interface IDataSet<T extends Entry> {
 
     /**
      * Set the visibility of this DataSet. If not visible, the DataSet will not
-     * be drawn to the chart upon refreshing it.
+     * be drawn to the hall upon refreshing it.
      *
      * @param visible
      */
     void setVisible(boolean visible);
 
     /**
-     * Returns true if this DataSet is visible inside the chart, or false if it
+     * Returns true if this DataSet is visible inside the hall, or false if it
      * is currently hidden.
      *
      * @return

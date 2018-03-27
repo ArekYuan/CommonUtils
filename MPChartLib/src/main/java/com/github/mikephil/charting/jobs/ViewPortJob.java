@@ -10,8 +10,8 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 /**
  * Runnable that is used for viewport modifications since they cannot be
  * executed at any time. This can be used to delay the execution of viewport
- * modifications until the onSizeChanged(...) method of the chart-view is called.
- * This is especially important if viewport modifying methods are called on the chart
+ * modifications until the onSizeChanged(...) method of the hall-view is called.
+ * This is especially important if viewport modifying methods are called on the hall
  * directly after initialization.
  * 
  * @author Philipp Jahoda

@@ -388,7 +388,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     }
 
     /**
-     * Sets a custom IFillFormatter to the chart that handles the position of the
+     * Sets a custom IFillFormatter to the hall that handles the position of the
      * filled-line for each DataSet. Set this to null to use the default logic.
      *
      * @param formatter

@@ -67,12 +67,12 @@ public class ViewPortHandler {
     private float mTransY = 0f;
 
     /**
-     * offset that allows the chart to be dragged over its bounds on the x-axis
+     * offset that allows the hall to be dragged over its bounds on the x-axis
      */
     private float mTransOffsetX = 0f;
 
     /**
-     * offset that allows the chart to be dragged over its bounds on the x-axis
+     * offset that allows the hall to be dragged over its bounds on the x-axis
      */
     private float mTransOffsetY = 0f;
 
@@ -84,7 +84,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Sets the width and height of the chart.
+     * Sets the width and height of the hall.
      *
      * @param width
      * @param height
@@ -317,7 +317,7 @@ public class ViewPortHandler {
     protected float[] valsBufferForFitScreen = new float[9];
 
     /**
-     * Resets all zooming and dragging and makes the chart fit exactly it's
+     * Resets all zooming and dragging and makes the hall fit exactly it's
      * bounds.
      */
     public Matrix fitScreen() {
@@ -328,7 +328,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Resets all zooming and dragging and makes the chart fit exactly it's
+     * Resets all zooming and dragging and makes the hall fit exactly it's
      * bounds.  Output Matrix is available for those who wish to cache the object.
      */
     public void fitScreen(Matrix outputMatrix) {
@@ -384,7 +384,7 @@ public class ViewPortHandler {
 
     /**
      * Centers the viewport around the specified position (x-index and y-value)
-     * in the chart. Centering the viewport outside the bounds of the chart is
+     * in the hall. Centering the viewport outside the bounds of the hall is
      * not possible. Makes most sense in combination with the
      * setScaleMinima(...) method.
      *
@@ -664,7 +664,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * if the chart is fully zoomed out, return true
+     * if the hall is fully zoomed out, return true
      *
      * @return
      */
@@ -674,7 +674,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Returns true if the chart is fully zoomed out on it's y-axis (vertical).
+     * Returns true if the hall is fully zoomed out on it's y-axis (vertical).
      *
      * @return
      */
@@ -683,7 +683,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Returns true if the chart is fully zoomed out on it's x-axis
+     * Returns true if the hall is fully zoomed out on it's x-axis
      * (horizontal).
      *
      * @return
@@ -693,7 +693,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Set an offset in dp that allows the user to drag the chart over it's
+     * Set an offset in dp that allows the user to drag the hall over it's
      * bounds on the x-axis.
      *
      * @param offset
@@ -703,7 +703,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Set an offset in dp that allows the user to drag the chart over it's
+     * Set an offset in dp that allows the user to drag the hall over it's
      * bounds on the y-axis.
      *
      * @param offset
@@ -722,7 +722,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Returns true if the chart is not yet fully zoomed out on the x-axis
+     * Returns true if the hall is not yet fully zoomed out on the x-axis
      *
      * @return
      */
@@ -731,7 +731,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Returns true if the chart is not yet fully zoomed in on the x-axis
+     * Returns true if the hall is not yet fully zoomed in on the x-axis
      *
      * @return
      */
@@ -740,7 +740,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Returns true if the chart is not yet fully zoomed out on the y-axis
+     * Returns true if the hall is not yet fully zoomed out on the y-axis
      *
      * @return
      */
@@ -749,7 +749,7 @@ public class ViewPortHandler {
     }
 
     /**
-     * Returns true if the chart is not yet fully zoomed in on the y-axis
+     * Returns true if the hall is not yet fully zoomed in on the y-axis
      *
      * @return
      */

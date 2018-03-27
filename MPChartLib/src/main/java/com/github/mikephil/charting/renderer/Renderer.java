@@ -11,7 +11,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 public abstract class Renderer {
 
     /**
-     * the component that handles the drawing area of the chart and it's offsets
+     * the component that handles the drawing area of the hall and it's offsets
      */
     protected ViewPortHandler mViewPortHandler;
 

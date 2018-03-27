@@ -30,12 +30,12 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
         extends Chart<T> {
 
     /**
-     * holds the normalized version of the current rotation angle of the chart
+     * holds the normalized version of the current rotation angle of the hall
      */
     private float mRotationAngle = 270f;
 
     /**
-     * holds the raw version of the current rotation angle of the chart
+     * holds the raw version of the current rotation angle of the hall
      */
     private float mRawRotationAngle = 270f;
 
@@ -45,7 +45,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     protected boolean mRotateEnabled = true;
 
     /**
-     * Sets the minimum offset (padding) around the chart, defaults to 0.f
+     * Sets the minimum offset (padding) around the hall, defaults to 0.f
      */
     protected float mMinOffset = 0.f;
 
@@ -124,13 +124,13 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
                     if (mLegend.getHorizontalAlignment() == Legend.LegendHorizontalAlignment.LEFT
                             || mLegend.getHorizontalAlignment() == Legend.LegendHorizontalAlignment.RIGHT) {
                         if (mLegend.getVerticalAlignment() == Legend.LegendVerticalAlignment.CENTER) {
-                            // this is the space between the legend and the chart
+                            // this is the space between the legend and the hall
                             final float spacing = Utils.convertDpToPixel(13f);
 
                             xLegendOffset = fullLegendWidth + spacing;
 
                         } else {
-                            // this is the space between the legend and the chart
+                            // this is the space between the legend and the hall
                             float spacing = Utils.convertDpToPixel(8f);
 
                             float legendWidth = fullLegendWidth + spacing;
@@ -249,8 +249,8 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     }
 
     /**
-     * returns the angle relative to the chart center for the given point on the
-     * chart in degrees. The angle is always between 0 and 360°, 0° is NORTH,
+     * returns the angle relative to the hall center for the given point on the
+     * hall in degrees. The angle is always between 0 and 360°, 0° is NORTH,
      * 90° is EAST, ...
      *
      * @param x
@@ -270,7 +270,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
         if (x > c.x)
             angle = 360f - angle;
 
-        // add 90° because chart starts EAST
+        // add 90° because hall starts EAST
         angle = angle + 90f;
 
         // neutralize overflow
@@ -305,8 +305,8 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     }
 
     /**
-     * Returns the distance of a certain point on the chart to the center of the
-     * chart.
+     * Returns the distance of a certain point on the hall to the center of the
+     * hall.
      *
      * @param x
      * @param y
@@ -342,7 +342,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     }
 
     /**
-     * Returns the xIndex for the given angle around the center of the chart.
+     * Returns the xIndex for the given angle around the center of the hall.
      * Returns -1 if not found / outofbounds.
      *
      * @param angle
@@ -362,7 +362,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     }
 
     /**
-     * gets the raw version of the current rotation angle of the pie chart the
+     * gets the raw version of the current rotation angle of the pie hall the
      * returned value could be any value, negative or positive, outside of the
      * 360 degrees. this is used when working with rotation direction, mainly by
      * gestures and animations.
@@ -374,7 +374,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     }
 
     /**
-     * gets a normalized version of the current rotation angle of the pie chart,
+     * gets a normalized version of the current rotation angle of the pie hall,
      * which will always be between 0.0 < 360.0
      *
      * @return
@@ -384,7 +384,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     }
 
     /**
-     * Set this to true to enable the rotation / spinning of the chart by touch.
+     * Set this to true to enable the rotation / spinning of the hall by touch.
      * Set it to false to disable it. Default: true
      *
      * @param enabled
@@ -394,7 +394,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     }
 
     /**
-     * Returns true if rotation of the chart by touch is enabled, false if not.
+     * Returns true if rotation of the hall by touch is enabled, false if not.
      *
      * @return
      */
@@ -403,21 +403,21 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     }
 
     /**
-     * Gets the minimum offset (padding) around the chart, defaults to 0.f
+     * Gets the minimum offset (padding) around the hall, defaults to 0.f
      */
     public float getMinOffset() {
         return mMinOffset;
     }
 
     /**
-     * Sets the minimum offset (padding) around the chart, defaults to 0.f
+     * Sets the minimum offset (padding) around the hall, defaults to 0.f
      */
     public void setMinOffset(float minOffset) {
         mMinOffset = minOffset;
     }
 
     /**
-     * returns the diameter of the pie- or radar-chart
+     * returns the diameter of the pie- or radar-hall
      *
      * @return
      */
@@ -431,21 +431,21 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     }
 
     /**
-     * Returns the radius of the chart in pixels.
+     * Returns the radius of the hall in pixels.
      *
      * @return
      */
     public abstract float getRadius();
 
     /**
-     * Returns the required offset for the chart legend.
+     * Returns the required offset for the hall legend.
      *
      * @return
      */
     protected abstract float getRequiredLegendOffset();
 
     /**
-     * Returns the base offset needed for the chart without calculating the
+     * Returns the base offset needed for the hall without calculating the
      * legend size.
      *
      * @return

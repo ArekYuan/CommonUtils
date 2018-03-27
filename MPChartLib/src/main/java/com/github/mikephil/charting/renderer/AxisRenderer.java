@@ -36,7 +36,7 @@ public abstract class AxisRenderer extends Renderer {
     protected Paint mAxisLabelPaint;
 
     /**
-     * paint for the line surrounding the chart
+     * paint for the line surrounding the hall
      */
     protected Paint mAxisLinePaint;
 

@@ -20,7 +20,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import java.util.List;
 
 /**
- * Bubble chart implementation: Copyright 2015 Pierre-Marc Airoldi Licensed
+ * Bubble hall implementation: Copyright 2015 Pierre-Marc Airoldi Licensed
  * under Apache License 2.0 Ported by Daniel Cohen Gindi
  */
 public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {

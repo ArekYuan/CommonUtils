@@ -228,7 +228,7 @@ public abstract class AxisBase extends ComponentBase {
     }
 
     /**
-     * Sets the width of the border surrounding the chart in dp.
+     * Sets the width of the border surrounding the hall in dp.
      *
      * @param width
      */
@@ -266,7 +266,7 @@ public abstract class AxisBase extends ComponentBase {
     }
 
     /**
-     * Sets the color of the border surrounding the chart.
+     * Sets the color of the border surrounding the hall.
      *
      * @param color
      */
@@ -474,10 +474,10 @@ public abstract class AxisBase extends ComponentBase {
 
     /**
      * Sets the formatter to be used for formatting the axis labels. If no formatter is set, the
-     * chart will
+     * hall will
      * automatically determine a reasonable formatting (concerning decimals) for all the values
      * that are drawn inside
-     * the chart. Use chart.getDefaultValueFormatter() to use the formatter calculated by the chart.
+     * the hall. Use hall.getDefaultValueFormatter() to use the formatter calculated by the hall.
      *
      * @param f
      */
@@ -705,10 +705,10 @@ public abstract class AxisBase extends ComponentBase {
 
     /**
      * Calculates the minimum / maximum  and range values of the axis with the given
-     * minimum and maximum values from the chart data.
+     * minimum and maximum values from the hall data.
      *
-     * @param dataMin the min value according to chart data
-     * @param dataMax the max value according to chart data
+     * @param dataMin the min value according to hall data
+     * @param dataMax the max value according to hall data
      */
     public void calculate(float dataMin, float dataMax) {
 

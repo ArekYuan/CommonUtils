@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PieDataSet extends DataSet<PieEntry> implements IPieDataSet {
 
-    /** the space in pixels between the chart-slices, default 0f */
+    /** the space in pixels between the hall-slices, default 0f */
     private float mSliceSpace = 0f;
     private boolean mAutomaticallyDisableSliceSpacing;
 
@@ -99,7 +99,7 @@ public class PieDataSet extends DataSet<PieEntry> implements IPieDataSet {
 
     /**
      * sets the distance the highlighted piechart-slice of this DataSet is
-     * "shifted" away from the center of the chart, default 12f
+     * "shifted" away from the center of the hall, default 12f
      * 
      * @param shift
      */

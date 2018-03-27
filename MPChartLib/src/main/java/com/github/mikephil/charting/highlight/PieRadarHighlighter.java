@@ -55,7 +55,7 @@ public abstract class PieRadarHighlighter<T extends PieRadarChartBase> implement
     }
 
     /**
-     * Returns the closest Highlight object of the given objects based on the touch position inside the chart.
+     * Returns the closest Highlight object of the given objects based on the touch position inside the hall.
      *
      * @param index
      * @param x

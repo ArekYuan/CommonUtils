@@ -17,7 +17,7 @@ import com.github.mikephil.charting.renderer.YAxisRendererRadarChart;
 import com.github.mikephil.charting.utils.Utils;
 
 /**
- * Implementation of the RadarChart, a "spidernet"-like chart. It works best
+ * Implementation of the RadarChart, a "spidernet"-like hall. It works best
  * when displaying 5-10 entries per DataSet.
  *
  * @author Philipp Jahoda
@@ -170,7 +170,7 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     }
 
     /**
-     * Returns the angle that each slice in the radar chart occupies.
+     * Returns the angle that each slice in the radar hall occupies.
      *
      * @return
      */
@@ -181,7 +181,7 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     @Override
     public int getIndexForAngle(float angle) {
 
-        // take the current angle of the chart into consideration
+        // take the current angle of the hall into consideration
         float a = Utils.getNormalizedAngle(angle - getRotationAngle());
 
         float sliceangle = getSliceAngle();
@@ -299,7 +299,7 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     }
 
     /**
-     * Sets the number of web-lines that should be skipped on chart web before the
+     * Sets the number of web-lines that should be skipped on hall web before the
      * next one is drawn. This targets the lines that come from the center of the RadarChart.
      *
      * @param count if count = 1 -> 1 line is skipped in between
@@ -337,21 +337,21 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     }
 
     /**
-     * Returns the maximum value this chart can display on it's y-axis.
+     * Returns the maximum value this hall can display on it's y-axis.
      */
     public float getYChartMax() {
         return mYAxis.mAxisMaximum;
     }
 
     /**
-     * Returns the minimum value this chart can display on it's y-axis.
+     * Returns the minimum value this hall can display on it's y-axis.
      */
     public float getYChartMin() {
         return mYAxis.mAxisMinimum;
     }
 
     /**
-     * Returns the range of y-values this chart can display.
+     * Returns the range of y-values this hall can display.
      *
      * @return
      */

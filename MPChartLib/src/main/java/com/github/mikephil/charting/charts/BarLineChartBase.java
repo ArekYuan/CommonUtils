@@ -71,12 +71,12 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * flag that indicates if highlighting per dragging over a fully zoomed out
-     * chart is enabled
+     * hall is enabled
      */
     protected boolean mHighlightPerDragEnabled = true;
 
     /**
-     * if true, dragging is enabled for the chart
+     * if true, dragging is enabled for the hall
      */
     private boolean mDragXEnabled = true;
     private boolean mDragYEnabled = true;
@@ -101,17 +101,17 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     protected boolean mClipValuesToContent = false;
 
     /**
-     * Sets the minimum offset (padding) around the chart, defaults to 15
+     * Sets the minimum offset (padding) around the hall, defaults to 15
      */
     protected float mMinOffset = 15.f;
 
     /**
-     * flag indicating if the chart should stay at the same position after a rotation. Default is false.
+     * flag indicating if the hall should stay at the same position after a rotation. Default is false.
      */
     protected boolean mKeepPositionOnRotation = false;
 
     /**
-     * the listener for user drawing on the chart
+     * the listener for user drawing on the hall
      */
     protected OnDrawListener mDrawListener;
 
@@ -672,7 +672,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Zooms to the center of the chart with the given scale factor.
+     * Zooms to the center of the hall with the given scale factor.
      *
      * @param scaleX
      * @param scaleY
@@ -719,7 +719,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     protected Matrix mFitScreenMatrixBuffer = new Matrix();
 
     /**
-     * Resets all zooming and dragging and makes the chart fit exactly it's
+     * Resets all zooming and dragging and makes the hall fit exactly it's
      * bounds.
      */
     public void fitScreen() {
@@ -822,7 +822,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Moves the left side of the current viewport to the specified x-position.
-     * This also refreshes the chart by calling invalidate().
+     * This also refreshes the hall by calling invalidate().
      *
      * @param xValue
      */
@@ -837,7 +837,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     /**
      * This will move the left side of the current viewport to the specified
      * x-value on the x-axis, and center the viewport to the specified y value on the y-axis.
-     * This also refreshes the chart by calling invalidate().
+     * This also refreshes the hall by calling invalidate().
      *
      * @param xValue
      * @param yValue
@@ -856,7 +856,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     /**
      * This will move the left side of the current viewport to the specified x-value
      * and center the viewport to the y value animated.
-     * This also refreshes the chart by calling invalidate().
+     * This also refreshes the hall by calling invalidate().
      *
      * @param xValue
      * @param yValue
@@ -885,7 +885,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Centers the viewport to the specified y value on the y-axis.
-     * This also refreshes the chart by calling invalidate().
+     * This also refreshes the hall by calling invalidate().
      *
      * @param yValue
      * @param axis   - which axis should be used as a reference for the y-axis
@@ -903,7 +903,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     /**
      * This will move the center of the current viewport to the specified
      * x and y value.
-     * This also refreshes the chart by calling invalidate().
+     * This also refreshes the hall by calling invalidate().
      *
      * @param xValue
      * @param yValue
@@ -959,7 +959,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Sets custom offsets for the current ViewPort (the offsets on the sides of
-     * the actual chart window). Setting this will prevent the chart from
+     * the actual hall window). Setting this will prevent the hall from
      * automatically calculating it's offsets. Use resetViewPortOffsets() to
      * undo this. ONLY USE THIS WHEN YOU KNOW WHAT YOU ARE DOING, else use
      * setExtraOffsets(...).
@@ -987,7 +987,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Resets all custom offsets set via setViewPortOffsets(...) method. Allows
-     * the chart to again calculate all offsets automatically.
+     * the hall to again calculate all offsets automatically.
      */
     public void resetViewPortOffsets() {
         mCustomViewPortEnabled = false;
@@ -1034,7 +1034,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Returns a recyclable MPPointF instance.
-     * Returns the position (in pixels) the provided Entry has inside the chart
+     * Returns the position (in pixels) the provided Entry has inside the hall
      * view or null, if the provided Entry is null.
      *
      * @param e
@@ -1054,7 +1054,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * sets the number of maximum visible drawn values on the chart only active
+     * sets the number of maximum visible drawn values on the hall only active
      * when setDrawValues() is enabled
      *
      * @param count
@@ -1068,7 +1068,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Set this to true to allow highlighting per dragging over the chart
+     * Set this to true to allow highlighting per dragging over the hall
      * surface when it is fully zoomed out. Default: true
      *
      * @param enabled
@@ -1082,7 +1082,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Sets the color for the background of the chart-drawing area (everything
+     * Sets the color for the background of the hall-drawing area (everything
      * behind the grid lines).
      *
      * @param color
@@ -1092,8 +1092,8 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Set this to true to enable dragging (moving the chart with the finger)
-     * for the chart (this does not effect scaling).
+     * Set this to true to enable dragging (moving the hall with the finger)
+     * for the hall (this does not effect scaling).
      *
      * @param enabled
      */
@@ -1103,7 +1103,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Returns true if dragging is enabled for the chart, false if not.
+     * Returns true if dragging is enabled for the hall, false if not.
      *
      * @return
      */
@@ -1121,7 +1121,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Returns true if dragging on the X axis is enabled for the chart, false if not.
+     * Returns true if dragging on the X axis is enabled for the hall, false if not.
      *
      * @return
      */
@@ -1139,7 +1139,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Returns true if dragging on the Y axis is enabled for the chart, false if not.
+     * Returns true if dragging on the Y axis is enabled for the hall, false if not.
      *
      * @return
      */
@@ -1149,7 +1149,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Set this to true to enable scaling (zooming in and out by gesture) for
-     * the chart (this does not effect dragging) on both X- and Y-Axis.
+     * the hall (this does not effect dragging) on both X- and Y-Axis.
      *
      * @param enabled
      */
@@ -1175,7 +1175,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Set this to true to enable zooming in by double-tap on the chart.
+     * Set this to true to enable zooming in by double-tap on the hall.
      * Default: enabled
      *
      * @param enabled
@@ -1252,7 +1252,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Sets the color of the chart border lines.
+     * Sets the color of the hall border lines.
      *
      * @param color
      */
@@ -1261,14 +1261,14 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Gets the minimum offset (padding) around the chart, defaults to 15.f
+     * Gets the minimum offset (padding) around the hall, defaults to 15.f
      */
     public float getMinOffset() {
         return mMinOffset;
     }
 
     /**
-     * Sets the minimum offset (padding) around the chart, defaults to 15.f
+     * Sets the minimum offset (padding) around the hall, defaults to 15.f
      */
     public void setMinOffset(float minOffset) {
         mMinOffset = minOffset;
@@ -1282,7 +1282,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Sets whether the chart should keep its position (zoom / scroll) after a rotation (orientation change)
+     * Sets whether the hall should keep its position (zoom / scroll) after a rotation (orientation change)
      */
     public void setKeepPositionOnRotation(boolean keepPositionOnRotation) {
         mKeepPositionOnRotation = keepPositionOnRotation;
@@ -1290,9 +1290,9 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Returns a recyclable MPPointD instance
-     * Returns the x and y values in the chart at the given touch point
+     * Returns the x and y values in the hall at the given touch point
      * (encapsulated in a MPPointD). This method transforms pixel coordinates to
-     * coordinates / values in the chart. This is the opposite method to
+     * coordinates / values in the hall. This is the opposite method to
      * getPixelForValues(...).
      *
      * @param x
@@ -1311,7 +1311,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Returns a recyclable MPPointD instance
-     * Transforms the given chart values into pixels. This is the opposite
+     * Transforms the given hall values into pixels. This is the opposite
      * method to getValuesByTouchPoint(...).
      *
      * @param x
@@ -1323,7 +1323,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * returns the Entry object displayed at the touched position of the chart
+     * returns the Entry object displayed at the touched position of the hall
      *
      * @param x
      * @param y
@@ -1338,7 +1338,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * returns the DataSet object displayed at the touched position of the chart
+     * returns the DataSet object displayed at the touched position of the hall
      *
      * @param x
      * @param y
@@ -1359,7 +1359,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Returns the lowest x-index (value on the x-axis) that is still visible on
-     * the chart.
+     * the hall.
      *
      * @return
      */
@@ -1378,7 +1378,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Returns the highest x-index (value on the x-axis) that is still visible
-     * on the chart.
+     * on the hall.
      *
      * @return
      */
@@ -1420,7 +1420,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * if the chart is fully zoomed out, return true
+     * if the hall is fully zoomed out, return true
      *
      * @return
      */
@@ -1429,7 +1429,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Returns the left y-axis object. In the horizontal bar-chart, this is the
+     * Returns the left y-axis object. In the horizontal bar-hall, this is the
      * top axis.
      *
      * @return
@@ -1439,7 +1439,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Returns the right y-axis object. In the horizontal bar-chart, this is the
+     * Returns the right y-axis object. In the horizontal bar-hall, this is the
      * bottom axis.
      *
      * @return
@@ -1450,7 +1450,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     /**
      * Returns the y-axis object to the corresponding AxisDependency. In the
-     * horizontal bar-chart, LEFT == top, RIGHT == BOTTOM
+     * horizontal bar-hall, LEFT == top, RIGHT == BOTTOM
      *
      * @param axis
      * @return
@@ -1487,7 +1487,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Set an offset in dp that allows the user to drag the chart over it's
+     * Set an offset in dp that allows the user to drag the hall over it's
      * bounds on the x-axis.
      *
      * @param offset
@@ -1497,7 +1497,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     /**
-     * Set an offset in dp that allows the user to drag the chart over it's
+     * Set an offset in dp that allows the user to drag the hall over it's
      * bounds on the y-axis.
      *
      * @param offset
@@ -1627,7 +1627,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 
-        // Saving current position of chart.
+        // Saving current position of hall.
         mOnSizeChangedBuffer[0] = mOnSizeChangedBuffer[1] = 0;
 
         if (mKeepPositionOnRotation) {
@@ -1636,12 +1636,12 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
             getTransformer(AxisDependency.LEFT).pixelsToValue(mOnSizeChangedBuffer);
         }
 
-        //Superclass transforms chart.
+        //Superclass transforms hall.
         super.onSizeChanged(w, h, oldw, oldh);
 
         if (mKeepPositionOnRotation) {
 
-            //Restoring old position of chart.
+            //Restoring old position of hall.
             getTransformer(AxisDependency.LEFT).pointValuesToPixel(mOnSizeChangedBuffer);
             mViewPortHandler.centerViewPort(mOnSizeChangedBuffer, this);
         } else {

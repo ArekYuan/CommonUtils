@@ -38,7 +38,7 @@ public class PieChartRenderer extends DataRenderer {
     protected PieChart mChart;
 
     /**
-     * paint for the hole in the center of the pie chart and the transparent
+     * paint for the hole in the center of the pie hall and the transparent
      * circle
      */
     protected Paint mHolePaint;
@@ -47,7 +47,7 @@ public class PieChartRenderer extends DataRenderer {
 
     /**
      * paint object for the text that can be displayed in the center of the
-     * chart
+     * hall
      */
     private TextPaint mCenterTextPaint;
 
@@ -642,7 +642,7 @@ public class PieChartRenderer extends DataRenderer {
     private Path mHoleCirclePath = new Path();
 
     /**
-     * draws the hole in the center of the chart and the transparent circle /
+     * draws the hole in the center of the hall and the transparent circle /
      * hole
      */
     protected void drawHole(Canvas c) {
@@ -684,7 +684,7 @@ public class PieChartRenderer extends DataRenderer {
 
     protected Path mDrawCenterTextPathBuffer = new Path();
     /**
-     * draws the description text in the center of the pie chart makes most
+     * draws the description text in the center of the pie hall makes most
      * sense when center-hole is enabled
      */
     protected void drawCenterText(Canvas c) {

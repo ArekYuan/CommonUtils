@@ -4,7 +4,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 
 /**
- * Listener for callbacks when selecting values inside the chart by
+ * Listener for callbacks when selecting values inside the hall by
  * touch-gesture.
  *
  * @author Philipp Jahoda
@@ -12,7 +12,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 public interface OnChartValueSelectedListener {
 
     /**
-     * Called when a value has been selected inside the chart.
+     * Called when a value has been selected inside the hall.
      *
      * @param e The selected Entry
      * @param h The corresponding highlight object that contains information

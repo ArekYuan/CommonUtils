@@ -9,7 +9,7 @@ import com.github.mikephil.charting.interfaces.dataprovider.CandleDataProvider;
 import com.github.mikephil.charting.renderer.CandleStickChartRenderer;
 
 /**
- * Financial chart type that draws candle-sticks (OHCL chart).
+ * Financial hall type that draws candle-sticks (OHCL hall).
  *
  * @author Philipp Jahoda
  */

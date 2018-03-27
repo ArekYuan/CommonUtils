@@ -41,9 +41,9 @@ public class ChartAnimator {
     /** METHODS FOR CUSTOM EASING */
 
     /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with
+     * Animates the drawing / rendering of the hall on both x- and y-axis with
      * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart.
+     * calling of invalidate() is necessary to refresh the hall.
      *
      * @param durationMillisX
      * @param durationMillisY
@@ -78,9 +78,9 @@ public class ChartAnimator {
     }
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified
+     * Animates the rendering of the hall on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * invalidate() is necessary to refresh the hall.
      *
      * @param durationMillis
      * @param easing
@@ -98,9 +98,9 @@ public class ChartAnimator {
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
+     * Animates the rendering of the hall on the y-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * invalidate() is necessary to refresh the hall.
      *
      * @param durationMillis
      * @param easing
@@ -123,9 +123,9 @@ public class ChartAnimator {
     /** METHODS FOR PREDEFINED EASING */
 
     /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with
+     * Animates the drawing / rendering of the hall on both x- and y-axis with
      * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart.
+     * calling of invalidate() is necessary to refresh the hall.
      *
      * @param durationMillisX
      * @param durationMillisY
@@ -160,9 +160,9 @@ public class ChartAnimator {
     }
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified
+     * Animates the rendering of the hall on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * invalidate() is necessary to refresh the hall.
      *
      * @param durationMillis
      * @param easing
@@ -180,9 +180,9 @@ public class ChartAnimator {
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
+     * Animates the rendering of the hall on the y-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * invalidate() is necessary to refresh the hall.
      *
      * @param durationMillis
      * @param easing
@@ -205,9 +205,9 @@ public class ChartAnimator {
     /** METHODS FOR ANIMATION WITHOUT EASING */
 
     /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with
+     * Animates the drawing / rendering of the hall on both x- and y-axis with
      * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart.
+     * calling of invalidate() is necessary to refresh the hall.
      *
      * @param durationMillisX
      * @param durationMillisY
@@ -237,9 +237,9 @@ public class ChartAnimator {
     }
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified
+     * Animates the rendering of the hall on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * invalidate() is necessary to refresh the hall.
      *
      * @param durationMillis
      */
@@ -255,9 +255,9 @@ public class ChartAnimator {
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
+     * Animates the rendering of the hall on the y-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * invalidate() is necessary to refresh the hall.
      *
      * @param durationMillis
      */

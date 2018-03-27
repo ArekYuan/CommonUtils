@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 
 /**
  * Subclass of Entry that holds a value for one entry in a BubbleChart. Bubble
- * chart implementation: Copyright 2015 Pierre-Marc Airoldi Licensed under
+ * hall implementation: Copyright 2015 Pierre-Marc Airoldi Licensed under
  * Apache License 2.0
  *
  * @author Philipp Jahoda

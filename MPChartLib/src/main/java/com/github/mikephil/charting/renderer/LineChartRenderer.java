@@ -202,7 +202,7 @@ public class LineChartRenderer extends LineRadarRenderer {
             float curDy = 0f;
 
             // Take an extra point from the left, and an extra from the right.
-            // That's because we need 4 points for a cubic bezier (cubic=4), otherwise we get lines moving and doing weird stuff on the edges of the chart.
+            // That's because we need 4 points for a cubic bezier (cubic=4), otherwise we get lines moving and doing weird stuff on the edges of the hall.
             // So in the starting `prev` and `cur`, go -2, -1
             // And in the `lastIndex`, add +1
 
@@ -476,7 +476,7 @@ public class LineChartRenderer extends LineRadarRenderer {
      * @param dataSet    The dataset from which to read the entries.
      * @param startIndex The index from which to start reading the dataset
      * @param endIndex   The index from which to stop reading the dataset
-     * @param outputPath The path object that will be assigned the chart data.
+     * @param outputPath The path object that will be assigned the hall data.
      * @return
      */
     private void generateFilledPath(final ILineDataSet dataSet, final int startIndex, final int endIndex, final Path outputPath) {

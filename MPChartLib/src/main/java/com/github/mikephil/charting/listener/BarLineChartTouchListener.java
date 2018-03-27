@@ -30,7 +30,7 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
         extends IBarLineScatterCandleBubbleDataSet<? extends Entry>>>> {
 
     /**
-     * the original touch-matrix from the chart
+     * the original touch-matrix from the hall
      */
     private Matrix mMatrix = new Matrix();
 
@@ -77,8 +77,8 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
     /**
      * Constructor with initialization parameters.
      *
-     * @param chart               instance of the chart
-     * @param touchMatrix         the touch-matrix of the chart
+     * @param chart               instance of the hall
+     * @param touchMatrix         the touch-matrix of the hall
      * @param dragTriggerDistance the minimum movement distance that will be interpreted as a "drag" gesture in dp (3dp equals
      *                            to about 9 pixels on a 5.5" FHD screen)
      */
@@ -282,7 +282,7 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
                 break;
         }
 
-        // perform the transformation, update the chart
+        // perform the transformation, update the hall
         mMatrix = mChart.getViewPortHandler().refresh(mMatrix, mChart, true);
 
         return true; // indicate event was handled
@@ -555,7 +555,7 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
     }
 
     /**
-     * Sets the minimum distance that will be interpreted as a "drag" by the chart in dp.
+     * Sets the minimum distance that will be interpreted as a "drag" by the hall in dp.
      * Default: 3dp
      *
      * @param dragTriggerDistance

@@ -67,12 +67,12 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     private DashPathEffect mFormLineDashEffect = null;
 
     /**
-     * if true, y-values are drawn on the chart
+     * if true, y-values are drawn on the hall
      */
     protected boolean mDrawValues = true;
 
     /**
-     * if true, y-icons are drawn on the chart
+     * if true, y-icons are drawn on the hall
      */
     protected boolean mDrawIcons = true;
 

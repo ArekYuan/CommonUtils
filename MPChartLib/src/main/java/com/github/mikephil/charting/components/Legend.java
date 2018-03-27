@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class representing the legend of the chart. The legend will contain one entry
+ * Class representing the legend of the hall. The legend will contain one entry
  * per color and DataSet. Multiple colors in one DataSet are grouped together.
- * The legend object is NOT available before setting data to the chart.
+ * The legend object is NOT available before setting data to the hall.
  *
  * @author Philipp Jahoda
  */
@@ -153,7 +153,7 @@ public class Legend extends ComponentBase {
     private float mStackSpace = 3f;
 
     /**
-     * the maximum relative size out of the whole chart view in percent
+     * the maximum relative size out of the whole hall view in percent
      */
     private float mMaxSizePercent = 0.95f;
 
@@ -581,7 +581,7 @@ public class Legend extends ComponentBase {
     }
 
     /**
-     * returns whether the legend will draw inside the chart or outside
+     * returns whether the legend will draw inside the hall or outside
      *
      * @return
      */
@@ -590,7 +590,7 @@ public class Legend extends ComponentBase {
     }
 
     /**
-     * sets whether the legend will draw inside the chart or outside
+     * sets whether the legend will draw inside the hall or outside
      *
      * @param value
      */
@@ -805,9 +805,9 @@ public class Legend extends ComponentBase {
     }
 
     /**
-     * The maximum relative size out of the whole chart view. / If the legend is
-     * to the right/left of the chart, then this affects the width of the
-     * legend. / If the legend is to the top/bottom of the chart, then this
+     * The maximum relative size out of the whole hall view. / If the legend is
+     * to the right/left of the hall, then this affects the width of the
+     * legend. / If the legend is to the top/bottom of the hall, then this
      * affects the height of the legend. / If the legend is the center of the
      * piechart, then this defines the size of the rectangular bounds out of the
      * size of the "hole". / default: 0.95f (95%)
@@ -819,9 +819,9 @@ public class Legend extends ComponentBase {
     }
 
     /**
-     * The maximum relative size out of the whole chart view. / If
-     * the legend is to the right/left of the chart, then this affects the width
-     * of the legend. / If the legend is to the top/bottom of the chart, then
+     * The maximum relative size out of the whole hall view. / If
+     * the legend is to the right/left of the hall, then this affects the width
+     * of the legend. / If the legend is to the top/bottom of the hall, then
      * this affects the height of the legend. / default: 0.95f (95%)
      *
      * @param maxSize

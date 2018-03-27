@@ -28,7 +28,7 @@ public class Transformer {
     protected Matrix mMatrixValueToPx = new Matrix();
 
     /**
-     * matrix for handling the different offsets of the chart
+     * matrix for handling the different offsets of the hall
      */
     protected Matrix mMatrixOffset = new Matrix();
 
@@ -393,7 +393,7 @@ public class Transformer {
 
     /**
      * Transforms the given array of touch positions (pixels) (x, y, x, y, ...)
-     * into values on the chart.
+     * into values on the hall.
      *
      * @param pixels
      */
@@ -420,9 +420,9 @@ public class Transformer {
 
     /**
      * Returns a recyclable MPPointD instance.
-     * returns the x and y values in the chart at the given touch point
+     * returns the x and y values in the hall at the given touch point
      * (encapsulated in a MPPointD). This method transforms pixel coordinates to
-     * coordinates / values in the chart. This is the opposite method to
+     * coordinates / values in the hall. This is the opposite method to
      * getPixelForValues(...).
      *
      * @param x
@@ -449,7 +449,7 @@ public class Transformer {
 
     /**
      * Returns a recyclable MPPointD instance.
-     * Returns the x and y coordinates (pixels) for a given x and y value in the chart.
+     * Returns the x and y coordinates (pixels) for a given x and y value in the hall.
      *
      * @param x
      * @param y

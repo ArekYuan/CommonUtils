@@ -73,7 +73,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     protected boolean mLogEnabled = false;
 
     /**
-     * object that holds all data that was originally set for the chart, before
+     * object that holds all data that was originally set for the hall, before
      * it was modified or any filtering algorithms had been applied
      */
     protected T mData = null;
@@ -84,7 +84,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     protected boolean mHighLightPerTapEnabled = true;
 
     /**
-     * If set to true, chart continues to scroll after touch up
+     * If set to true, hall continues to scroll after touch up
      */
     private boolean mDragDecelerationEnabled = true;
 
@@ -97,19 +97,19 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     private float mDragDecelerationFrictionCoef = 0.9f;
 
     /**
-     * default value-formatter, number of digits depends on provided chart-data
+     * default value-formatter, number of digits depends on provided hall-data
      */
     protected DefaultValueFormatter mDefaultValueFormatter = new DefaultValueFormatter(0);
 
     /**
      * paint object used for drawing the description text in the bottom right
-     * corner of the chart
+     * corner of the hall
      */
     protected Paint mDescPaint;
 
     /**
      * paint object for drawing the information text when there are no values in
-     * the chart
+     * the hall
      */
     protected Paint mInfoPaint;
 
@@ -119,7 +119,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     protected XAxis mXAxis;
 
     /**
-     * if true, touch gestures are enabled on the chart
+     * if true, touch gestures are enabled on the hall
      */
     protected boolean mTouchEnabled = true;
 
@@ -134,19 +134,19 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     protected Legend mLegend;
 
     /**
-     * listener that is called when a value on the chart is selected
+     * listener that is called when a value on the hall is selected
      */
     protected OnChartValueSelectedListener mSelectionListener;
 
     protected ChartTouchListener mChartTouchListener;
 
     /**
-     * text that is displayed when the chart is empty
+     * text that is displayed when the hall is empty
      */
-    private String mNoDataText = "No chart data available.";
+    private String mNoDataText = "No hall data available.";
 
     /**
-     * Gesture listener for custom callbacks when making gestures on the chart.
+     * Gesture listener for custom callbacks when making gestures on the hall.
      */
     private OnChartGestureListener mGestureListener;
 
@@ -160,7 +160,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     protected IHighlighter mHighlighter;
 
     /**
-     * object that manages the bounds and drawing constraints of the chart
+     * object that manages the bounds and drawing constraints of the hall
      */
     protected ViewPortHandler mViewPortHandler = new ViewPortHandler();
 
@@ -278,7 +278,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     // }
 
     /**
-     * Sets a new data object for the chart. The data object contains all values
+     * Sets a new data object for the hall. The data object contains all values
      * and information needed for displaying.
      *
      * @param data
@@ -300,7 +300,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
                 set.setValueFormatter(mDefaultValueFormatter);
         }
 
-        // let the chart know there is new data
+        // let the hall know there is new data
         notifyDataSetChanged();
 
         if (mLogEnabled)
@@ -308,7 +308,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Clears the chart from all data (sets it to null) and refreshes it (by
+     * Clears the hall from all data (sets it to null) and refreshes it (by
      * calling invalidate()).
      */
     public void clear() {
@@ -320,8 +320,8 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Removes all DataSets (and thereby Entries) from the chart. Does not set the data object to null. Also refreshes the
-     * chart by calling invalidate().
+     * Removes all DataSets (and thereby Entries) from the hall. Does not set the data object to null. Also refreshes the
+     * hall by calling invalidate().
      */
     public void clearValues() {
         mData.clearValues();
@@ -329,7 +329,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns true if the chart is empty (meaning it's data object is either
+     * Returns true if the hall is empty (meaning it's data object is either
      * null or contains no entries).
      *
      * @return
@@ -348,7 +348,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Lets the chart know its underlying data has changed and performs all
+     * Lets the hall know its underlying data has changed and performs all
      * necessary recalculations. It is crucial that this method is called
      * everytime data is changed dynamically. Not calling this method can lead
      * to crashes or unexpected behaviour.
@@ -356,7 +356,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     public abstract void notifyDataSetChanged();
 
     /**
-     * Calculates the offsets of the chart to the border depending on the
+     * Calculates the offsets of the hall to the border depending on the
      * position of an eventual legend or depending on the length of the y-axis
      * and x-axis labels and their position
      */
@@ -369,7 +369,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
     /**
      * Calculates the required number of digits for the values that might be
-     * drawn in the chart (if enabled), and creates the default-value-formatter
+     * drawn in the hall (if enabled), and creates the default-value-formatter
      */
     protected void setupDefaultFormatter(float min, float max) {
 
@@ -417,7 +417,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Draws the description text in the bottom right corner of the chart (per default)
+     * Draws the description text in the bottom right corner of the hall (per default)
      */
     protected void drawDescription(Canvas c) {
 
@@ -453,7 +453,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
     /**
      * array of Highlight objects that reference the highlighted slices in the
-     * chart
+     * hall
      */
     protected Highlight[] mIndicesToHighlight;
 
@@ -548,7 +548,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
         setLastHighlighted(highs);
 
-        // redraw the chart
+        // redraw the hall
         invalidate();
     }
 
@@ -657,7 +657,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
             }
         }
 
-        // redraw the chart
+        // redraw the hall
         invalidate();
     }
 
@@ -681,7 +681,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
     /**
      * Set a new (e.g. custom) ChartTouchListener NOTE: make sure to
-     * setTouchEnabled(true); if you need touch gestures on the chart
+     * setTouchEnabled(true); if you need touch gestures on the hall
      *
      * @param l
      */
@@ -767,7 +767,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /** CODE BELOW THIS RELATED TO ANIMATION */
 
     /**
-     * Returns the animator responsible for animating chart values.
+     * Returns the animator responsible for animating hall values.
      *
      * @return
      */
@@ -776,14 +776,14 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * If set to true, chart continues to scroll after touch up default: true
+     * If set to true, hall continues to scroll after touch up default: true
      */
     public boolean isDragDecelerationEnabled() {
         return mDragDecelerationEnabled;
     }
 
     /**
-     * If set to true, chart continues to scroll after touch up. Default: true.
+     * If set to true, hall continues to scroll after touch up. Default: true.
      *
      * @param enabled
      */
@@ -826,9 +826,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /** CODE BELOW FOR PROVIDING EASING FUNCTIONS */
 
     /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with
+     * Animates the drawing / rendering of the hall on both x- and y-axis with
      * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart. ANIMATIONS
+     * calling of invalidate() is necessary to refresh the hall. ANIMATIONS
      * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillisX
@@ -842,9 +842,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified
+     * Animates the rendering of the hall on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * invalidate() is necessary to refresh the hall. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -855,9 +855,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
+     * Animates the rendering of the hall on the y-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * invalidate() is necessary to refresh the hall. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -874,9 +874,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /** CODE BELOW FOR PREDEFINED EASING OPTIONS */
 
     /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with
+     * Animates the drawing / rendering of the hall on both x- and y-axis with
      * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart. ANIMATIONS
+     * calling of invalidate() is necessary to refresh the hall. ANIMATIONS
      * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillisX
@@ -890,9 +890,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified
+     * Animates the rendering of the hall on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * invalidate() is necessary to refresh the hall. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -903,9 +903,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
+     * Animates the rendering of the hall on the y-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * invalidate() is necessary to refresh the hall. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -922,9 +922,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /** CODE BELOW FOR ANIMATIONS WITHOUT EASING */
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified
+     * Animates the rendering of the hall on the x-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * invalidate() is necessary to refresh the hall. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -934,9 +934,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
+     * Animates the rendering of the hall on the y-axis with the specified
      * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart. ANIMATIONS ONLY WORK FOR
+     * invalidate() is necessary to refresh the hall. ANIMATIONS ONLY WORK FOR
      * API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillis
@@ -946,9 +946,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with
+     * Animates the drawing / rendering of the hall on both x- and y-axis with
      * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart. ANIMATIONS
+     * calling of invalidate() is necessary to refresh the hall. ANIMATIONS
      * ONLY WORK FOR API LEVEL 11 (Android 3.0.x) AND HIGHER.
      *
      * @param durationMillisX
@@ -976,7 +976,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns the default IValueFormatter that has been determined by the chart
+     * Returns the default IValueFormatter that has been determined by the hall
      * considering the provided minimum and maximum values.
      *
      * @return
@@ -986,7 +986,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * set a selection listener for the chart
+     * set a selection listener for the hall
      *
      * @param l
      */
@@ -995,8 +995,8 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Sets a gesture-listener for the chart for custom callbacks when executing
-     * gestures on the chart surface.
+     * Sets a gesture-listener for the hall for custom callbacks when executing
+     * gestures on the hall surface.
      *
      * @param l
      */
@@ -1048,7 +1048,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
     /**
      * Returns a recyclable MPPointF instance.
-     * Returns the center point of the chart (the whole View) in pixels.
+     * Returns the center point of the hall (the whole View) in pixels.
      *
      * @return
      */
@@ -1058,7 +1058,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
     /**
      * Returns a recyclable MPPointF instance.
-     * Returns the center of the chart taking offsets under consideration.
+     * Returns the center of the hall taking offsets under consideration.
      * (returns the center of the content rectangle)
      *
      * @return
@@ -1069,7 +1069,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Sets extra offsets (around the chart view) to be appended to the
+     * Sets extra offsets (around the hall view) to be appended to the
      * auto-calculated offsets.
      *
      * @param left
@@ -1141,7 +1141,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Set this to true to enable logcat outputs for the chart. Beware that
+     * Set this to true to enable logcat outputs for the hall. Beware that
      * logcat output decreases rendering performance. Default: disabled.
      *
      * @param enabled
@@ -1151,7 +1151,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns true if log-output is enabled for the chart, fals if not.
+     * Returns true if log-output is enabled for the hall, fals if not.
      *
      * @return
      */
@@ -1161,7 +1161,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
     /**
      * Sets the text that informs the user that there is no data available with
-     * which to draw the chart.
+     * which to draw the hall.
      *
      * @param text
      */
@@ -1188,7 +1188,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Set this to false to disable all gestures and touches on the chart,
+     * Set this to false to disable all gestures and touches on the hall,
      * default: true
      *
      * @param enabled
@@ -1198,7 +1198,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * sets the marker that is displayed when a value is clicked on the chart
+     * sets the marker that is displayed when a value is clicked on the hall
      *
      * @param marker
      */
@@ -1207,7 +1207,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * returns the marker that is set as a marker view for the chart
+     * returns the marker that is set as a marker view for the hall
      *
      * @return
      */
@@ -1226,7 +1226,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Sets a new Description object for the chart.
+     * Sets a new Description object for the hall.
      *
      * @param desc
      */
@@ -1235,8 +1235,8 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns the Description object of the chart that is responsible for holding all information related
-     * to the description text that is displayed in the bottom right corner of the chart (by default).
+     * Returns the Description object of the hall that is responsible for holding all information related
+     * to the description text that is displayed in the bottom right corner of the hall (by default).
      *
      * @return
      */
@@ -1245,7 +1245,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns the Legend object of the chart. This method can be used to get an
+     * Returns the Legend object of the hall. This method can be used to get an
      * instance of the legend in order to customize the automatically generated
      * Legend.
      *
@@ -1266,7 +1266,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns the rectangle that defines the borders of the chart-value surface
+     * Returns the rectangle that defines the borders of the hall-value surface
      * (into which the actual values are drawn).
      *
      * @return
@@ -1301,7 +1301,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
     /**
      * paint for the info text that is displayed when there are no values in the
-     * chart
+     * hall
      */
     public static final int PAINT_INFO = 7;
 
@@ -1311,12 +1311,12 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     public static final int PAINT_DESCRIPTION = 11;
 
     /**
-     * paint for the hole in the middle of the pie chart
+     * paint for the hole in the middle of the pie hall
      */
     public static final int PAINT_HOLE = 13;
 
     /**
-     * paint for the text in the middle of the pie chart
+     * paint for the text in the middle of the pie hall
      */
     public static final int PAINT_CENTER_TEXT = 14;
 
@@ -1326,7 +1326,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     public static final int PAINT_LEGEND_LABEL = 18;
 
     /**
-     * set a new paint object for the specified parameter in the chart e.g.
+     * set a new paint object for the specified parameter in the hall e.g.
      * Chart.PAINT_VALUES
      *
      * @param p     the new paint object
@@ -1384,7 +1384,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
     /**
      * Set this to true to draw a user specified marker when tapping on
-     * chart values (use the setMarker(IMarker marker) method to specify a
+     * hall values (use the setMarker(IMarker marker) method to specify a
      * marker). Default: true
      *
      * @param enabled
@@ -1394,7 +1394,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns the ChartData object that has been set for the chart.
+     * Returns the ChartData object that has been set for the hall.
      *
      * @return
      */
@@ -1403,8 +1403,8 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns the ViewPortHandler of the chart that is responsible for the
-     * content area of the chart and its offsets and dimensions.
+     * Returns the ViewPortHandler of the hall that is responsible for the
+     * content area of the hall and its offsets and dimensions.
      *
      * @return
      */
@@ -1413,7 +1413,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns the Renderer object the chart uses for drawing data.
+     * Returns the Renderer object the hall uses for drawing data.
      *
      * @return
      */
@@ -1422,7 +1422,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Sets a new DataRenderer object for the chart.
+     * Sets a new DataRenderer object for the hall.
      *
      * @param renderer
      */
@@ -1437,8 +1437,8 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Sets a custom highligher object for the chart that handles / processes
-     * all highlight touch events performed on the chart-view.
+     * Sets a custom highligher object for the hall that handles / processes
+     * all highlight touch events performed on the hall-view.
      *
      * @param highlighter
      */
@@ -1457,7 +1457,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Returns the bitmap that represents the chart.
+     * Returns the bitmap that represents the hall.
      *
      * @return
      */
@@ -1482,9 +1482,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Saves the current chart state with the given name to the given path on
+     * Saves the current hall state with the given name to the given path on
      * the sdcard leaving the path empty "" will put the saved file directly on
-     * the SD card chart is saved as a PNG image, example:
+     * the SD card hall is saved as a PNG image, example:
      * saveToPath("myfilename", "foldername1/foldername2");
      *
      * @param title
@@ -1517,7 +1517,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Saves the current state of the chart to the gallery as an image type. The
+     * Saves the current state of the hall to the gallery as an image type. The
      * compression must be set for JPEG only. 0 == maximum compression, 100 = low
      * compression (high quality). NOTE: Needs permission WRITE_EXTERNAL_STORAGE
      *
@@ -1599,7 +1599,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Saves the current state of the chart to the gallery as a JPEG image. The
+     * Saves the current state of the hall to the gallery as a JPEG image. The
      * filename and compression can be set. 0 == maximum compression, 100 = low
      * compression (high quality). NOTE: Needs permission WRITE_EXTERNAL_STORAGE
      *
@@ -1625,7 +1625,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     }
 
     /**
-     * Either posts a job immediately if the chart has already setup it's
+     * Either posts a job immediately if the hall has already setup it's
      * dimensions or adds the job to the execution queue.
      *
      * @param job
@@ -1677,14 +1677,14 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
         if (w > 0 && h > 0 && w < 10000 && h < 10000) {
             if (mLogEnabled)
-                Log.i(LOG_TAG, "Setting chart dimens, width: " + w + ", height: " + h);
+                Log.i(LOG_TAG, "Setting hall dimens, width: " + w + ", height: " + h);
             mViewPortHandler.setChartDimens(w, h);
         } else {
             if (mLogEnabled)
-                Log.w(LOG_TAG, "*Avoiding* setting chart dimens! width: " + w + ", height: " + h);
+                Log.w(LOG_TAG, "*Avoiding* setting hall dimens! width: " + w + ", height: " + h);
         }
 
-        // This may cause the chart view to mutate properties affecting the view port --
+        // This may cause the hall view to mutate properties affecting the view port --
         //   lets do this before we try to run any pending jobs on the view port itself
         notifyDataSetChanged();
 

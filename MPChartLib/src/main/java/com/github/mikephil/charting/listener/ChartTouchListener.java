@@ -46,7 +46,7 @@ public abstract class ChartTouchListener<T extends Chart<?>> extends GestureDete
     protected GestureDetector mGestureDetector;
 
     /**
-     * the chart the listener represents
+     * the hall the listener represents
      */
     protected T mChart;
 
@@ -101,7 +101,7 @@ public abstract class ChartTouchListener<T extends Chart<?>> extends GestureDete
     }
 
     /**
-     * Returns the last gesture that has been performed on the chart.
+     * Returns the last gesture that has been performed on the hall.
      *
      * @return
      */

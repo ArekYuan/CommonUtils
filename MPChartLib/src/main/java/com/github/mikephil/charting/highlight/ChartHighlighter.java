@@ -85,7 +85,7 @@ public class ChartHighlighter<T extends BarLineScatterCandleBubbleDataProvider> 
 
     /**
      * Returns the minimum distance from a touch value (in pixels) to the
-     * closest value (in pixels) that is displayed in the chart.
+     * closest value (in pixels) that is displayed in the hall.
      *
      * @param closestValues
      * @param pos
