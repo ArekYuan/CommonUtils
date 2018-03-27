@@ -17,6 +17,18 @@ android {
             }
         }
     }
+
+    signingConfigs {
+
+        //平安签名配置
+        release {
+            storeFile file("E:\\work_space\\mayoline\\CommonUtils\\mayor.jks")         //签名文件位置
+            storePassword "mayoline"                 //签名文件密码
+            keyAlias "cn"                  //签名文件别名
+            keyPassword "mayoline"       //签名文件别名密码
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
