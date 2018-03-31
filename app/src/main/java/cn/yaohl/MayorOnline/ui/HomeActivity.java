@@ -138,6 +138,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         adapter = new MyAdapter(getSupportFragmentManager(), titleStr,
                                 fragmentList);
         mainViewpager.setAdapter(adapter);
+        mainViewpager.setOffscreenPageLimit(2);
         mainTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mainTabLayout.setupWithViewPager(mainViewpager);
         mainTabLayout.setTabsFromPagerAdapter(adapter);

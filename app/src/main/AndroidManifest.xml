@@ -7,15 +7,16 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
 
     <application
         android:name=".MayorApplication"
@@ -105,15 +106,21 @@
             android:name=".ui.personal.activity.InfoDetailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-        <!--我的回复历史-->
+        <!-- 我的回复历史 -->
         <activity
             android:name=".ui.personal.activity.MyAnswerActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
-        <!--关于我们-->
+        <!-- 关于我们 -->
         <activity
             android:name=".ui.home.activity.AboutUsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.live.DemoMainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>

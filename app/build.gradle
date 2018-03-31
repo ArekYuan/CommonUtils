@@ -41,6 +41,10 @@ android {
     lintOptions {
         checkReleaseBuilds false
     }
+
+    repositories {
+        flatDir { dirs 'libs' }
+    }
 }
 
 dependencies {
@@ -70,5 +74,11 @@ dependencies {
     // router
     //    compile "com.alibaba:arouter-api:$rootProject.arouterVersion"
 //    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
+
+
+    compile(name: 'AlivcReporter', ext: 'aar')
+    compile(name: 'AlivcPlayer', ext: 'aar')
+    compile(name: 'AliyunVodPlayer', ext: 'aar')
+    compile(name: 'AliyunVodPlayerView', ext: 'aar')
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
