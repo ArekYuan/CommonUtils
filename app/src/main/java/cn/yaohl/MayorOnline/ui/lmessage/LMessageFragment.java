@@ -17,6 +17,7 @@ import cn.yaohl.MayorOnline.R;
 import cn.yaohl.MayorOnline.ui.BaseFragment;
 import cn.yaohl.MayorOnline.ui.lmessage.adapter.MessageListAdapter;
 import cn.yaohl.MayorOnline.ui.lmessage.beans.MessageListResp;
+import cn.yaohl.MayorOnline.util.view.MarqueeTextView;
 
 /**
  * Created by 袁光跃 on 2018/3/19 0019.
@@ -48,6 +49,13 @@ public class LMessageFragment extends BaseFragment implements View.OnClickListen
     //提交按钮
     private Button commitBtn;
 
+    private MarqueeTextView messageContentTxt;
+
+    private String[] titleStr = new String[]{"2018年6月28日10:00南京市长蓝绍敏做客市长在线!",
+            "2018年7月28日10:00苏州市长蓝绍敏做客市长在线!",
+            "2018年8月28日10:00常州市长蓝绍敏做客市长在线!",
+            "2018年9月28日10:00无锡市长蓝绍敏做客市长在线!",
+            "2018年10月28日10:00镇江市长蓝绍敏做客市长在线!"};
 
     @Override
     protected int getContentViewId() {
@@ -64,6 +72,8 @@ public class LMessageFragment extends BaseFragment implements View.OnClickListen
 
 
     private void initView(View v) {
+        messageContentTxt = (MarqueeTextView) v.findViewById(R.id.messageContentTxt);
+
         moreMessageTxt = (TextView) v.findViewById(R.id.moreMessageTxt);
         messageListRLView = (RecyclerView) v.findViewById(R.id.messageListRLView);
 
@@ -75,6 +85,16 @@ public class LMessageFragment extends BaseFragment implements View.OnClickListen
 
         commitBtn.setOnClickListener(this);
         moreMessageTxt.setOnClickListener(this);
+
+        messageContentTxt.setTextArraysAndClickListener(titleStr,
+                                                        new MarqueeTextView.MarqueeTextViewClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                showShortToast("市长来啦");
+                                                            }
+                                                        });
+
+
     }
 
     private void initListData() {

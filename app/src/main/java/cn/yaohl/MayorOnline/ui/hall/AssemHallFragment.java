@@ -16,6 +16,7 @@ import cn.yaohl.MayorOnline.ui.hall.adapter.IdeaAdapter;
 import cn.yaohl.MayorOnline.ui.hall.adapter.MeasureAdapter;
 import cn.yaohl.MayorOnline.ui.hall.beans.IdeasResp;
 import cn.yaohl.MayorOnline.ui.hall.beans.MeasureResp;
+import cn.yaohl.MayorOnline.util.view.MarqueeTextView;
 
 /**
  * Created by 袁光跃 on 2018/3/19 0019.
@@ -25,7 +26,7 @@ import cn.yaohl.MayorOnline.ui.hall.beans.MeasureResp;
 public class AssemHallFragment extends BaseFragment implements View.OnClickListener {
 
     //内容标题
-    private TextView MessageContentTxt;
+    private MarqueeTextView messageContentTxt;
 
     //banner
     private ImageView bannerImg;
@@ -42,6 +43,13 @@ public class AssemHallFragment extends BaseFragment implements View.OnClickListe
     private RecyclerView measureRLView;
     private MeasureAdapter measureAdapter;
 
+    private String[] titleStr = new String[]{"2018年6月28日10:00南京市长蓝绍敏做客市长在线!",
+            "2018年7月28日10:00苏州市长蓝绍敏做客市长在线!",
+            "2018年8月28日10:00常州市长蓝绍敏做客市长在线!",
+            "2018年9月28日10:00无锡市长蓝绍敏做客市长在线!",
+            "2018年10月28日10:00镇江市长蓝绍敏做客市长在线!"};
+
+
     @Override
     protected int getContentViewId() {
         return R.layout.fragment_assem_hall_layout;
@@ -57,7 +65,7 @@ public class AssemHallFragment extends BaseFragment implements View.OnClickListe
 
 
     private void initView(View v) {
-        MessageContentTxt = (TextView) v.findViewById(R.id.MessageContentTxt);
+        messageContentTxt = (MarqueeTextView) v.findViewById(R.id.messageContentTxt);
         bannerImg = (ImageView) v.findViewById(R.id.bannerImg);
 
         moreIdeaTxt = (TextView) v.findViewById(R.id.moreIdeaTxt);
@@ -65,6 +73,16 @@ public class AssemHallFragment extends BaseFragment implements View.OnClickListe
 
         moreMeasureTxt = (TextView) v.findViewById(R.id.moreMeasureTxt);
         measureRLView = (RecyclerView) v.findViewById(R.id.measureRLView);
+
+
+        messageContentTxt.setTextArraysAndClickListener(titleStr,
+                                                        new MarqueeTextView.MarqueeTextViewClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                showShortToast("市长来啦");
+                                                            }
+                                                        });
+
     }
 
 

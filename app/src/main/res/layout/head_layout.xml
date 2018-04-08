@@ -22,15 +22,12 @@
             android:src="@mipmap/tz"
             />
 
-        <TextView
-            android:id="@+id/MessageContentTxt"
+        <cn.yaohl.MayorOnline.util.view.MarqueeTextView
+            android:id="@+id/messageContentTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-2dp"
-            android:paddingLeft="3dp"
-            android:text="2018年6月28日10:00南京市长蓝绍敏做客市长在线!"
-            android:textColor="#1e1b2c"
-            android:textSize="11sp"/>
+            android:paddingLeft="3dp"  />
 
     </LinearLayout>
 

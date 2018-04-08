@@ -7,52 +7,79 @@
 
 
     <LinearLayout
-        android:id="@+id/progress_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/bg_color"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/currentPosition"
+        <ImageView
+            android:id="@+id/play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="9sp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:src="@drawable/paly_pause_selector"/>
 
-        <SeekBar
-            android:id="@+id/progress"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/totalDuration"
+            <LinearLayout
+                android:id="@+id/progress_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/currentPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp"/>
+
+                <TextView
+                    android:id="@+id/totalDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="9sp"/>
+
+                <SeekBar
+                    android:id="@+id/progress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/muteOn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textColor="@android:color/black"
-            android:textSize="9sp"/>
+            android:layout_marginLeft="3dp"
+            android:background="@drawable/mute_switch"
+            android:button="@null"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/bg_color"
+        android:gravity="center|left"
         android:orientation="horizontal">
-
-
-        <Button
-            android:id="@+id/play"
-            style="@android:style/Widget.Holo.Button.Borderless.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="开始"
-            android:textColor="@color/colorPrimary"
-            android:textSize="9sp"/>
 
         <Button
             android:id="@+id/stop"
@@ -64,7 +91,8 @@
             android:padding="5dp"
             android:text="停止"
             android:textColor="@color/colorPrimary"
-            android:textSize="9sp"/>
+            android:textSize="9sp"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/pause"
@@ -76,7 +104,8 @@
             android:padding="5dp"
             android:text="暂停"
             android:textColor="@color/colorPrimary"
-            android:textSize="9sp"/>
+            android:textSize="9sp"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/replay"
@@ -88,30 +117,10 @@
             android:padding="5dp"
             android:text="重播"
             android:textColor="@color/colorPrimary"
-            android:textSize="9sp"/>
+            android:textSize="9sp"
+            android:visibility="gone"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="静音:"
-                android:textColor="@android:color/black"
-                android:textSize="9sp"/>
-
-            <CheckBox
-                android:id="@+id/muteOn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:background="@drawable/switch_bkg"
-                android:button="@null"/>
-
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

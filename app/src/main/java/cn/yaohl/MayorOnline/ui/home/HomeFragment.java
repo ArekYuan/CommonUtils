@@ -13,9 +13,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -39,6 +39,9 @@ import cn.yaohl.MayorOnline.ui.home.beans.CommentResp;
 import cn.yaohl.MayorOnline.ui.home.beans.HistoryVideoResp;
 import cn.yaohl.MayorOnline.ui.home.presenter.HomePresenter;
 import cn.yaohl.MayorOnline.util.aliyun.Formatter;
+import cn.yaohl.MayorOnline.util.view.MarqueeTextView;
+
+import static cn.yaohl.MayorOnline.R.id.stop;
 
 /**
  * 作者：袁光跃
@@ -48,6 +51,8 @@ import cn.yaohl.MayorOnline.util.aliyun.Formatter;
  */
 
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
+
+    private MarqueeTextView messageContentTxt;
 
     //点赞
     private RelativeLayout praiseRLayout;
@@ -81,10 +86,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private SurfaceView mSurfaceView;
     private LinearLayout progress_layout;
-    private Button playBtn;
-    private Button pauseBtn;
-    private Button replayBtn;
-    private Button stopBtn;
+    private ImageView playBtn;
+    //    private Button pauseBtn;
+//    private Button replayBtn;
+//    private Button stopBtn;
     private CheckBox muteOnBtn;
     private float speed = 1.0f;
     private MediaPlayer.VideoRotate roate = MediaPlayer.VideoRotate.ROTATE_0;
@@ -102,6 +107,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private NetWatchdog netWatchdog;
     private int flag = 1;
     HomePresenter presenter;
+
+    private String[] titleStr = new String[]{"2018年6月28日10:00南京市长蓝绍敏做客市长在线!",
+            "2018年7月28日10:00苏州市长蓝绍敏做客市长在线!",
+            "2018年8月28日10:00常州市长蓝绍敏做客市长在线!",
+            "2018年9月28日10:00无锡市长蓝绍敏做客市长在线!",
+            "2018年10月28日10:00镇江市长蓝绍敏做客市长在线!"};
 
     @Override
     protected int getContentViewId() {
@@ -129,6 +140,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initView(View v) {
+        messageContentTxt = (MarqueeTextView) v.findViewById(R.id.messageContentTxt);
+
         praiseRLayout = (RelativeLayout) v.findViewById(R.id.praiseRLayout);
         praiseNumTxt = (TextView) v.findViewById(R.id.praiseNumTxt);
 
@@ -147,10 +160,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         moreVCommentTxt = (TextView) v.findViewById(R.id.moreVCommentTxt);
 
         mSurfaceView = (SurfaceView) v.findViewById(R.id.surfaceView);
-        playBtn = (Button) v.findViewById(R.id.play);
-        stopBtn = (Button) v.findViewById(R.id.stop);
-        pauseBtn = (Button) v.findViewById(R.id.pause);
-        replayBtn = (Button) v.findViewById(R.id.replay);
+        playBtn = (ImageView) v.findViewById(R.id.play);
+//        stopBtn = (Button) v.findViewById(stop);
+//        pauseBtn = (Button) v.findViewById(R.id.pause);
+//        replayBtn = (Button) v.findViewById(R.id.replay);
         muteOnBtn = (CheckBox) v.findViewById(R.id.muteOn);
         progress_layout = (LinearLayout) v.findViewById(R.id.progress_layout);
 
@@ -159,9 +172,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         progressBar = (SeekBar) v.findViewById(R.id.progress);
 
         playBtn.setOnClickListener(this);
-        stopBtn.setOnClickListener(this);
-        pauseBtn.setOnClickListener(this);
-        replayBtn.setOnClickListener(this);
+//        stopBtn.setOnClickListener(this);
+//        pauseBtn.setOnClickListener(this);
+//        replayBtn.setOnClickListener(this);
 
         //        initAutoScaleModeFit();
         netWatchdog = new NetWatchdog(getActivity());
@@ -174,8 +187,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             progressBar.setOnSeekBarChangeListener(seekBarChangeListener);
             netWatchdog.setNetChangeListener(netVodChangeListener);
         } else if (flag == 1) {//直播
-            pauseBtn.setVisibility(View.GONE);
-            replayBtn.setVisibility(View.GONE);
+//            pauseBtn.setVisibility(View.GONE);
+//            replayBtn.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
             progress_layout.setVisibility(View.GONE);
             presenter.initLive(mUrl, mPlayer, netWatchdog, mSurfaceView);
             initLivePlayer();
@@ -185,6 +199,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         muteOnBtn.setOnCheckedChangeListener(changeListener);
         mSurfaceView.getHolder().addCallback(callback);
         netWatchdog.startWatch();
+
+        messageContentTxt.setTextArraysAndClickListener(titleStr,
+                                                        new MarqueeTextView.MarqueeTextViewClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                showShortToast("市长来啦");
+                                                            }
+                                                        });
 
     }
 
@@ -386,7 +408,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.play:
                 doPlay(flag);
                 break;
-            case R.id.stop:
+            case stop:
                 stop();
                 break;
             case R.id.pause:
@@ -627,19 +649,40 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private void doPause() {
         if (mPlayer.isPlaying()) {
             pause();
-            pauseBtn.setText("继续");
+//            pauseBtn.setText("继续");
         } else {
             resume();
-            pauseBtn.setText("暂停");
+//            pauseBtn.setText("暂停");
         }
     }
 
+    private static int FLAG_POSI_VIDEO = 0;//录播
+
+    private static int FLAG_POSI_LIVE = 0;//直播
+
+
     private void doPlay(int flag) {
         if (flag == 0) {//录播
-            start();
+            if (FLAG_POSI_VIDEO == 0) {
+                start();
+                playBtn.setSelected(true);
+                FLAG_POSI_VIDEO = 1;
+            } else if (FLAG_POSI_VIDEO == 1) {
+                playBtn.setSelected(false);
+                doPause();
+                FLAG_POSI_VIDEO = 0;
+            }
             mPlayer.setPlaySpeed(speed);
         } else if (flag == 1) {//直播
-            replay();
+            if (FLAG_POSI_LIVE == 0) {
+                replay();
+                playBtn.setSelected(true);
+                FLAG_POSI_LIVE = 1;
+            } else if (FLAG_POSI_LIVE == 1) {
+                stop();
+                playBtn.setSelected(false);
+                FLAG_POSI_LIVE = 0;
+            }
         }
         initAutoScaleModeFill();
         if (mMute) {
@@ -668,7 +711,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                        Toast.LENGTH_SHORT).show();
         mPlayer.play();
         inSeek = false;
-        pauseBtn.setText("暂停");
+//        pauseBtn.setText("暂停");
     }
 
     private static class MyPcmDataListener implements MediaPlayer.MediaPlayerPcmDataListener {
@@ -866,7 +909,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private void pause() {
         if (mPlayer != null) {
             mPlayer.pause();
-            pauseBtn.setText("继续");
+//            pauseBtn.setText("继续");
         }
     }
 
@@ -881,7 +924,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         if (mPlayer != null) {
             VcPlayerLog.d("lfj0927", "mPlayer.play");
             mPlayer.play();
-            pauseBtn.setText("暂停");
+//            pauseBtn.setText("暂停");
         }
     }
 

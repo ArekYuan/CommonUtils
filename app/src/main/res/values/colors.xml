@@ -54,4 +54,6 @@
     <color name="txt_gred_color">#d41f26</color>
 
     <color name="txt_black_gray_color">#1d1b26</color>
+    <color name="bg_color">#AA656d78</color>
+    <color name="color_1e1b2c">#1e1b2c</color>
 </resources>
