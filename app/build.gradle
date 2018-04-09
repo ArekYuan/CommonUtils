@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -35,6 +36,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+MobSDK {
+    appKey "251d19f9e1b5a"
+    appSecret "f83cb91b2b35e4861a483dc55743dce9"
+
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            SinaWeibo {
+                appKey "4238596699"
+                appSecret "78b7b8907c12119cdc9f47b246d13231"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient false
+            }
+            Wechat {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+            QQ {
+                appId "1106829968"
+                appKey "8u42D8Dj4fvk1l84"
+            }
+        }
+    }
+
 }
 
 android {

@@ -27,7 +27,7 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:label">
+        tools:replace="android:label,android:name">
         <activity
             android:name=".ui.splash.SplashActivity"
             android:configChanges="keyboardHidden|orientation"

@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alivc.player.AliVcMediaPlayer;
+import com.mob.MobSDK;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
@@ -88,6 +89,7 @@ public class MayorApplication extends Application {
 
         //初始化播放器。不初始化，错误字符串将获取不到。
         AliVcMediaPlayer.init(getApplicationContext());
+        MobSDK.init(this);
     }
 
     private void initCitys() {
