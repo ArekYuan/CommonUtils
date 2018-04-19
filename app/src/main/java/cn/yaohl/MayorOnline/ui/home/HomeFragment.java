@@ -39,6 +39,7 @@ import cn.yaohl.MayorOnline.ui.home.adapter.HistoryAdapter;
 import cn.yaohl.MayorOnline.ui.home.beans.CommentResp;
 import cn.yaohl.MayorOnline.ui.home.beans.HistoryVideoResp;
 import cn.yaohl.MayorOnline.ui.home.presenter.HomePresenter;
+import cn.yaohl.MayorOnline.util.Pop1Window;
 import cn.yaohl.MayorOnline.util.aliyun.Formatter;
 import cn.yaohl.MayorOnline.util.view.MarqueeTextView;
 
@@ -102,11 +103,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private AliVcMediaPlayer mPlayer;
     private boolean inSeek = false;
     private boolean isCompleted = false;
-
+    private LinearLayout switchLiveLayout;
     private String mUrl = null;
 
     private NetWatchdog netWatchdog;
-    private int flag = 1;
+    private int flag = 1;//0，录播，1、直播
     HomePresenter presenter;
 
     private String[] titleStr = new String[]{"2018年6月28日10:00南京市长蓝绍敏做客市长在线!",
@@ -129,6 +130,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             mUrl = "http://player.alicdn.com/video/aliyunmedia.mp4";
         } else if (flag == 1) {//直播
             mUrl = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
+//            mUrl = "rtmp:// vhost=www.zhidingmingcheng.com/AppName/StreamName";
         }
     }
 
@@ -142,7 +144,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private void initView(View v) {
         messageContentTxt = (MarqueeTextView) v.findViewById(R.id.messageContentTxt);
-
+        switchLiveLayout = (LinearLayout) v.findViewById(R.id.switchLiveLayout);
         praiseRLayout = (RelativeLayout) v.findViewById(R.id.praiseRLayout);
         praiseNumTxt = (TextView) v.findViewById(R.id.praiseNumTxt);
 
@@ -173,6 +175,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         progressBar = (SeekBar) v.findViewById(R.id.progress);
 
         playBtn.setOnClickListener(this);
+        switchLiveLayout.setOnClickListener(this);
 //        stopBtn.setOnClickListener(this);
 //        pauseBtn.setOnClickListener(this);
 //        replayBtn.setOnClickListener(this);
@@ -182,20 +185,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mPlayer = new AliVcMediaPlayer(mContext, mSurfaceView);
         initRote();
         initMirror();
-        if (flag == 0) {//录播
-            initSpeed();
-            initVodPlayer();
-            progressBar.setOnSeekBarChangeListener(seekBarChangeListener);
-            netWatchdog.setNetChangeListener(netVodChangeListener);
-        } else if (flag == 1) {//直播
-//            pauseBtn.setVisibility(View.GONE);
-//            replayBtn.setVisibility(View.GONE);
-            progressBar.setVisibility(View.GONE);
-            progress_layout.setVisibility(View.GONE);
-            presenter.initLive(mUrl, mPlayer, netWatchdog, mSurfaceView);
-            initLivePlayer();
-            netWatchdog.setNetChangeListener(netLiveChangeListener);
-        }
+        doSwitch(flag, true);
 
         muteOnBtn.setOnCheckedChangeListener(changeListener);
         mSurfaceView.getHolder().addCallback(callback);
@@ -209,6 +199,30 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                                                             }
                                                         });
 
+    }
+
+    /**
+     * 切换
+     *
+     * @param flag
+     */
+    private void doSwitch(int flag, boolean b) {
+        if (flag == 0) {//录播
+            initSpeed();
+            initVodPlayer();
+            progressBar.setVisibility(View.VISIBLE);
+            progress_layout.setVisibility(View.VISIBLE);
+            progressBar.setOnSeekBarChangeListener(seekBarChangeListener);
+            netWatchdog.setNetChangeListener(netVodChangeListener);
+        } else if (flag == 1) {//直播
+//            pauseBtn.setVisibility(View.GONE);
+//            replayBtn.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            progress_layout.setVisibility(View.GONE);
+            presenter.initLive(mUrl, mPlayer, netWatchdog, mSurfaceView);
+            initLivePlayer();
+            netWatchdog.setNetChangeListener(netLiveChangeListener);
+        }
     }
 
     private void initLivePlayer() {
@@ -408,7 +422,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Toast.makeText(mContext, "更多", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.play:
-                doPlay(flag);
+                doPlay(flag, true);
                 break;
             case stop:
                 stop();
@@ -419,7 +433,49 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.replay:
                 doRePlay();
                 break;
+            case R.id.switchLiveLayout:
+                final Pop1Window pop1Window = new Pop1Window(mContext, switchLiveLayout);
+                pop1Window.setOnItemClickListener(new Pop1Window.OnItemClickListener() {
+                    @Override
+                    public void onLiveClick() {
+//                        if (flag != 1) {
+                        isPrepare = false;
+                        flag = 1;
+                        doSwitchSth(flag, false);
+//                        }
+                        pop1Window.dismiss();
+                    }
+
+                    @Override
+                    public void onVideoClick() {
+//                        if (flag != 0) {
+                        isPrepare = false;
+                        flag = 0;
+                        doSwitchSth(flag, false);
+//                        }
+                        pop1Window.dismiss();
+                    }
+                });
+                pop1Window.showPop(switchLiveLayout);
+                break;
         }
+    }
+
+    /**
+     * 切换按钮
+     *
+     * @param flag
+     */
+    private void doSwitchSth(int flag, boolean b) {
+        doSwitch(flag, b);
+        if (flag == 0) {//录播
+            mUrl = "http://player.alicdn.com/video/aliyunmedia.mp4";
+        } else if (flag == 1) {//直播
+            mUrl = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
+//            mUrl = "rtmp:// vhost=www.zhidingmingcheng.com/AppName/StreamName";
+        }
+        doPlay(flag, b);
+
     }
 
     /**
@@ -687,28 +743,44 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private static int FLAG_POSI_LIVE = 0;//直播
 
 
-    private void doPlay(int flag) {
+    private void doPlay(int flag, boolean b) {
         if (flag == 0) {//录播
-            if (FLAG_POSI_VIDEO == 0) {
-                start();
-                playBtn.setSelected(true);
-                FLAG_POSI_VIDEO = 1;
-            } else if (FLAG_POSI_VIDEO == 1) {
-                playBtn.setSelected(false);
+            if (b) {
+                if (FLAG_POSI_VIDEO == 0) {
+                    if (isPrepare) {
+                        doPause();
+                    } else {
+                        start();
+                    }
+                    playBtn.setSelected(true);
+                    FLAG_POSI_VIDEO = 1;
+                } else if (FLAG_POSI_VIDEO == 1) {
+                    playBtn.setSelected(false);
+                    doPause();
+                    FLAG_POSI_VIDEO = 0;
+                }
+            } else {
                 doPause();
-                FLAG_POSI_VIDEO = 0;
+                start();
             }
+
             mPlayer.setPlaySpeed(speed);
         } else if (flag == 1) {//直播
-            if (FLAG_POSI_LIVE == 0) {
-                replay();
-                playBtn.setSelected(true);
-                FLAG_POSI_LIVE = 1;
-            } else if (FLAG_POSI_LIVE == 1) {
+            if (b) {
+                if (FLAG_POSI_LIVE == 0) {
+                    replay();
+                    playBtn.setSelected(true);
+                    FLAG_POSI_LIVE = 1;
+                } else if (FLAG_POSI_LIVE == 1) {
+                    stop();
+                    playBtn.setSelected(false);
+                    FLAG_POSI_LIVE = 0;
+                }
+            } else {
                 stop();
-                playBtn.setSelected(false);
-                FLAG_POSI_LIVE = 0;
+                replay();
             }
+
         }
         initAutoScaleModeFill();
         if (mMute) {
@@ -917,12 +989,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             showVideoProgressInfo();
         }
     };
+    private boolean isPrepare;
 
     private void start() {
 
         Log.e("lfj0929", "VodmodeAtivity start() mPlayer  =  " + mPlayer);
         if (mPlayer != null) {
             mPlayer.prepareToPlay(mUrl);
+            isPrepare = true;
         }
     }
 

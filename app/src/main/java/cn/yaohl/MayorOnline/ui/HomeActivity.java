@@ -100,8 +100,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     showShortToast("搜索页面");
                     break;
                 case R.id.loginHeadImg:
+//                    if (new SharePref(mContext).getStringValue(Constant.NAME_USER).equals("")) {
+//                        intent = new Intent(mContext, LoginActivity.class);
+//                        startActivity(intent);
+//                    } else {
                     intent = new Intent(mContext, PersonalInfoActivity.class);
                     startActivity(intent);
+//                    }
                     break;
                 case R.id.locationTxt:
 //                    showShortToast("南京");

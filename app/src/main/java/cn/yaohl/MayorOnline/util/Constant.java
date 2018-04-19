@@ -59,4 +59,6 @@ public class Constant {
     public static final String MINE_HISTORY = "mine_history";
 
     public static String LOCATION = "";
+
+    public static final String NAME_USER = "name_user";
 }

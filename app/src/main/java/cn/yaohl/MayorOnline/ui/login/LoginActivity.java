@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yaohl.retrofitlib.utils.MyRouter;
@@ -38,6 +39,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private int keyHeight = 0;
     private View rootView;
     private LinearLayout loginRootView;
+    private TextView registerTxt;
 
     @Override
     protected int getContentViewId() {
@@ -70,9 +72,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         loginRootView = (LinearLayout) findViewById(R.id.loginRootView);
         checkCBox = (CheckBox) findViewById(R.id.checkCBox);
         rootView = findViewById(R.id.rootView);
+        registerTxt = (TextView) findViewById(R.id.registerTxt);
 
         loginBtn.setOnClickListener(this);
-
+        registerTxt.setOnClickListener(this);
         checkCBox.setOnCheckedChangeListener(checkedChangeListener);
     }
 
@@ -112,6 +115,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 if (checked(userName, pwdStr)) {
                     pressenter.doLoginReq(userName, pwdStr);
                 }
+                break;
+            case R.id.registerTxt:
+                Intent intent = new Intent(mContext,RegisterActivity.class);
+                startActivity(intent);
                 break;
 
         }
@@ -171,10 +178,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     public void setSuccess(LoginResp resp) {
         new SharePref(mContext).setBooleanValue(Constant.IS_FIRST_LOGIN, true);
-        new SharePref(mContext).setStringValue(Constant.LOGINUESRNAME, resp.getData().getUsername());
+        new SharePref(mContext).setStringValue(Constant.LOGINUESRNAME,
+                                               resp.getData().getUsername());
         new SharePref(mContext).setStringValue(Constant.LOGINUESRIMG, resp.getData().getIcon());
         new SharePref(mContext).setStringValue(Constant.LOGIN_REALNAME, resp.getData().getName());
-        new SharePref(mContext).setStringValue(Constant.LOGIN_POSITION, resp.getData().getPosition());
+        new SharePref(mContext).setStringValue(Constant.LOGIN_POSITION,
+                                               resp.getData().getPosition());
         Set<String> tags = new HashSet<>();
         tags.add(resp.getData().getUsername());
 
