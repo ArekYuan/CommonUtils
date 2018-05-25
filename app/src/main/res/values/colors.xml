@@ -24,6 +24,11 @@
     <color name="rll_layout_bg_color">#eeeeee</color>
     <color name="rll_text_color">#666666</color>
     <color name="referesh_commom_color">#f2f0f0</color>
+    <color name="text_6f">#6f6f6f</color>
+    <color name="bg_activity">#efeff4</color>
+    <color name="txt_333">#333333</color>
+    <color name="txt_666">#666666</color>
+    <color name="yellow_tv">#f6ac19</color>
 
 
     <color name="gray">#aaaaaa</color>

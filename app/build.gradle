@@ -107,5 +107,18 @@ dependencies {
     compile(name: 'AlivcPlayer', ext: 'aar')
     compile(name: 'AliyunVodPlayer', ext: 'aar')
     compile(name: 'AliyunVodPlayerView', ext: 'aar')
+
+    compile files('libs/alipaySdk-20160516.jar')
+    compile 'com.alibaba:fastjson:1.1.56.android'
+    compile 'com.alibaba:fastjson:1.1.56.android'
+
+    compile files('libs/ShareSDK-Core-2.8.3.jar')
+    compile files('libs/ShareSDK-Wechat-2.8.3.jar')
+    compile files('libs/ShareSDK-Wechat-Core-2.8.3.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-2.8.3.jar')
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.alibaba:fastjson:1.1.56.android'
+    compile files('libs/libammsdk.jar')
 }

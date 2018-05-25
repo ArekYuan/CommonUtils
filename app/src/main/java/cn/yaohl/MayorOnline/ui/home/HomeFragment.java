@@ -1,6 +1,8 @@
 package cn.yaohl.MayorOnline.ui.home;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,15 +10,22 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.InputFilter;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -26,24 +35,35 @@ import com.alivc.player.AliVcMediaPlayer;
 import com.alivc.player.MediaPlayer;
 import com.alivc.player.VcPlayerLog;
 import com.aliyun.vodplayerview.utils.NetWatchdog;
+import com.google.gson.Gson;
+import com.yaohl.retrofitlib.utils.StringUtil;
 
 import java.lang.ref.WeakReference;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.yaohl.MayorOnline.R;
+import cn.yaohl.MayorOnline.alipay.AlipayOrderInfo;
 import cn.yaohl.MayorOnline.ui.BaseFragment;
 import cn.yaohl.MayorOnline.ui.home.adapter.CommentAdapter;
 import cn.yaohl.MayorOnline.ui.home.adapter.HistoryAdapter;
 import cn.yaohl.MayorOnline.ui.home.beans.CommentResp;
 import cn.yaohl.MayorOnline.ui.home.beans.HistoryVideoResp;
+import cn.yaohl.MayorOnline.ui.home.beans.OrderResp;
 import cn.yaohl.MayorOnline.ui.home.presenter.HomePresenter;
+import cn.yaohl.MayorOnline.util.CashierInputFilter;
+import cn.yaohl.MayorOnline.util.CommonUtils;
+import cn.yaohl.MayorOnline.util.Constant;
+import cn.yaohl.MayorOnline.util.PayUtil;
 import cn.yaohl.MayorOnline.util.Pop1Window;
+import cn.yaohl.MayorOnline.util.ToastUtils;
 import cn.yaohl.MayorOnline.util.aliyun.Formatter;
 import cn.yaohl.MayorOnline.util.view.MarqueeTextView;
+import cn.yaohl.MayorOnline.wxapi.WeiChatCustomOrder;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-import static cn.yaohl.MayorOnline.R.id.stop;
 
 /**
  * 作者：袁光跃
@@ -115,6 +135,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             "2018年8月28日10:00常州市长蓝绍敏做客市长在线!",
             "2018年9月28日10:00无锡市长蓝绍敏做客市长在线!",
             "2018年10月28日10:00镇江市长蓝绍敏做客市长在线!"};
+
+    private InputFilter[] filters = {
+            new CashierInputFilter()
+    };
 
     @Override
     protected int getContentViewId() {
@@ -192,12 +216,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         netWatchdog.startWatch();
 
         messageContentTxt.setTextArraysAndClickListener(titleStr,
-                                                        new MarqueeTextView.MarqueeTextViewClickListener() {
-                                                            @Override
-                                                            public void onClick(View view) {
-                                                                showShortToast("市长来啦");
-                                                            }
-                                                        });
+                new MarqueeTextView.MarqueeTextViewClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showShortToast("市长来啦");
+                    }
+                });
 
     }
 
@@ -246,12 +270,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             alertDialog.setTitle("网络切换为4G");
             alertDialog.setMessage("是否继续播放？");
             alertDialog.setPositiveButton("是",
-                                          new DialogInterface.OnClickListener() {
-                                              @Override
-                                              public void onClick(DialogInterface dialogInterface, int i) {
-                                                  replay();
-                                              }
-                                          });
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            replay();
+                        }
+                    });
             alertDialog.setNegativeButton("否", null);
             AlertDialog alert = alertDialog.create();
             alert.show();
@@ -290,7 +314,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private void onErrorLive(int i, String msg) {
         Toast.makeText(mContext,
-                       "失败！！！！原因：" + msg, Toast.LENGTH_SHORT).show();
+                "失败！！！！原因：" + msg, Toast.LENGTH_SHORT).show();
     }
 
     private static class MyPreparedListener implements MediaPlayer.MediaPlayerPreparedListener {
@@ -351,7 +375,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         histroyAdapter = new HistoryAdapter(mContext);
         StaggeredGridLayoutManager layoutManager =
                 new StaggeredGridLayoutManager(spanCount,
-                                               StaggeredGridLayoutManager.HORIZONTAL);
+                        StaggeredGridLayoutManager.HORIZONTAL);
         historyViewListView.setLayoutManager(layoutManager);
         historyViewListView.setFocusable(false);
         historyViewListView.setAdapter(histroyAdapter);
@@ -385,8 +409,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         List<CommentResp> mDataList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             mDataList.add(new CommentResp(R.mipmap.tx2, "南京用户xxxx6" + i, "2017-9-1" + i,
-                                          getResources().getString(R.string.comment_content_txt),
-                                          getResources().getString(R.string.mayor_content_txt)));
+                    getResources().getString(R.string.comment_content_txt),
+                    getResources().getString(R.string.mayor_content_txt)));
         }
 
         commentAdapter.setmData(mDataList);
@@ -412,7 +436,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 Toast.makeText(mContext, "消息能待开发", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.giftRLayout:
-                Toast.makeText(mContext, "禮物能待开发", Toast.LENGTH_SHORT).show();
+                showAdmirePopupWindow(giftRLayout);
+//                Toast.makeText(mContext, "禮物能待开发", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.forwardRLayout:
                 doShare();
@@ -424,9 +449,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.play:
                 doPlay(flag, true);
                 break;
-            case stop:
-                stop();
-                break;
+//            case stop:
+//                stop();
+//                break;
             case R.id.pause:
                 doPause();
                 break;
@@ -459,6 +484,166 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 pop1Window.showPop(switchLiveLayout);
                 break;
         }
+    }
+
+    private String payActionType;
+    private PopupWindow window;
+    private EditText et_money;
+
+    private void showAdmirePopupWindow(View parent) {
+
+        payActionType = "Alipay";
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.admire_popupwindow_layout, null);
+        //头像，打赏金额区域
+        RelativeLayout rl_pop = (RelativeLayout) view.findViewById(R.id.admire_pop);
+        final LinearLayout ll_icon_money = (LinearLayout) view.findViewById(R.id.ll_icon_money);
+        ImageView iv_cancel = (ImageView) view.findViewById(R.id.iv_cancel);
+        CircleImageView iv_user = (CircleImageView) view.findViewById(R.id.iv_user_img);
+        et_money = (EditText) view.findViewById(R.id.et_admire_money);
+        et_money.setFilters(filters);//筛选器，只能输入金额
+        TextView tv_random_money = (TextView) view.findViewById(R.id.tv_random_money);
+        //支付方式选择区域
+        final LinearLayout ll_pay_action = (LinearLayout) view.findViewById(R.id.ll_pay_action);
+        final ImageView iv_check_alipay = (ImageView) view.findViewById(R.id.iv_check_pay);
+        final ImageView iv_check_weichat = (ImageView) view.findViewById(R.id.iv_check_weixin);
+
+        final TextView tv_admire = (TextView) view.findViewById(R.id.tv_admire);
+        window = new PopupWindow(view);
+        window.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setBackgroundDrawable(new BitmapDrawable());
+        window.setFocusable(true);
+        window.setOutsideTouchable(false);
+        window.setTouchable(true);
+        window.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        window.setAnimationStyle(R.style.mypopwindow_anim_style);
+        window.showAtLocation(parent, Gravity.CENTER, 0, 0);
+        window.update();
+        CommonUtils.setWindow(0.2f, getActivity());
+
+        iv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                window.dismiss();
+            }
+        });
+        tv_random_money.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                float a = (float) (Math.random() * 20);
+                float numb = a;
+                DecimalFormat decimalFormat = new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+                String p = decimalFormat.format(numb);//format 返回的是字符串
+                if (p.startsWith(".")) {
+                    p = "0" + p;
+                }
+                et_money.setText(p);
+            }
+        });
+        iv_check_alipay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (payActionType.equals("Alipay")) {
+                    return;
+                }
+                payActionType = "Alipay";
+                iv_check_alipay.setImageResource(R.mipmap.icon_check_true);
+                iv_check_weichat.setImageResource(R.mipmap.icon_default_check);
+            }
+        });
+        iv_check_weichat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (payActionType.equals("WEIXIN")) {
+                    return;
+                }
+                payActionType = "WEIXIN";
+                iv_check_alipay.setImageResource(R.mipmap.icon_default_check);
+                iv_check_weichat.setImageResource(R.mipmap.icon_check_true);
+            }
+        });
+        tv_admire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ll_icon_money.getVisibility() == View.VISIBLE) {
+                    if (StringUtil.isEmpty(et_money.getText().toString())) {
+                        ToastUtils.showToast("请输入打赏金额");
+                        return;
+                    }
+                    float money = Float.parseFloat(et_money.getText().toString());
+                    if (Float.parseFloat(et_money.getText().toString()) < Float.parseFloat("0.01")) {
+                        ToastUtils.showToast("打赏金额不能少于0.01元");
+                        return;
+                    }
+                    CommonUtils.hideSoft(getActivity());
+                    ll_icon_money.setVisibility(View.GONE);
+                    ll_pay_action.setVisibility(View.VISIBLE);
+                    tv_admire.setText("确认");
+
+                } else {
+//                    showLoadingDialog("");
+                    pay(payActionType, et_money.getText().toString());
+                }
+            }
+        });
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                window = null;
+                CommonUtils.setWindow(1, getActivity());
+            }
+        });
+        rl_pop.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    CommonUtils.hideSoft(getActivity());
+                }
+                return true;
+            }
+        });
+    }
+
+    private void pay(String payType, String admireMoney) {
+        presenter.doPay("", admireMoney, "", payType);
+    }
+
+    public void getNewsAdmireWeChatOrderSuccess(OrderResp resp) {
+        Constant.WEIWHAT_PAY_TYPE = 1;
+        Constant.ADMIRE_PAY_MONRY = et_money.getText().toString();
+        Gson gson = new Gson();
+        Object orderObject = resp.getData();
+        WeiChatCustomOrder order = new WeiChatCustomOrder();
+        order.parseDataFromJsonStr(gson.toJson(orderObject));
+        PayUtil.startWeiChatPay(getActivity(), order);
+    }
+
+    public void getNewsAdmireAlipayOrderSuccess(OrderResp resp) {
+        Object orderObject = resp.getData();
+        Gson gson = new Gson();
+        AlipayOrderInfo orderInfo = new AlipayOrderInfo();
+        orderInfo.parseDataFromJsonStr(gson.toJson(orderObject));
+        PayUtil.startAlipay(getActivity(), orderInfo.getAlipayOrderInfo(), new PayUtil.AlipayResultCallback() {
+            @Override
+            public void paySuccess() {
+//                Intent intent = new Intent(getActivity(), AdmireNewsResultActivity.class);
+//                intent.putExtra("admireMoney", et_money.getText().toString());
+//                startActivity(intent);
+                ToastUtils.showToast("支付成功");
+            }
+
+            @Override
+            public void payFail() {
+                showShortToast("支付失败");
+            }
+        });
+    }
+
+    public void getNewsAdmireOrderFail(String msg) {
+        showShortToast(msg);
     }
 
     /**
@@ -516,42 +701,42 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 alertDialog.setTitle("网络切换为4G");
                 alertDialog.setMessage("是否继续播放？");
                 alertDialog.setPositiveButton("是",
-                                              new DialogInterface.OnClickListener() {
-                                                  @Override
-                                                  public void onClick(DialogInterface dialogInterface, int i) {
-                                                      int playerState = mPlayer.getPlayerState();
-                                                      if (playerState == AliVcMediaPlayer.STOPPED) {
-                                                          seekTo(progressBar.getProgress());
-                                                          mPlayer.prepareAndPlay(mUrl);
-                                                      } else if (playerState == AliVcMediaPlayer.PAUSED) {
-                                                          resume();
-                                                      } else {
-                                                          stop();
-                                                          seekTo(progressBar.getProgress());
-                                                          start();
-                                                      }
-                                                  }
-                                              });
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                int playerState = mPlayer.getPlayerState();
+                                if (playerState == AliVcMediaPlayer.STOPPED) {
+                                    seekTo(progressBar.getProgress());
+                                    mPlayer.prepareAndPlay(mUrl);
+                                } else if (playerState == AliVcMediaPlayer.PAUSED) {
+                                    resume();
+                                } else {
+                                    stop();
+                                    seekTo(progressBar.getProgress());
+                                    start();
+                                }
+                            }
+                        });
                 alertDialog.setNegativeButton("否", null);
                 netChangeDialog = alertDialog.create();
                 netChangeDialog.show();
             }
 
             Toast.makeText(mContext.getApplicationContext(),
-                           "网络切换为4G", Toast.LENGTH_SHORT).show();
+                    "网络切换为4G", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void on4GToWifi() {
             Toast.makeText(mContext.getApplicationContext(),
-                           "网络切换为WIFI", Toast.LENGTH_SHORT).show();
+                    "网络切换为WIFI", Toast.LENGTH_SHORT).show();
 
         }
 
         @Override
         public void onNetDisconnected() {
             Toast.makeText(mContext.getApplicationContext(),
-                           "网络已断开", Toast.LENGTH_SHORT).show();
+                    "网络已断开", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -806,7 +991,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private void onPrepared() {
         Toast.makeText(mContext, "准备成功",
-                       Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT).show();
         mPlayer.play();
         inSeek = false;
 //        pauseBtn.setText("暂停");
@@ -878,7 +1063,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private void onError(int i, String msg) {
         pause();
         Toast.makeText(mContext,
-                       "失败！！！！原因：" + msg, Toast.LENGTH_SHORT).show();
+                "失败！！！！原因：" + msg, Toast.LENGTH_SHORT).show();
     }
 
     private static class MyCompletedListener implements MediaPlayer.MediaPlayerCompletedListener {
@@ -959,7 +1144,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             int duration = (int) mPlayer.getDuration();
             int bufferPosition = mPlayer.getBufferPosition();
             Log.d("lfj0929",
-                  "curPosition = " + curPosition + " , duration = " + duration + " ， inSeek = " + inSeek);
+                    "curPosition = " + curPosition + " , duration = " + duration + " ， inSeek = " + inSeek);
 
             if (!inSeek) {
                 positionTxt.setText(Formatter.formatTime(curPosition));

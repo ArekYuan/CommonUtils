@@ -61,4 +61,8 @@ public class Constant {
     public static String LOCATION = "";
 
     public static final String NAME_USER = "name_user";
+
+    public static int WEIWHAT_PAY_TYPE=0;//微信支付 0：支付会员，1：支付打赏
+
+    public static String ADMIRE_PAY_MONRY="";
 }

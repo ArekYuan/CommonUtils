@@ -21,9 +21,9 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
-
 
 import com.yaohl.retrofitlib.log.YLog;
 
@@ -187,6 +187,21 @@ public class CommonUtils {
     }
 
     /**
+     * 隐藏 软键盘
+     *
+     * @param mActivity who's pager
+     */
+    public static void hideSoft(Activity mActivity) {
+        InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (mActivity.getCurrentFocus() != null) {
+            if (mActivity.getCurrentFocus().getWindowToken() != null) {
+                imm.hideSoftInputFromWindow(mActivity.getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
+
+    /**
      * 判断某个界面是否在前台
      *
      * @param className 某个界面名称(包名+类名)
@@ -240,6 +255,17 @@ public class CommonUtils {
             e.printStackTrace();
         }
         return "";
+    }
+
+    /**
+     * 添加遮罩阴影
+     *
+     * @param t 透明度
+     */
+    public static void setWindow(float t, Activity activity) {
+        WindowManager.LayoutParams wl = activity.getWindow().getAttributes();
+        wl.alpha = t;
+        activity.getWindow().setAttributes(wl);
     }
 
 }
